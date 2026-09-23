@@ -966,5 +966,28 @@ body::before {
 
 }
 
+.buttons-wrapper {
+    gap: 80px;
+}
+
+.email-button, .resume-button {
+    padding: 7px 10px;
+    font-size: 14px;
+}
+
+.email-icon, .resume-icon {
+    height: 15px;
+    width:auto;
+}
+
+.description-wrapper {
+    z-index: 3;
+    margin: 100px 0 0 0;
+}
+
+.image-cutter {
+width: 90%;
+top: 575px;
+}
 
 }
