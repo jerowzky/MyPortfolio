@@ -915,15 +915,19 @@ left: 50%;
 
 @media (max-width: 425px) {
 .greetings {
-
-    transform: scale(0.65);
+    transform: scale(0.60);
     transform-origin: left center;
 }
-.socmed-wrapper {
-    margin-left: 0;
+
+.description-wrapper {
+    transform: scale(0.60);
+    transform-origin: right center;    
+}
+.socmed-container {
+    margin-top: -75px;
 }
 .socmed-wrapper svg {
-    width: 28px;
+    width: 24px;
     height: auto;
 }
 
@@ -932,6 +936,35 @@ left: 50%;
 }
 
 .home {
-margin: 26px 20px;
+margin: -5px 20px;
 }
+
+body::before {
+    width: 300px;
+    height: 300px;
+}
+
+.hero-image-wrapper {
+    width: 400px;
+}
+
+.socmed-wrapper {
+    padding: 15px 10px;
+    gap:20px;
+}
+
+.process-circle {
+    width: 225px;
+    height: 225px;
+    right: -30%;
+    top: 4%;
+
+}
+.code-background {
+    font-size: 18px;
+    padding: 50px 20px;
+
+}
+
+
 }
