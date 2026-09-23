@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Website</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,100..900&display=swap" rel="stylesheet">    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#experience">Experience</a>
+            </nav>
+        </header>
+    
+<div class="code-background">
+    <pre id="code-text"></pre><span class="code-cursor">|</span>
+</div>
+                <svg class="process-circle" viewBox="0 0 400 400">
+
+                    <defs>
+                        <path
+                            id="circle-path"
+                            d="M 200,200
+                            m -150,0
+                            a 150,150 0 1,1 300,0
+                            a 150,150 0 1,1 -300,0"
+                        />
+                    </defs>
+
+                    <text class="process-text">
+                        <textPath href="#circle-path">
+                            DESIGN • BUILD • TEST • IMPROVE • DESIGN • BUILD • TEST • IMPROVE • 
+                        </textPath>
+                    </text>
+
+                </svg>
+        <main>
+            <section id ="home" class="home">
+                <div class="hero">
+                <div class = "left-part">
+                    <div class = "greetings">
+                        <h1 class="reveal-right-tilted1"> Hello, I'm </h1>
+                        <h2 class="reveal-right"> Jeruh </h2>
+                        <h3 class="reveal-right"> Fornal </h3>
+                        <h4 class="reveal-right-tilted2"> Experienced Across </h4>
+                        <h5 class="reveal-right" id="typing-text"> Project Management </h5>
+                    </div> 
+                    <div class="socmed-container reveal-right">
+                    <div class = "socmed-wrapper">
+                        <!-- GitHub -->
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M24.0199 0C10.7375 0 0 10.8167 0 24.1983C0 34.895 6.87988 43.9495 16.4241 47.1542C17.6174 47.3951 18.0545 46.6335 18.0545 45.9929C18.0545 45.4319 18.0151 43.509 18.0151 41.5055C11.3334 42.948 9.94198 38.6209 9.94198 38.6209C8.86818 35.8164 7.27715 35.0956 7.27715 35.0956C5.09022 33.6132 7.43645 33.6132 7.43645 33.6132C9.86233 33.7735 11.1353 36.0971 11.1353 36.0971C13.2824 39.7827 16.7422 38.7413 18.1341 38.1002C18.3328 36.5377 18.9695 35.456 19.6455 34.8552C14.3163 34.2942 8.70937 32.211 8.70937 22.9161C8.70937 20.2719 9.66321 18.1086 11.1746 16.4261C10.9361 15.8253 10.1008 13.3409 11.4135 10.0157C11.4135 10.0157 13.4417 9.3746 18.0146 12.4996C19.9725 11.9699 21.9916 11.7005 24.0199 11.6982C26.048 11.6982 28.1154 11.979 30.0246 12.4996C34.5981 9.3746 36.6262 10.0157 36.6262 10.0157C37.9389 13.3409 37.1031 15.8253 36.8646 16.4261C38.4158 18.1086 39.3303 20.2719 39.3303 22.9161C39.3303 32.211 33.7234 34.2539 28.3544 34.8552C29.2296 35.6163 29.9848 37.0583 29.9848 39.3421C29.9848 42.5871 29.9454 45.1915 29.9454 45.9924C29.9454 46.6335 30.383 47.3951 31.5758 47.1547C41.12 43.9491 47.9999 34.895 47.9999 24.1983C48.0392 10.8167 37.2624 0 24.0199 0Z" fill="white"/>
+                        </svg>
+                        <!-- LinkedIn -->
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_153_312)">
+                        <path d="M44.4469 0H3.54375C1.58437 0 0 1.54688 0 3.45938V44.5312C0 46.4437 1.58437 48 3.54375 48H44.4469C46.4062 48 48 46.4438 48 44.5406V3.45938C48 1.54688 46.4062 0 44.4469 0ZM14.2406 40.9031H7.11563V17.9906H14.2406V40.9031ZM10.6781 14.8688C8.39062 14.8688 6.54375 13.0219 6.54375 10.7437C6.54375 8.46562 8.39062 6.61875 10.6781 6.61875C12.9563 6.61875 14.8031 8.46562 14.8031 10.7437C14.8031 13.0125 12.9563 14.8688 10.6781 14.8688ZM40.9031 40.9031H33.7875V29.7656C33.7875 27.1125 33.7406 23.6906 30.0844 23.6906C26.3812 23.6906 25.8187 26.5875 25.8187 29.5781V40.9031H18.7125V17.9906H25.5375V21.1219H25.6312C26.5781 19.3219 28.9031 17.4188 32.3625 17.4188C39.5719 17.4188 40.9031 22.1625 40.9031 28.3313V40.9031Z" fill="white"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_153_312">
+                        <rect width="48" height="48" fill="white"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+                        <!-- Facebook -->
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_153_314)">
+                        <path d="M24 0C10.7453 0 0 10.7453 0 24C0 35.255 7.74912 44.6995 18.2026 47.2934V31.3344H13.2538V24H18.2026V20.8397C18.2026 12.671 21.8995 8.8848 29.9194 8.8848C31.44 8.8848 34.0637 9.18336 35.137 9.48096V16.129C34.5706 16.0694 33.5866 16.0397 32.3645 16.0397C28.4294 16.0397 26.9088 17.5306 26.9088 21.4061V24H34.7482L33.4013 31.3344H26.9088V47.8243C38.7926 46.3891 48.001 36.2707 48.001 24C48 10.7453 37.2547 0 24 0Z" fill="white"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_153_314">
+                        <rect width="48" height="48" fill="white"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+                        <!-- Instagram -->
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0_153_313)">
+                        <path d="M24 4.32187C30.4125 4.32187 31.1719 4.35 33.6938 4.4625C36.0375 4.56562 37.3031 4.95938 38.1469 5.2875C39.2625 5.71875 40.0688 6.24375 40.9031 7.07812C41.7469 7.92188 42.2625 8.71875 42.6938 9.83438C43.0219 10.6781 43.4156 11.9531 43.5188 14.2875C43.6313 16.8187 43.6594 17.5781 43.6594 23.9813C43.6594 30.3938 43.6313 31.1531 43.5188 33.675C43.4156 36.0188 43.0219 37.2844 42.6938 38.1281C42.2625 39.2438 41.7375 40.05 40.9031 40.8844C40.0594 41.7281 39.2625 42.2438 38.1469 42.675C37.3031 43.0031 36.0281 43.3969 33.6938 43.5C31.1625 43.6125 30.4031 43.6406 24 43.6406C17.5875 43.6406 16.8281 43.6125 14.3063 43.5C11.9625 43.3969 10.6969 43.0031 9.85313 42.675C8.7375 42.2438 7.93125 41.7188 7.09688 40.8844C6.25313 40.0406 5.7375 39.2438 5.30625 38.1281C4.97813 37.2844 4.58438 36.0094 4.48125 33.675C4.36875 31.1438 4.34063 30.3844 4.34063 23.9813C4.34063 17.5688 4.36875 16.8094 4.48125 14.2875C4.58438 11.9437 4.97813 10.6781 5.30625 9.83438C5.7375 8.71875 6.2625 7.9125 7.09688 7.07812C7.94063 6.23438 8.7375 5.71875 9.85313 5.2875C10.6969 4.95938 11.9719 4.56562 14.3063 4.4625C16.8281 4.35 17.5875 4.32187 24 4.32187ZM24 0C17.4844 0 16.6688 0.028125 14.1094 0.140625C11.5594 0.253125 9.80625 0.665625 8.2875 1.25625C6.70312 1.875 5.3625 2.69062 4.03125 4.03125C2.69063 5.3625 1.875 6.70313 1.25625 8.27813C0.665625 9.80625 0.253125 11.55 0.140625 14.1C0.028125 16.6687 0 17.4844 0 24C0 30.5156 0.028125 31.3312 0.140625 33.8906C0.253125 36.4406 0.665625 38.1938 1.25625 39.7125C1.875 41.2969 2.69063 42.6375 4.03125 43.9688C5.3625 45.3 6.70313 46.125 8.27813 46.7344C9.80625 47.325 11.55 47.7375 14.1 47.85C16.6594 47.9625 17.475 47.9906 23.9906 47.9906C30.5063 47.9906 31.3219 47.9625 33.8813 47.85C36.4313 47.7375 38.1844 47.325 39.7031 46.7344C41.2781 46.125 42.6188 45.3 43.95 43.9688C45.2812 42.6375 46.1063 41.2969 46.7156 39.7219C47.3063 38.1938 47.7188 36.45 47.8313 33.9C47.9438 31.3406 47.9719 30.525 47.9719 24.0094C47.9719 17.4938 47.9438 16.6781 47.8313 14.1188C47.7188 11.5688 47.3063 9.81563 46.7156 8.29688C46.125 6.70312 45.3094 5.3625 43.9688 4.03125C42.6375 2.7 41.2969 1.875 39.7219 1.26562C38.1938 0.675 36.45 0.2625 33.9 0.15C31.3313 0.028125 30.5156 0 24 0Z" fill="white"/>
+                        <path d="M24 11.6719C17.1938 11.6719 11.6719 17.1938 11.6719 24C11.6719 30.8062 17.1938 36.3281 24 36.3281C30.8062 36.3281 36.3281 30.8062 36.3281 24C36.3281 17.1938 30.8062 11.6719 24 11.6719ZM24 31.9969C19.5844 31.9969 16.0031 28.4156 16.0031 24C16.0031 19.5844 19.5844 16.0031 24 16.0031C28.4156 16.0031 31.9969 19.5844 31.9969 24C31.9969 28.4156 28.4156 31.9969 24 31.9969Z" fill="white"/>
+                        <path d="M39.6937 11.1843C39.6937 12.778 38.4 14.0624 36.8156 14.0624C35.2219 14.0624 33.9375 12.7687 33.9375 11.1843C33.9375 9.59053 35.2313 8.30615 36.8156 8.30615C38.4 8.30615 39.6937 9.5999 39.6937 11.1843Z" fill="white"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_153_313">
+                        <rect width="48" height="48" fill="white"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+                    </div>   
+                    </div>                  
+                </div>
+                <div class="hero-image-wrapper reveal-up">
+                    <img class="hero-image" src="images/myportrait.png" alt="Jeruh Fornal">
+                    <img class="hero-image-outline" src="images/myportrait.png" alt="">
+                    <svg class="image-cutter" viewBox="0 0 1015 433" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_f_198_98)">
+                    <ellipse cx="507.5" cy="216.5" rx="397" ry="106" fill="url(#paint0_linear_198_98)"/>
+                    </g>
+                    <defs>
+                    <filter id="filter0_f_198_98" x="0" y="0" width="1015" height="433" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                    <feGaussianBlur stdDeviation="55.25" result="effect1_foregroundBlur_198_98"/>
+                    </filter>
+                    <linearGradient id="paint0_linear_198_98" x1="507.5" y1="110.5" x2="507.5" y2="322.5" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#03CE6B"/>
+                    <stop offset="1" stop-color="#03A772"/>
+                    </linearGradient>
+                    </defs>
+                    </svg>
+                    <div class="buttons-wrapper">
+                        <button class="email-button reveal-right">
+                            <svg class="email-icon"  viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_1_26449)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0.234468 0.356566C0.0881487 0.530471 0 0.754941 0 1V13C0 14.6569 1.34315 16 3 16H17C18.6569 16 20 14.6569 20 13V1.01056C20.0004 0.973606 19.9987 0.936539 19.995 0.899543C19.9681 0.630017 19.8342 0.392006 19.6364 0.228617C19.4645 0.0865899 19.2442 0.000948707 19.004 7.83375e-06C19.0027 2.65064e-06 19.0014 0 19 0C19 0 19 0 19 0H1.00003H1C0.734348 0 0.49289 0.103586 0.313814 0.27257C0.28585 0.298938 0.259347 0.326973 0.234468 0.356566ZM2 3.41418V13C2 13.5523 2.44772 14 3 14H17C17.5523 14 18 13.5523 18 13V3.41424L10.7071 10.7071C10.3166 11.0976 9.68345 11.0976 9.29292 10.7071L2 3.41418Z" fill="white"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_1_26449">
+                            <rect width="20" height="16" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                            Email Me
+                        </button>
+                        <button class="resume-button reveal-left">
+                            <svg class="resume-icon" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_1_26082)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 0C0.447715 0 0 0.447715 0 1V17C0 18.6569 1.34315 20 3 20H13C14.6569 20 16 18.6569 16 17V6C16 5.73478 15.8946 5.48043 15.7071 5.29289L10.7071 0.292893C10.5196 0.105357 10.2652 0 10 0H1ZM10 2.41421L13.5858 6H10V2.41421ZM4 11C4 10.4477 4.44772 10 5 10H11C11.5523 10 12 10.4477 12 11C12 11.5523 11.5523 12 11 12H5C4.44772 12 4 11.5523 4 11ZM4 15C4 14.4477 4.44772 14 5 14H11C11.5523 14 12 14.4477 12 15C12 15.5523 11.5523 16 11 16H5C4.44772 16 4 15.5523 4 15Z" fill="#FFFFFF"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_1_26082">
+                            <rect width="16" height="20" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                            View Resume
+                        </button>
+                    </div>
+                </div>
+                <div class="description-wrapper">
+                    <div class="description">
+                        <h1 class="reveal-left-tilted"> Turning Ideas Into </h1>
+                        <h2 class="reveal-left"> Intuitive Digital </h2>
+                        <h3 class="reveal-left"> Experiences </h3>
+                    </div>
+                    <h1 class = "long-desc reveal-left">
+                        From understanding requirements to designing, developing, and testing a solution, I enjoy being part of the process from idea to product.
+                    </h1>
+                </div>
+                </div>
+            </section>
+            <section id="about">
+                <div class="about">
+                    <div class="section-title">
+                        <h1 class="title reveal-title"> About <span class="second-text"> Me </span></h2>
+                        <h2 class="headline reveal-headline"> Beyond the Code </h2>
+                    </div>
+                    <div class="about-content">
+                        <div class="left-about-content">
+                            <div class="image-container">
+                            <img class="about-image" src="images/about-image.png" alt="Jeruh Fornal">
+                            </div>                       
+                                <svg class="about-image-cutter" viewBox="0 0 1015 433" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_f_198_98)">
+                                <ellipse cx="507.5" cy="216.5" rx="397" ry="106" fill="url(#paint0_linear_198_98)"/>
+                                </g>
+                                <defs>
+                                <filter id="filter0_f_198_98" x="0" y="0" width="1015" height="433" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+                                <feGaussianBlur stdDeviation="55.25" result="effect1_foregroundBlur_198_98"/>
+                                </filter>
+                                <linearGradient id="paint0_linear_198_98" x1="507.5" y1="110.5" x2="507.5" y2="322.5" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#03CE6B"/>
+                                <stop offset="1" stop-color="#03A772"/>
+                                </linearGradient>
+                                </defs>
+                                </svg>
+                        </div>
+                        <div class="right-about-content">
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!--
+        <footer>
+            <p>&copy; 2024 My Website. All rights reserved.</p>
+        </footer>
+        -->
+    </body> 
+</html> 
+
+<script>
+    const texts = [
+        "Web Development",
+        "Project Management",
+        "UI/UX Design",
+        "Business Analysis",
+        "Quality Assurance"
+    ];
+
+    const typingText = document.getElementById("typing-text");
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+        const currentText = texts[textIndex];
+
+        if (isDeleting) {
+            typingText.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typingText.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        let speed = isDeleting ? 50 : 100;
+
+        if (!isDeleting && charIndex === currentText.length) {
+            speed = 1500;
+            isDeleting = true;
+        }
+
+        if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            textIndex++;
+
+            if (textIndex === texts.length) {
+                textIndex = 0;
+            }
+
+            speed = 500;
+        }
+
+        setTimeout(typeEffect, speed);
+    }
+
+    typeEffect();
+
+const code = `
+const portfolio = {
+
+    name: "Jeruh Fornal",
+
+    role: "IT Professional",
+
+    skills: [
+        "Frontend Development",
+        "UI/UX Design",
+        "Quality Assurance",
+        "Business Analysis",
+        "Project Management"
+    ]
+
+};
+
+
+function createExperience(problem) {
+
+    const idea = understand(problem);
+
+    const design = createInterface(idea);
+
+    const solution = develop(design);
+
+    test(solution);
+
+    return solution;
+}
+
+
+system.initialize();
+
+experience.create();
+
+interface.render();
+
+user.interact();
+
+solution.improve();
+`;
+
+const codeText = document.getElementById("code-text");
+
+let index = 0;
+
+function typeCode() {
+
+    if (index < code.length) {
+
+        codeText.textContent += code.charAt(index);
+
+        index++;
+
+        setTimeout(typeCode, 60);
+
+    } else {
+
+        setTimeout(() => {
+
+            codeText.textContent = "";
+            index = 0;
+
+            typeCode();
+
+        }, 2000);
+    }
+}
+
+typeCode();
+
+const reveals = document.querySelectorAll(
+    ".reveal-right, .reveal-right-tilted1, .reveal-right-tilted2, .reveal-left, .reveal-left-tilted, .reveal-up, .reveal-title, .reveal-headline"
+);
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        } else {
+            entry.target.classList.remove("show");
+        }
+
+    });
+
+}, {
+    threshold: 0.15
+});
+
+reveals.forEach((element) => {
+    observer.observe(element);
+});
+
+<!-- Navigation Bar -->
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("header nav a");
+
+function updateActiveNav() {
+
+    let currentSection = "home";
+
+    sections.forEach((section) => {
+
+        const sectionTop = section.getBoundingClientRect().top;
+
+        if (sectionTop <= window.innerHeight * 0.4) {
+            currentSection = section.id;
+        }
+
+    });
+
+    navLinks.forEach((link) => {
+        link.classList.remove("active");
+
+if (
+    link.getAttribute("href") === `#${currentSection}` ||
+    (currentSection === "home" && link.getAttribute("href") === "#")
+) {
+    link.classList.add("active");
+}
+    });
+}
+
+window.addEventListener("scroll", updateActiveNav);
+window.addEventListener("load", updateActiveNav);
+</script>
+
