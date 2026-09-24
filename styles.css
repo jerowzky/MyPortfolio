@@ -78,15 +78,6 @@ header {
     top: 0;
     z-index: 1000;
     margin: 0 50px;
-}
-
-header nav {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 0;
-    font-family: "Unbounded", sans-serif;
 background: linear-gradient(
     135deg,
     #03A271 0%,
@@ -94,10 +85,19 @@ background: linear-gradient(
     #173F36 75%,
     #03A271 100%
 );
+
     border: 1px solid rgba(255, 248, 248, 0.4);
     backdrop-filter: blur(15px);
     border-radius: 0 0 50px 50px;
+    padding: 20px 0;
+}
 
+header nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    font-family: "Unbounded", sans-serif;
 }
 
 header nav a {
@@ -124,6 +124,17 @@ header nav a.active {
     border-radius: 50px;
     color: #03A271;
     font-weight: 600;
+}
+
+.mobile-nav {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-nav button {
+    background: transparent;
+    border: none;
 }
 
 @keyframes movingLight {
@@ -988,6 +999,44 @@ body::before {
 .image-cutter {
 width: 90%;
 top: 575px;
+}
+
+.mobile-nav {
+    display: flex;
+    margin: 0 15px;
+}
+
+header nav {
+    display: none;
+}
+
+header {
+    padding: 10px 0;
+    border-radius: 0%;
+    border: none;
+}
+
+.mobile-nav h1 {
+margin: 0px;
+color: white;
+font-family: "Unbounded";
+font-size: 1.4rem;
+}
+
+.nav-second-text {
+    color:#03A271;
+    background: linear-gradient(
+        to bottom,
+        #03A271 0%,
+        #03A271 40%,
+        #06d395 100%
+    );
+    text-shadow: 0 0 25px #06d395;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
 }
 
 }
