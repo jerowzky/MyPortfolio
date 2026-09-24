@@ -88,26 +88,35 @@ background: linear-gradient(
 
     border: 1px solid rgba(255, 248, 248, 0.4);
     backdrop-filter: blur(15px);
-    border-radius: 0 0 50px 50px;
-    padding: 20px 0;
+    border-radius: 0 0 30px 30px;
+    padding: 15px 15px;
+    display: flex;
+    justify-content: space-between;
 }
 
 header nav {
     display: flex;
-    gap: 30px;
+    gap: 15px;
     align-items: center;
     justify-content: center;
     font-family: "Unbounded", sans-serif;
 }
 
+header .sitename {
+margin: 0px;
+color: white;
+font-family: "Unbounded";
+font-size: 1.8rem;
+}
+
 header nav a {
     display: inline-block;
     text-align: center;
-    padding : 10px 20px;
+    padding : 7px 16px;
     text-decoration: none;
     letter-spacing: 0.10em;
     color: #FFFFFF;
-    font-size: 20px;
+    font-size: 18px;
     text-transform: uppercase;
     opacity: 0.75;
 
@@ -118,7 +127,7 @@ header nav a:hover {
     font-weight: 600;
 }
 
-header nav a.active {
+header nav a.active, .mobile-dropdown a.active {
     opacity: 1;
     background-color: rgba(255, 255, 255);
     border-radius: 50px;
@@ -130,6 +139,10 @@ header nav a.active {
     display: none;
     justify-content: space-between;
     align-items: center;
+}
+
+.mobile-dropdown {
+    display: none;
 }
 
 .mobile-nav button {
@@ -1004,7 +1017,9 @@ top: 575px;
 .mobile-nav {
     display: flex;
     margin: 0 15px;
+    width: 100%;
 }
+
 
 header nav {
     display: none;
@@ -1039,4 +1054,60 @@ font-size: 1.4rem;
 
 }
 
+header .sitename {
+    display: none;
+}
+
+.mobile-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 60px;
+    min-width: 150px;
+    right: 10px;
+    padding: 20px;
+    border-radius: 25px 0px 25px 25px;
+    box-shadow: 0 0 20px #06d395;
+    background: linear-gradient(
+        135deg,
+        #173F36 0%,
+        #000000 45%,
+        #173F36 75%,
+        #03A271 100%
+    );
+    backdrop-filter: blur(20px);
+
+    /* Hidden */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.mobile-dropdown.active {
+    /* Visible */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mobile-dropdown a {
+    font-family: "Unbounded";
+    color: white;
+    text-decoration: none;
+    opacity: 0.75;
+    padding : 7px 16px;
+    border-radius: 25px 0px 25px 25px;
+    background: rgba(255, 255, 255, 0.1);
+
+}
+
+.mobile-dropdown a.active {
+border-radius: 25px 5px 25px 25px;
+}
 }
