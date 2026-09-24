@@ -451,7 +451,7 @@ header nav a.active, .mobile-dropdown a.active {
     }
 }
 
-.reveal-right, .reveal-right-tilted1, .reveal-right-tilted2, .reveal-left-tilted {
+.reveal-right, .reveal-right-tilted1, .reveal-right-tilted2 {
     opacity: 0;
     transform: translateX(-80px);
     transition: opacity 2s ease, transform 2s ease;
@@ -500,6 +500,23 @@ header nav a.active, .mobile-dropdown a.active {
     opacity: 0;
     transform: translateX(80px);
     transition: opacity 2s ease, transform 2s ease;  
+}
+
+.reveal-left-card {
+    opacity: 0;
+    transform: translateX(80px);
+    transition: opacity 2s ease, transform 2s ease;      
+}
+
+.reveal-right-card {
+    opacity: 0;
+    transform: translateX(-80px);
+    transition: opacity 2s ease, transform 2s ease;      
+}
+
+.reveal-left-card.show, .reveal-right-card.show {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 
@@ -751,8 +768,74 @@ header nav a.active, .mobile-dropdown a.active {
     flex: 1;
     justify-content: center;
     align-items: center;
-    filter: drop-shadow(0px 4px 53.1px #03A271);
+    z-index: 1;
 }
+
+.metric-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    z-index:2;
+    gap: 20px;
+    width: 100%;
+    top: 200px;
+}
+
+.card1, .card2, .card3{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #171B19;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 30px;
+box-shadow: 0 0 20px #06d395;
+}
+
+.card1, .card3 {
+    align-self: flex-start;
+}
+
+.card2 {
+    align-self: flex-end;
+}
+
+.left-card {
+    display:flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.label, .number {
+    color: white;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.card-icon {
+    width: 26px;
+    height: auto;
+    color: #FFFFFF;
+    background-color: #03A271;
+    border-radius: 50%;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.number {
+    font-family: "ICF-ExtraBold";
+    font-size: 28px;
+    color: #4FD9A8;
+}
+
+.label {
+    font-family: "Unbounded";
+    font-size: 12px;
+    color: #B8C0BC;
+
+}
+
 
 .right-about-content h1, .right-about-content h2 {
     color: white;
@@ -1293,4 +1376,62 @@ border-radius: 25px 5px 25px 25px;
     display: none;
 }
 
+.metric-cards {
+    gap: 0px;
+    top: 130px;
+}
+
+.card1, .card2, .card3{
+    padding: 14px;
+    gap: 10px;
+    border-radius: 20px;
+
+}
+
+.left-card {
+    display:flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.label, .number {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.card-icon {
+    width: 22px;
+    height: auto;
+    padding: 4px;
+}
+
+.number {
+    font-size: 20px;
+}
+
+.label {
+    font-family: "Unbounded";
+    font-size: 12px;
+    color: #B8C0BC;
+
+}
+
+.reveal-left-card {
+    opacity: 0;
+    transform: translateX(80px) scale(0.8);
+    transition: opacity 2s ease, transform 2s ease;  
+    transform-origin: left center;     
+}
+
+.reveal-right-card {
+    opacity: 0;
+    transform: translateX(-80px) scale(0.8);
+    transition: opacity 2s ease, transform 2s ease;    
+    transform-origin: right center;  
+}
+
+.reveal-left-card.show, .reveal-right-card.show {
+    opacity: 1;
+    transform: translateX(0) scale(0.8);
+}
 }
