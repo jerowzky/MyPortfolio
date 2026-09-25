@@ -49,29 +49,6 @@ body {
     position: relative;
 }
 
-body::before {
-    content: "";
-    position: fixed;
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(
-        circle,
-        #4FD9A8 0%,
-        rgba(79, 217, 168, 0.7) 20%,
-        rgba(79, 217, 168, 0.3) 45%,
-        transparent 70%
-    );
-
-    border-radius: 50%;
-
-    left: -350px;
-    top: -350px;
-
-    pointer-events: none;
-    z-index: 0;
-
-    animation: movingLight 20s linear infinite;
-}
 
 header {
     position: sticky;
@@ -150,6 +127,35 @@ header nav a.active, .mobile-dropdown a.active {
     border: none;
 }
 
+.home {
+    min-height: 650px;
+    position: relative;
+}
+
+.home::before {
+    content: "";
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(
+        circle,
+        #4FD9A8 0%,
+        rgba(79, 217, 168, 0.7) 20%,
+        rgba(79, 217, 168, 0.3) 45%,
+        transparent 70%
+    );
+
+    border-radius: 50%;
+
+    left: -350px;
+    top: -350px;
+
+    pointer-events: none;
+    z-index: 0;
+
+    animation: movingLight 20s linear infinite;
+}
+
 @keyframes movingLight {
     0% {
         left: -350px;
@@ -177,19 +183,14 @@ header nav a.active, .mobile-dropdown a.active {
     }
 }
 
-.home {
-    margin: 26px 84px;
-    min-height: 650px;
-}
-
 
 .hero {
     position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1;
-
+    z-index: 12;
+    margin: 26px 84px;
 }
 
 .greetings {
@@ -463,6 +464,23 @@ header nav a.active, .mobile-dropdown a.active {
     transition: opacity 2s ease, transform 2s ease;
 }
 
+.reveal-up-btn {
+    opacity: 0;
+    transform: translateY(80px);
+    transition: opacity 2s ease, transform 2s ease;
+}
+.reveal-down-btn {
+    opacity: 0;
+    transform: translateY(-80px);
+    transition: opacity 2s ease, transform 2s ease;
+}
+
+.reveal-up-btn.show, .reveal-down-btn.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 2.5s;
+}
+
 .reveal-image {
     opacity: 0;
     transform: translateY(80px);
@@ -620,7 +638,17 @@ header nav a.active, .mobile-dropdown a.active {
     height: auto;
 
 }
+.section-cutter {
+    position: absolute;
+    top: -100px;
+    z-index:0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 150px;
+    object-fit: fill;
 
+}
 .process-circle {
     width: 325px;
     height: 325px;
@@ -649,17 +677,26 @@ header nav a.active, .mobile-dropdown a.active {
 }
 
 #about {
-    background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        #000000 30%,
-        #000000 80%,
-        transparent 100%
-    );
+background: radial-gradient(
+    circle at 50% 100%,
+    #000000 0%,
+    #000000   35%,
+    #05050500 35%, 45%,
+    #000000  35%, 80%,
+    #000000  100%
+);
 
     margin-top: 450px;
     position: relative;
     z-index: 10;
+}
+
+#expertise {
+    margin-top: 0px;
+    position: relative;
+    z-index: 9;
+    background:black;
+
 }
 
 .section-title {
@@ -675,7 +712,6 @@ header nav a.active, .mobile-dropdown a.active {
     color: white;
     font-family: "ICF-ExtraBold";
     color:white;
-    padding-top:100px;
     text-shadow: 0 0 50px #06d395;
     padding: 1rem 2rem;
     border: 3px solid #03A271 ;
@@ -713,8 +749,17 @@ header nav a.active, .mobile-dropdown a.active {
     white-space: nowrap;
 
 }
-.about {
+.about, .expertise {
     margin: 0 84px;
+    padding-top: 50px;}
+
+.about {
+    position: relative;
+    z-index: 1;
+}
+
+.expertise {
+    padding-top: 100px;
 }
 
 .about-content {
@@ -793,9 +838,46 @@ header nav a.active, .mobile-dropdown a.active {
 box-shadow: 0 0 20px #06d395;
 }
 
-.card1, .card3 {
+.card1-full, .card3-full {
     align-self: flex-start;
 }
+
+.card2-full {
+    align-self: flex-end;
+}
+.card1-full, .card2-full, .card3-full {
+    position: relative;
+}
+
+.left-btn, .right-btn {
+    white-space: nowrap;
+    right: 0px;
+    top: -45px;
+    position: absolute;
+    font-family: "Unbounded";
+    font-weight: 600;
+    background-color: #03A271;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-shadow: inset 0 0 8px #025139;
+    text-decoration: none;
+}
+
+.right-btn {
+    right: 0px;
+    bottom: -45px;
+    top: auto;
+}
+.button-icon {
+    width:22px;
+    height: auto;
+}
+
 
 .card2 {
     align-self: flex-end;
@@ -943,8 +1025,12 @@ border-radius: 20px 20px 5px 20px;
     transition-delay: 4s;
 }
 
+
+
+
+
 @media (max-width: 1317px) {
-.home {
+.hero {
     margin: 26px 42px;
 }
 
@@ -1082,6 +1168,10 @@ header nav a {
 
 }
 
+
+#about {
+margin-top: 100px;
+}
 }
 
 @media (max-width: 930px) {
@@ -1168,11 +1258,11 @@ left: 50%;
     width: 100%;
 }
 
-.home {
+.hero {
 margin: 0px 20px;
 }
 
-body::before {
+.home::before {
     width: 300px;
     height: 300px;
 }
@@ -1326,13 +1416,14 @@ border-radius: 25px 5px 25px 25px;
 }
 #about {
     margin-top: 50px;
-    background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        #000000 10%,
-        #000000 80%,
-        transparent 100%
-    );
+background: radial-gradient(
+    circle at 50% 85%,
+    #000000 0%,
+    #000000  35%,
+    #05050500 35%, 45%,
+    #000000  35%, 80%,
+    #000000  100%
+);
 }
 
 .about {
@@ -1416,22 +1507,18 @@ border-radius: 25px 5px 25px 25px;
 
 }
 
-.reveal-left-card {
-    opacity: 0;
-    transform: translateX(80px) scale(0.8);
-    transition: opacity 2s ease, transform 2s ease;  
+.card1-full, .card3-full {
+    transform: scale(0.8);
     transform-origin: left center;     
 }
 
-.reveal-right-card {
-    opacity: 0;
-    transform: translateX(-80px) scale(0.8);
-    transition: opacity 2s ease, transform 2s ease;    
+.card2-full{
+    transform: scale(0.8);  
     transform-origin: right center;  
 }
 
-.reveal-left-card.show, .reveal-right-card.show {
-    opacity: 1;
-    transform: translateX(0) scale(0.8);
+.expertise {
+    padding-top: 50px;
 }
+
 }
