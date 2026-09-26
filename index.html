@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My Website</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
             <div class = "mobile-nav">
                 <h1>my<span class="nav-second-text">Portfolio.</span></h1>
                 <button class="menu-toggle" id="menuToggle">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M3.5 5C3.23478 5 2.98043 5.10536 2.79289 5.29289C2.60536 5.48043 2.5 5.73478 2.5 6C2.5 6.26522 2.60536 6.51957 2.79289 6.70711C2.98043 6.89464 3.23478 7 3.5 7H20.5C20.7652 7 21.0196 6.89464 21.2071 6.70711C21.3946 6.51957 21.5 6.26522 21.5 6C21.5 5.73478 21.3946 5.48043 21.2071 5.29289C21.0196 5.10536 20.7652 5 20.5 5H3.5ZM2.5 12C2.5 11.7348 2.60536 11.4804 2.79289 11.2929C2.98043 11.1054 3.23478 11 3.5 11H20.5C20.7652 11 21.0196 11.1054 21.2071 11.2929C21.3946 11.4804 21.5 11.7348 21.5 12C21.5 12.2652 21.3946 12.5196 21.2071 12.7071C21.0196 12.8946 20.7652 13 20.5 13H3.5C3.23478 13 2.98043 12.8946 2.79289 12.7071C2.60536 12.5196 2.5 12.2652 2.5 12ZM2.5 18.001C2.5 17.7358 2.60536 17.4814 2.79289 17.2939C2.98043 17.1064 3.23478 17.001 3.5 17.001H20.5C20.7652 17.001 21.0196 17.1064 21.2071 17.2939C21.3946 17.4814 21.5 17.7358 21.5 18.001C21.5 18.2662 21.3946 18.5206 21.2071 18.7081C21.0196 18.8956 20.7652 19.001 20.5 19.001H3.5C3.23478 19.001 2.98043 18.8956 2.79289 18.7081C2.60536 18.5206 2.5 18.2662 2.5 18.001Z" fill="white"/>
                     </svg>
                  </button>
@@ -248,7 +249,6 @@
                                 </div>
                             </div>
                             <img class="about-image" src="images/about-image.png" loading="lazy" alt="Jeruh Fornal">
-                            </div>                       
                                 <svg class="about-image-cutter" viewBox="0 0 1015 433" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g filter="url(#filter0_f_198_98)">
                                 <ellipse cx="507.5" cy="216.5" rx="397" ry="106" fill="url(#paint0_linear_198_98)"/>
@@ -265,6 +265,7 @@
                                 </linearGradient>
                                 </defs>
                                 </svg>
+                        </div>                       
                         </div>
                         <div class="right-about-content">
                             <div class="first-paragraph reveal-right">
@@ -380,7 +381,99 @@
                     <div class="section-title">
                         <h1 class="title reveal-title"> What I <span class="second-text"> Do </span></h2>
                         <h2 class="headline reveal-headline"> Beyond the Code </h2>
-                    </div>     
+                    </div>
+                </div>
+                <div class="carousel swiper reveal-title" id="expertiseCarousel">
+
+                    <div class="swiper-wrapper">
+
+                        <div class="expertise-card swiper-slide">
+                            <div class="upper-text">
+                                <h1>05</h1>
+                                <h2>UI/UX Design</h2>
+                            </div>
+                            <h1 class ="expertise-description">I design clean and user-friendly interfaces with a focus on making websites and systems easy to understand and navigate. I work on the layout, user flow, and visual details to create a better experience for users.</h1>
+                            <div class = "lower-text">
+                                <a div>Wireframing</a>
+                                <a div>Prototyping</a>
+                                <a div>User flow planning</a>
+                                <a div>Visual Design</a>
+                                <a div>Figma</a>  
+                                <a div>Canva</a>                              
+                            </div>
+                            <img class="expertise-images" src="images/ui-design.png" loading="lazy" alt="UI-UX Design">
+                        </div>
+
+                        <div class="expertise-card swiper-slide">
+                            <div class="upper-text">
+                                <h1>01</h1>
+                                <h2>Web Development</h2>
+                            </div>
+                            <h1 class ="expertise-description">I build responsive websites by turning designs and ideas into working web pages. I focus on creating layouts that work well across different screen sizes while keeping the interface clean and functional.</h1>
+                            <div class = "lower-text">
+                                <a div>HTML</a>
+                                <a div>CSS</a>
+                                <a div>JavaScript</a>
+                                <a div>Tailwind CSS</a>
+                                <a div>PHP</a>  
+                                <a div>MySQL</a>   
+                                <a div>Responsive Layouts</a>                           
+                            </div>
+                            <img class="expertise-images" src="images/web-dev.png" loading="lazy" alt="Web Development">
+                        </div>
+
+                        <div class="expertise-card swiper-slide">
+                            <div class="upper-text">
+                                <h1>02</h1>
+                                <h2>QA Testing</h2>
+                            </div>                            
+                            <h1 class ="expertise-description">I test websites and systems to make sure their features work as expected and the interface feels consistent. I look for bugs, errors, and other issues that could affect the user's experience.</h1>
+                            <div class = "lower-text">
+                                <a div>Functional Testing</a>
+                                <a div>UI Testing</a>
+                                <a div>Bug Identification</a>
+                                <a div>Debugging</a>
+                                <a div>Test Documentation</a>                            
+                            </div>
+                            <img class="expertise-images" src="images/qa-testing.png" loading="lazy" alt="QA Testing">
+                        </div>
+
+                        <div class="expertise-card swiper-slide">
+                            <div class="upper-text">
+                                <h1>03</h1>
+                                <h2>Business Analysis</h2>
+                            </div>
+                            <h1 class ="expertise-description">I help break down project requirements and understand what users and stakeholders need from a system. I organize these requirements into clear workflows and documentation that can guide the development process.</h1>
+                            <div class = "lower-text">
+                                <a div>Requirements Gathering</a>
+                                <a div>Process Analysis</a>
+                                <a div>Documentation</a>
+                                <a div>User Requirements</a>
+                                <a div>System Workflows</a>                            
+                            </div>
+                            <img class="expertise-images" src="images/business-analysis.png" loading="lazy" alt="Business Analysis">
+                        </div>
+
+                        <div class="expertise-card swiper-slide">
+                            <div class="upper-text">
+                                <h1>04</h1>
+                                <h2>Project Management</h2>
+                            </div>
+                            <h1 class ="expertise-description">I help organize project tasks, requirements, and team activities from planning to completion. I keep track of progress and documentation while making sure the team stays aligned with the project's goals.</h1>
+                            <div class = "lower-text">
+                                <a div>Task Planning</a>
+                                <a div>Team Coordination</a>
+                                <a div>Documentation</a>
+                                <a div>Project Tracking</a>
+                                <a div>Workflow Organization</a>                            
+                            </div>
+                            <img class="expertise-images" src="images/project-management.png" loading="lazy" alt="QA Testing">
+                        </div>
+
+                    </div>
+
+                    <div class="carousel-dots swiper-pagination"></div>
+
                 </div>
             </section>
 
@@ -394,6 +487,8 @@
     </body> 
 </html> 
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
 <script>
     const texts = [
         "Web Development",
@@ -519,6 +614,8 @@ const reveals = document.querySelectorAll(
     ".reveal-right, .reveal-right-tilted1, .reveal-right-tilted2, .reveal-left, .reveal-left-tilted, .reveal-up, .reveal-title, .reveal-headline, .highlight, .reveal-image, .reveal-left-card, .reveal-right-card, .reveal-up-btn, .reveal-down-btn"
 );
 
+const headerHeight = window.innerWidth <= 500 ? 49 : 67;
+
 const observer = new IntersectionObserver((entries) => {
 
     entries.forEach((entry) => {
@@ -538,7 +635,8 @@ const observer = new IntersectionObserver((entries) => {
     });
 
 }, {
-    threshold: 0.15
+    threshold: 0,
+    rootMargin: `-${headerHeight}px 0px 0px 0px`
 });
 
 reveals.forEach((element) => {
@@ -586,5 +684,26 @@ menuToggle.addEventListener("click", () => {
     mobileDropdown.classList.toggle("active");
 });
 
+const expertiseSwiper = new Swiper("#expertiseCarousel", {
+
+    slidesPerView: 3,
+    spaceBetween: 20,
+
+    loop: true,
+    speed: 600,
+    grabCursor: true,
+
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+
+    pagination: {
+        el: "#expertiseCarousel .carousel-dots",
+        clickable: true,
+    },
+
+
+});
 </script>
 
