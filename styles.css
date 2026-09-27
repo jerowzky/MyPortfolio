@@ -692,7 +692,7 @@ background: radial-gradient(
     z-index: 10;
 }
 
-#expertise {
+#expertise, #experiences {
     margin-top: 0px;
     position: relative;
     z-index: 9;
@@ -754,6 +754,10 @@ background: radial-gradient(
     margin: 0 84px;
     padding-top: 50px;}
 
+.experiences {
+   margin: 50px 84px 0 84px;
+   min-height: 200px;
+}
 .about {
     position: relative;
     z-index: 1;
@@ -837,7 +841,7 @@ background: radial-gradient(
     padding: 20px;
     gap: 20px;
     border-radius: 30px;
-box-shadow: 0 0 20px #06d395;
+    box-shadow: 0 0 20px #06d395;
 }
 
 .card1-full, .card3-full {
@@ -1110,6 +1114,7 @@ background: radial-gradient(
     width: 80%;
     color: #B8C0BC;
     letter-spacing: 0.12em;
+    line-height: 1.2rem;
 }
 
 
@@ -1140,6 +1145,143 @@ background: radial-gradient(
     width: 20px;
     border-radius: 10px;
     background: white;
+}
+
+
+/* Vertical timeline */
+.timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 6px;
+background: linear-gradient(
+    180deg,
+    black 0%,
+    #03A271 50%,
+    #06d395 100%
+);
+    transform: translateX(-50%);
+}
+
+/* Each education entry */
+.education-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 70px;
+
+    position: relative;
+    padding-bottom: 30px;
+}
+
+/* Left side */
+.education-left {
+    text-align: left;
+}
+
+/* Title + year */
+.education-title {
+    display: flex;
+    justify-content: space-between;
+ 
+}
+.education-title h2 {
+    margin: 0;
+    color: white;
+    font-size: 32px;
+    line-height: 1.15;
+    font-family: "Unbounded";
+    font-weight: 900;
+}
+
+.school-level {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.education-title span {
+    color: white;
+    font-size: 32px;
+    line-height: 1.15;
+    font-family: "Unbounded";
+    font-weight: 900;
+    text-align: left;
+    margin-left: auto;
+    width: 25%;
+    align-self: flex-end;
+
+}
+
+/* School */
+.school {
+    color: #06d395;
+    font-size: 20px;
+    line-height: 1.15;
+    margin: 0;
+    font-family: "Unbounded";
+    font-weight: 600;
+}
+
+/* Right description */
+.education-right {
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.education-right p {
+    font-family: "WW-Black";
+    font-size: 1rem;
+    color: #B8C0BC;
+    letter-spacing: 0.12em;
+    line-height: 1.4rem;
+}
+.honors {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.honors a {
+    font-family: "Unbounded";
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    background-color: #171B19;
+    color: #B8C0BC;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+}
+
+.honors a svg {
+    width: 18px;
+    height: auto;
+    margin-right: 5px;
+}
+
+.experiences {
+    position: relative;
+}
+
+
+.experiences::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    background: #06d395;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+
+
+.experiences::after {
+    bottom: 0;
 }
 
 
@@ -1606,6 +1748,10 @@ background: radial-gradient(
     margin: 0 20px;
 }
 
+.experiences {
+   margin: 50px 20px 0 20px;
+}
+
 .about-content {
     flex-direction: column;
     gap:0px;
@@ -1769,7 +1915,64 @@ line-height: 1rem;
 
 .expertise-card {
     padding: 20px;
-}}
+}
+
+.timeline-line {
+
+    left: 0;
+    width: 6px;
+}
+
+.experiences-title {
+    font-size: 2.6rem;
+}
+
+.experiences-headline {
+    margin-top: -45px;
+}
+
+.education-item {
+    margin-left: 20px;
+    grid-template-columns: 1fr;
+
+}
+
+
+.education-title h2,.education-title span {
+    font-size: 28px;
+}
+
+.education-title span {
+    align-self: flex-start;
+}
+
+.education-right p {
+    font-size: 12px;
+    line-height: 1rem;
+}
+
+.school {
+    font-size: 16px;
+}
+
+.honors a {
+    font-size: 10px
+}
+
+.honors a svg {
+        width: 12px;
+    height: auto;
+    margin-right: 5px;
+}
+
+
+.experiences::after {
+    left: 0;
+    width: 30px;
+    height: 30px;
+
+}
+}
 
 @media (max-width: 375px) {
 .right-about-content {
