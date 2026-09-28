@@ -706,6 +706,7 @@ background: radial-gradient(
     align-items: center;
     gap:0px;
     position: relative;
+    padding: 75px 0;
 }
 .title {
     font-size: 3.5rem;
@@ -719,6 +720,7 @@ background: radial-gradient(
     border-radius: 50px 50px 50px 0;
     box-shadow: 0 0 20px #06d395;
     white-space: nowrap;
+    margin: 0;
 }
 
 .second-text {
@@ -745,26 +747,22 @@ background: radial-gradient(
     padding: 0.5rem 1rem;
     width: fit-content;
     position: relative;
-    margin-top: -50px;
     text-align: center;
     white-space: nowrap;
+    margin: -20px 0 0 0;
+}
+.about {
+    margin: 0 84px;
 
 }
-.about, .expertise {
-    margin: 0 84px;
-    padding-top: 50px;}
 
 .experiences {
-   margin: 50px 84px 0 84px;
+   margin: 0 84px 0 84px;
    min-height: 200px;
 }
 .about {
     position: relative;
     z-index: 1;
-}
-
-.expertise {
-    padding-top: 100px;
 }
 
 .about-content {
@@ -1036,7 +1034,6 @@ border-radius: 20px 20px 5px 20px;
     margin-left: -10% !important;
     overflow: hidden;
     position: relative;
-    padding: 50px 0 !important;
 }
 
 .upper-text {
@@ -1290,7 +1287,7 @@ background: linear-gradient(
     margin: 26px 42px;
 }
 
-.about, .expertise {
+.about {
     margin: 0 42px;
 }
 
@@ -1728,10 +1725,6 @@ width: 90%;
 top: 575px;
 }
 
-.section-title {
-    transform: scale(0.70);
-    transform-origin: top center;    
-}
 #about {
     margin-top: 50px;
 background: radial-gradient(
@@ -1743,13 +1736,36 @@ background: radial-gradient(
     #000000  100%
 );
 }
+.title {
+    font-size: 2.3rem;
+    padding: 0.7rem 1.7rem;
+    border: 3px solid #03A271 ;
+    margin: 0;
+}
+
+.section-title {
+    padding: 50px 0;
+}
+
+.headline {
+font-size: 0.75rem;   
+margin: -10px 0 0 0;
+padding: 0.3rem 0.8rem;
+
+}
+
+.experiences-title {
+    font-size: 2rem;
+}
+
 
 .about {
     margin: 0 20px;
+    padding: 0;
 }
 
 .experiences {
-   margin: 50px 20px 0 20px;
+   margin: 0 20px 0 20px;
 }
 
 .about-content {
@@ -1830,11 +1846,6 @@ background: radial-gradient(
     transform-origin: right center;  
 }
 
-.expertise {
-    padding-top: 50px;
-}
-
-
 .left-btn, .right-btn {
 font-size: 12px;
 padding: 3px 10px;
@@ -1890,7 +1901,7 @@ font-size: 1.4rem;
 .carousel {
     width: 230%;
     margin-left: -65% !important;
-    padding: 25px 0 !important;
+    padding: 0 !important;
 }
 
 
@@ -1923,13 +1934,6 @@ line-height: 1rem;
     width: 6px;
 }
 
-.experiences-title {
-    font-size: 2.6rem;
-}
-
-.experiences-headline {
-    margin-top: -45px;
-}
 
 .education-item {
     margin-left: 20px;
@@ -1939,7 +1943,7 @@ line-height: 1rem;
 
 
 .education-title h2,.education-title span {
-    font-size: 28px;
+    font-size: 24px;
 }
 
 .education-title span {
@@ -1953,6 +1957,15 @@ line-height: 1rem;
 
 .school {
     font-size: 16px;
+}
+
+.school-level {
+    width: 70%;
+    gap: 5px;
+}
+
+.education-title span {
+    width: 30%;
 }
 
 .honors a {
@@ -1971,6 +1984,10 @@ line-height: 1rem;
     width: 30px;
     height: 30px;
 
+}
+
+.section-cutter {
+    height: 100px;
 }
 }
 
