@@ -114,8 +114,8 @@
                     </div>                  
                 </div>
                 <div class="hero-image-wrapper reveal-up">
-                    <img class="hero-image" src="images/myportrait.png" loading="lazy" alt="Jeruh Fornal">
-                    <img class="hero-image-outline" src="images/myportrait.png" alt="">
+                    <img class="hero-image" src="images/myportrait.png" loading="lazy" width="800" height="800" alt="Jeruh Fornal">
+                    <img class="hero-image-outline" loading="lazy" width="800" height="800" src="images/myportrait.png" alt="">
                     <svg class="image-cutter" viewBox="0 0 1015 433" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g filter="url(#filter0_f_198_98)">
                     <ellipse cx="507.5" cy="216.5" rx="397" ry="106" fill="url(#paint0_linear_198_98)"/>
@@ -248,7 +248,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <img class="about-image" src="images/about-image.png" loading="lazy" alt="Jeruh Fornal">
+                            <img class="about-image" src="images/about-image.png" loading="lazy" width="800" height="800" alt="Jeruh Fornal">
                                 <svg class="about-image-cutter" viewBox="0 0 1015 433" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g filter="url(#filter0_f_198_98)">
                                 <ellipse cx="507.5" cy="216.5" rx="397" ry="106" fill="url(#paint0_linear_198_98)"/>
@@ -399,7 +399,7 @@
                                 <a div>Figma</a>  
                                 <a div>Canva</a>                              
                             </div>
-                            <img class="expertise-images" src="images/ui-design.png" loading="lazy" alt="UI-UX Design">
+                            <img class="expertise-images" src="images/ui-design.png" loading="lazy" width="800" height="800" alt="UI-UX Design">
                         </div>
 
                         <div class="expertise-card swiper-slide">
@@ -417,7 +417,7 @@
                                 <a div>MySQL</a>   
                                 <a div>Responsive Layouts</a>                           
                             </div>
-                            <img class="expertise-images" src="images/web-dev.png" loading="lazy" alt="Web Development">
+                            <img class="expertise-images" src="images/web-dev.png" loading="lazy" width="800" height="800" alt="Web Development">
                         </div>
 
                         <div class="expertise-card swiper-slide">
@@ -433,7 +433,7 @@
                                 <a div>Debugging</a>
                                 <a div>Test Documentation</a>                            
                             </div>
-                            <img class="expertise-images" src="images/qa-testing.png" loading="lazy" alt="QA Testing">
+                            <img class="expertise-images" src="images/qa-testing.png" loading="lazy" width="800" height="800" alt="QA Testing">
                         </div>
 
                         <div class="expertise-card swiper-slide">
@@ -449,7 +449,7 @@
                                 <a div>User Requirements</a>
                                 <a div>System Workflows</a>                            
                             </div>
-                            <img class="expertise-images" src="images/business-analysis.png" loading="lazy" alt="Business Analysis">
+                            <img class="expertise-images" src="images/business-analysis.png" loading="lazy" width="800" height="800" alt="Business Analysis">
                         </div>
 
                         <div class="expertise-card swiper-slide">
@@ -465,7 +465,7 @@
                                 <a div>Project Tracking</a>
                                 <a div>Workflow Organization</a>                            
                             </div>
-                            <img class="expertise-images" src="images/project-management.png" loading="lazy" alt="QA Testing">
+                            <img class="expertise-images" src="images/project-management.png" loading="lazy" width="800" height="800" alt="QA Testing">
                         </div>
 
                     </div>
@@ -608,226 +608,7 @@
             <p>&copy; 2024 My Website. All rights reserved.</p>
         </footer>
         -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
     </body> 
 </html> 
-
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="script.js"></script>
-<script>
-    const texts = [
-        "Web Development",
-        "Project Management",
-        "UI/UX Design",
-        "Business Analysis",
-        "Quality Assurance"
-    ];
-
-    const typingText = document.getElementById("typing-text");
-
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    function typeEffect() {
-        const currentText = texts[textIndex];
-
-        if (isDeleting) {
-            typingText.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            typingText.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-        }
-
-        let speed = isDeleting ? 50 : 100;
-
-        if (!isDeleting && charIndex === currentText.length) {
-            speed = 1500;
-            isDeleting = true;
-        }
-
-        if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            textIndex++;
-
-            if (textIndex === texts.length) {
-                textIndex = 0;
-            }
-
-            speed = 500;
-        }
-
-        setTimeout(typeEffect, speed);
-    }
-
-    typeEffect();
-
-const code = `
-const portfolio = {
-
-    name: "Jeruh Fornal",
-
-    role: "IT Professional",
-
-    skills: [
-        "Frontend Development",
-        "UI/UX Design",
-        "Quality Assurance",
-        "Business Analysis",
-        "Project Management"
-    ]
-
-};
-
-
-function createExperience(problem) {
-
-    const idea = understand(problem);
-
-    const design = createInterface(idea);
-
-    const solution = develop(design);
-
-    test(solution);
-
-    return solution;
-}
-
-
-system.initialize();
-
-experience.create();
-
-interface.render();
-
-user.interact();
-
-solution.improve();
-`;
-
-const codeText = document.getElementById("code-text");
-
-let index = 0;
-
-function typeCode() {
-
-    if (index < code.length) {
-
-        codeText.textContent += code.charAt(index);
-
-        index++;
-
-        setTimeout(typeCode, 60);
-
-    } else {
-
-        setTimeout(() => {
-
-            codeText.textContent = "";
-            index = 0;
-
-            typeCode();
-
-        }, 2000);
-    }
-}
-
-typeCode();
-
-const reveals = document.querySelectorAll(
-    ".reveal-right, .reveal-right-tilted1, .reveal-right-tilted2, .reveal-left, .reveal-left-tilted, .reveal-up, .reveal-title, .reveal-headline, .highlight, .reveal-image, .reveal-left-card, .reveal-right-card, .reveal-up-btn, .reveal-down-btn"
-);
-
-const headerHeight = window.innerWidth <= 500 ? 49 : 67;
-
-const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach((entry) => {
-
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-
-            // Keep highlight shown once activated
-            if (entry.target.classList.contains("highlight")) {
-                observer.unobserve(entry.target);
-            }
-
-        } else {
-            entry.target.classList.remove("show");
-        }
-
-    });
-
-}, {
-    threshold: 0,
-    rootMargin: `-${headerHeight}px 0px 0px 0px`
-});
-
-reveals.forEach((element) => {
-    observer.observe(element);
-});
-
-<!-- Navigation Bar -->
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("header nav a, .mobile-dropdown a");
-
-function updateActiveNav() {
-
-    let currentSection = "home";
-
-    sections.forEach((section) => {
-
-        const sectionTop = section.getBoundingClientRect().top;
-
-        if (sectionTop <= window.innerHeight * 0.4) {
-            currentSection = section.id;
-        }
-
-    });
-
-    navLinks.forEach((link) => {
-        link.classList.remove("active");
-
-if (
-    link.getAttribute("href") === `#${currentSection}` ||
-    (currentSection === "home" && link.getAttribute("href") === "#")
-) {
-    link.classList.add("active");
-}
-    });
-}
-
-window.addEventListener("scroll", updateActiveNav);
-window.addEventListener("load", updateActiveNav);
-
-
-const menuToggle = document.getElementById("menuToggle");
-const mobileDropdown = document.getElementById("mobileDropdown");
-
-menuToggle.addEventListener("click", () => {
-    mobileDropdown.classList.toggle("active");
-});
-
-const expertiseSwiper = new Swiper("#expertiseCarousel", {
-
-    slidesPerView: 3,
-    spaceBetween: 20,
-
-    loop: true,
-    speed: 600,
-    grabCursor: true,
-
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-    },
-
-    pagination: {
-        el: "#expertiseCarousel .carousel-dots",
-        clickable: true,
-    },
-
-
-});
-</script>
-
