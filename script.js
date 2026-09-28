@@ -218,3 +218,49 @@ const expertiseSwiper = new Swiper("#expertiseCarousel", {
 });
 
 
+const educationBtn = document.querySelector(".education-btn");
+const experienceBtn = document.querySelector(".experience-btn");
+
+const educationContent = document.querySelectorAll(".education-item");
+const experienceContent = document.querySelector(".work-item");
+
+
+// Default: Education is active
+educationBtn.classList.add("active");
+experienceBtn.classList.remove("active");
+
+educationContent.forEach((item) => {
+    item.style.display = "grid";
+});
+
+experienceContent.style.display = "none";
+
+
+// Education button
+educationBtn.addEventListener("click", () => {
+
+    educationContent.forEach((item) => {
+        item.style.display = "grid";
+    });
+
+    experienceContent.style.display = "none";
+
+    educationBtn.classList.add("active");
+    experienceBtn.classList.remove("active");
+
+});
+
+
+// Experience button
+experienceBtn.addEventListener("click", () => {
+
+    experienceContent.style.display = "grid";
+
+    educationContent.forEach((item) => {
+        item.style.display = "none";
+    });
+
+    experienceBtn.classList.add("active");
+    educationBtn.classList.remove("active");
+
+});
