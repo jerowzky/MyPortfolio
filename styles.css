@@ -1312,6 +1312,11 @@ background: linear-gradient(
     color: white;
 }
 
+.picker a.active:hover {
+    background-color: #03A271;
+    color: white;
+}
+
 .picker a:hover {
     background-color: #242C29;
 }
