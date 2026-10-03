@@ -1384,7 +1384,7 @@ background: linear-gradient(
     font-size: 16px;
     line-height: 1.15;
     font-weight: 600;
-    color: #06d395;
+    color: white;
 }
 .project-name h1, .project-card h2 {
     margin: 0;
@@ -1393,7 +1393,25 @@ background: linear-gradient(
     font-family: "Unbounded";
     font-size: 20px;
     font-weight: 900;
+    color: #06d395;
+}
+
+.role-pill {
+    display: inline-block;
+    padding: 2px 3px;
+
+    border-radius: 999px;
+
+    font-size: 7px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: "Unbounded";
+
+    background: #171B19;
     color: white;
+    vertical-align: top;
+    border: 1px solid white;
+
 }
 
 .tech-stack {
