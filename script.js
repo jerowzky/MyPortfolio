@@ -264,3 +264,172 @@ experienceBtn.addEventListener("click", () => {
     educationBtn.classList.remove("active");
 
 });
+
+const demoButtons = document.querySelectorAll(".demo-btn");
+const videoModal = document.getElementById("videoModal");
+const closeVideo = document.getElementById("closeVideo");
+const demoVideo = document.getElementById("demoVideo");
+const videoSource = document.getElementById("videoSource");
+
+demoButtons.forEach((button) => {
+
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const videoFile = button.dataset.video;
+
+        videoSource.src = videoFile;
+        demoVideo.load();
+
+        videoModal.classList.add("show");
+        demoVideo.play();
+    });
+
+});
+
+closeVideo.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    videoModal.classList.remove("show");
+
+    demoVideo.pause();
+    demoVideo.currentTime = 0;
+    videoSource.src = "";
+});
+
+videoModal.addEventListener("click", (e) => {
+
+    if (e.target === videoModal) {
+        videoModal.classList.remove("show");
+
+        demoVideo.pause();
+        demoVideo.currentTime = 0;
+        videoSource.src = "";
+    }
+
+});
+
+const pdfLinks = document.querySelectorAll(".open-pdf");
+const pdfModal = document.getElementById("pdfModal");
+const pdfViewer = document.getElementById("pdfViewer");
+const closePdf = document.getElementById("closePdf");
+
+pdfLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const pdfFile = link.dataset.pdf;
+
+        pdfViewer.src = pdfFile;
+        pdfModal.classList.add("active");
+    });
+});
+
+closePdf.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    pdfModal.classList.remove("active");
+    pdfViewer.src = "";
+});
+
+let projectsSwiper = null;
+
+function updateProjects() {
+
+    const projectsContainer = document.querySelector(".projects");
+    const projectsWrapper = document.querySelector(".projects-wrapper");
+    const projectsDots = document.querySelector(".proj-dots");
+    const projectCards = document.querySelectorAll(".project-card");
+
+    if (window.innerWidth <= 768) {
+
+        // Change to mobile Swiper layout
+        if (projectsContainer) {
+            projectsContainer.id = "projectsCarousel";
+            projectsContainer.className = "carousel swiper reveal-title show";
+            observer.observe(projectsContainer);
+        }
+
+        if (projectsWrapper) {
+            projectsWrapper.className = "swiper-wrapper";
+        }
+
+        if (projectsDots) {
+            projectsDots.className = "carousel-dots swiper-pagination";
+        }
+
+        projectCards.forEach(card => {
+            card.classList.add("swiper-slide");
+            card.classList.remove("reveal-title", "show");
+        });
+
+
+        // Initialize Swiper only once
+        if (!projectsSwiper) {
+
+            projectsSwiper = new Swiper("#projectsCarousel", {
+
+                slidesPerView: 3,
+                spaceBetween: 20,
+
+                loop: true,
+                speed: 600,
+                grabCursor: true,
+
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+
+                pagination: {
+                    el: "#projectsCarousel .carousel-dots",
+                    clickable: true,
+                },
+
+            });
+        }
+
+    } else {
+
+        // Destroy Swiper first
+        if (projectsSwiper) {
+            projectsSwiper.destroy(true, true);
+            projectsSwiper = null;
+        }
+
+
+        // Restore desktop layout
+        const projectsCarousel =
+            document.querySelector("#projectsCarousel");
+
+        const swiperWrapper =
+            document.querySelectorAll(".swiper-wrapper")[1];
+
+        const carouselDots =
+            document.querySelectorAll(".carousel-dots")[1];
+
+
+        if (projectsCarousel) {
+            projectsCarousel.removeAttribute("id");
+            projectsCarousel.className = "projects";
+        }
+
+        if (swiperWrapper) {
+            swiperWrapper.className = "projects-wrapper";
+        }
+
+        if (carouselDots) {
+            carouselDots.className = "proj-dots";
+        }
+
+        projectCards.forEach(card => {
+            card.classList.remove("swiper-slide");
+            card.classList.add("reveal-title", "show");
+            observer.observe(card);
+        });
+    }
+}
+
+window.addEventListener("resize", updateProjects);
+
+updateProjects();
