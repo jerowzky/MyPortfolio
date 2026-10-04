@@ -927,10 +927,11 @@ background: radial-gradient(
 }
 
 
-.right-about-content h1, .right-about-content h2 {
+.right-about-content .firstp, .right-about-content .secondp {
     color: white;
     font-family: "WW-Black";
     font-size: 16px;
+    font-weight: normal;
     padding: 1em;
     letter-spacing: 0.12em;
     color: #B8C0BC;
@@ -950,7 +951,7 @@ background: radial-gradient(
     align-self: flex-end;
     position: relative;
 }
-.right-about-content h1 {
+.right-about-content .firstp {
     text-align: left;
     position: relative;
 background: radial-gradient(
@@ -963,7 +964,7 @@ border-radius: 5px 5px 20px 5px;
 z-index: 2;
 }
 
-.right-about-content h2 {
+.right-about-content .secondp {
     text-align: right;
 background: radial-gradient(
     circle at 100% 100%,
@@ -1109,6 +1110,7 @@ background: radial-gradient(
 .expertise-description {
     font-family: "WW-Black";
     font-size: 1rem;
+    font-weight: normal;
     width: 80%;
     color: #B8C0BC;
     letter-spacing: 0.12em;
@@ -1235,6 +1237,7 @@ background: linear-gradient(
 .education-right p {
     font-family: "WW-Black";
     font-size: 1rem;
+    font-weight: normal;
     color: #B8C0BC;
     letter-spacing: 0.12em;
     line-height: 1.4rem;
@@ -1362,6 +1365,7 @@ background: linear-gradient(
 .project-description {
     font-family: "WW-Black";
     font-size: 1rem;
+    font-weight: normal;
     color: #B8C0BC;
     letter-spacing: 0.12em;
     line-height: 1.2rem;    
@@ -1712,7 +1716,7 @@ background: linear-gradient(
     column-gap: 20px;
     columns: 2;
 }
-.right-about-content h1, .right-about-content h2 {
+.right-about-content .firstp, .right-about-content .secondp {
     font-size: 16px;
     padding: 0.8em;
     line-height: 1.2rem;
@@ -1822,6 +1826,10 @@ header {
     flex-direction: column;
 }
 
+.description-wrapper {
+    transform: translateY(-125px);
+}
+
 .right-btn {
     right: 0px;
     bottom: -45px;
@@ -1866,9 +1874,19 @@ background: radial-gradient(
 .honors a svg, .picker svg, .button-links svg {
     width: 16px;
 }
-.right-about-content h1, .right-about-content h2 {
+.right-about-content .firstp, .right-about-content .secondp {
     font-size: 14px;
+    letter-spacing: 0.1em;
     padding: 0.7em;
+    line-height: 1.2rem;
+}
+.long-desc {
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    line-height: 1.2rem;    
+    border-radius: 15px;
+    max-width: 275px;
+}
 }
 .lower-text {
     width: 100%;
@@ -1941,7 +1959,7 @@ header .sitename {
     transform: scale(1);
 }
 
-.right-about-content h1, .right-about-content h2 {
+.right-about-content .firstp, .right-about-content .secondp {
     max-width: 400px;
 }
 
@@ -2124,8 +2142,8 @@ width: 100%;
 }
 
 .long-desc {
-    line-height: 1rem; 
-    font-size: 12px;
+    line-height: 1.1rem; 
+    font-size: 13px;
     max-width: 60%;   
     border-radius: 18px;
 }
@@ -2361,13 +2379,6 @@ padding: 3px 10px;
 }
 
 
-.right-about-content h1, .right-about-content h2 {
-    font-size: 12px;
-    padding: 0.7em;
-    line-height: 1rem;
-    max-width: 275px;
-}
-
 .left-btn {
     right: auto;
     left: 0px;
@@ -2419,10 +2430,16 @@ font-size: 1.4rem;
     font-size: 16px;
 }
 
-.expertise-description {
-    font-size: 12px;
+.expertise-description, .project-description, .education-right p {
+    font-size: 13px;
     width: 100%;
-line-height: 1rem;
+    line-height: 1.1rem;
+}
+
+.right-about-content .firstp, .right-about-content .secondp {
+    font-size: 13px;
+    line-height: 1.1rem;
+    max-width: 300px;
 }
 
 .lower-text a {
@@ -2440,11 +2457,6 @@ line-height: 1rem;
 
 .education-title h2,.education-title span {
     font-size: 24px;
-}
-
-.education-right p {
-    font-size: 12px;
-    line-height: 1rem;
 }
 
 .school {
