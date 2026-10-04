@@ -153,9 +153,12 @@ reveals.forEach((element) => {
     observer.observe(element);
 });
 
+// ================================
 // Navigation Bar
+// ================================
+
 const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("header nav a, .mobile-dropdown a");
+const navLinks = document.querySelectorAll("header nav a, .mobile-dropdown .mobile-nav-link");
 
 function updateActiveNav() {
 
@@ -172,14 +175,18 @@ function updateActiveNav() {
     });
 
     navLinks.forEach((link) => {
+
         link.classList.remove("active");
 
-if (
-    link.getAttribute("href") === `#${currentSection}` ||
-    (currentSection === "home" && link.getAttribute("href") === "#")
-) {
-    link.classList.add("active");
-}
+        const href = link.getAttribute("href");
+
+        if (
+            href === `#${currentSection}` ||
+            (currentSection === "home" && href === "#")
+        ) {
+            link.classList.add("active");
+        }
+
     });
 }
 
@@ -187,12 +194,80 @@ window.addEventListener("scroll", updateActiveNav);
 window.addEventListener("load", updateActiveNav);
 
 
+// ================================
+// Mobile Navigation
+// ================================
+
 const menuToggle = document.getElementById("menuToggle");
 const mobileDropdown = document.getElementById("mobileDropdown");
 
-menuToggle.addEventListener("click", () => {
-    mobileDropdown.classList.toggle("active");
-});
+let scrollPosition = 0;
+
+
+// ================================
+// Open / Close Mobile Navigation
+// ================================
+
+if (menuToggle && mobileDropdown) {
+
+    menuToggle.addEventListener("click", () => {
+
+        const isOpen = mobileDropdown.classList.toggle("active");
+
+        if (isOpen) {
+
+            // Save the current scroll position
+            scrollPosition = window.scrollY;
+
+            // Lock the page at its current position
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${scrollPosition}px`;
+            document.body.style.left = "0";
+            document.body.style.right = "0";
+            document.body.style.width = "100%";
+
+        } else {
+
+            // Unlock the page
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.left = "";
+            document.body.style.right = "";
+            document.body.style.width = "";
+
+            // Restore the exact scroll position
+            window.scrollTo(0, scrollPosition);
+
+        }
+
+    });
+
+
+    // ================================
+    // Close Menu When Section Selected
+    // ================================
+
+    const mobileLinks = mobileDropdown.querySelectorAll("a");
+
+    mobileLinks.forEach((link) => {
+
+        link.addEventListener("click", () => {
+
+            // Close mobile menu
+            mobileDropdown.classList.remove("active");
+
+            // Unlock the page
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.left = "";
+            document.body.style.right = "";
+            document.body.style.width = "";
+
+        });
+
+    });
+
+}
 
 // Swiper
 const expertiseSwiper = new Swiper("#expertiseCarousel", {

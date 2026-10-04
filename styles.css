@@ -32,7 +32,6 @@ html {
     padding: 0;
     overflow-x: clip;
 }
-
 body {
     min-height: 100vh;
     margin: 0;
@@ -48,7 +47,11 @@ body {
     background-attachment: fixed;
     position: relative;
 }
-
+html.nav-open,
+body.nav-open {
+    overflow: hidden;
+    height: 100%;
+}
 
 header {
     position: sticky;
@@ -99,6 +102,17 @@ header nav a {
     font-size: 15px;
     text-transform: uppercase;
     opacity: 0.75;
+     white-space: nowrap;
+}
+
+.contact-btn {
+    font-family: "Unbounded";
+    text-transform: none;
+    opacity: 0.75;
+    font-weight: 500;
+    border-radius: 50px;
+    border: 2px solid rgb(255, 255, 255);
+
 }
 
 header nav a:hover {
@@ -107,14 +121,15 @@ header nav a:hover {
 }
 
 header nav a.active,
-.mobile-dropdown a.active {
+.mobile-dropdown .mobile-nav-link.active {
     opacity: 1;
     background-color: rgba(255, 255, 255);
-    border-radius: 50px;
     color: #03A271;
     font-weight: 600;
 }
-
+header nav a.active {
+    border-radius: 50px;
+}
 .mobile-nav {
     display: none;
     justify-content: space-between;
@@ -398,7 +413,7 @@ position: relative;
     max-width: 300px;
     font-size: 16px;
     padding: 0.9em;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     line-height: 1.35rem;
     color: #FFFFFF;
     margin-left: auto;
@@ -696,7 +711,7 @@ background: radial-gradient(
     z-index: 10;
 }
 
-#expertise, #experiences {
+#expertise, #journey {
     margin-top: 0px;
     position: relative;
     z-index: 9;
@@ -1707,9 +1722,13 @@ background: linear-gradient(
 }
 
 }
-
-
-
+@media (max-width: 1027px) {
+header {
+    margin:0;
+    border-radius: 0;
+    border: none;
+}
+}
 
 @media (max-width: 950px) {
 .projects-wrapper {
@@ -1797,6 +1816,177 @@ transform: translateY(-100px);
     height: auto;
 }
 }
+
+@media (max-width: 930px) {
+.mobile-nav {
+    display: flex;
+    margin: 0 15px;
+    width: 100%;
+}
+
+
+header nav {
+    display: none;
+}
+
+header {
+    padding: 15px
+}
+
+.mobile-nav h1, .mobile-dropdown h1{
+margin: 0px;
+color: white;
+font-family: "Unbounded";
+font-size: 1.6rem;
+}
+
+.hamburger-icon {
+    width: 32px;
+    height: auto;
+}
+
+.nav-second-text {
+    color:#03A271;
+    background: linear-gradient(
+        to bottom,
+        #03A271 0%,
+        #03A271 40%,
+        #06d395 100%
+    );
+    text-shadow: 0 0 25px #06d395;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+}
+
+header .sitename {
+    display: none;
+}
+.mobile-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    z-index: 9999;
+    overflow: hidden;
+    min-width: 200px;
+    position: fixed;
+    inset: 0;
+    padding: 20px;
+    box-shadow: 0 0 20px #06d395;
+    background: linear-gradient(
+        135deg,
+        #173F36 0%,
+        #000000 35%,
+        #173F36 75%,
+        #000000 100%
+    );
+    backdrop-filter: blur(20px);
+
+    /* Hidden */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.mobile-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-dropdown.active {
+    /* Visible */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mobile-dropdown .mobile-nav-link {
+    font-family: "Unbounded";
+    color: white;
+    text-decoration: none;
+    opacity: 0.75;
+    padding : 9px 18px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    font-size: 1.2rem;
+    text-align: center;
+
+}
+
+.lower-nav {
+    display: flex;
+
+    margin-top: auto;
+}
+.left-nav-part {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0.75;
+}
+
+.left-nav-part p {
+    margin: 0;
+    font-family: "Unbounded";
+    color:white;
+    font-size: 12px;
+}
+.lower-nav .socmed-nav {
+    display: flex;
+    gap: 5px;
+}
+
+
+.socmed-nav a {
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.socmed-nav svg {
+    width: 18px;
+    height: 18px;
+    color: white;
+}
+
+.nav-resume-btn {
+    align-self: flex-end;
+    margin-left: auto;
+    padding: 5px 10px;
+    color: #06d395;
+    font-family: "Unbounded";
+    font-weight: 400;
+    font-size: 13px;
+    border-radius: 50px;
+    border: 1px solid #06d395;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.resume-icon-nav {
+    width: 12px;
+    height: auto;
+    color: #06d395;
+}
+
+
+
+
+}
 @media (max-width: 900px) {
 .education-item, .work-item {
     grid-template-columns: 1fr;
@@ -1809,15 +1999,6 @@ transform: translateY(-100px);
 .experiences::after {
     left: 0;
 
-}
-
-}
-
-@media (max-width: 850px) {
-header {
-    margin:0;
-    border-radius: 0;
-    border: none;
 }
 }
 
@@ -1903,53 +2084,6 @@ background: radial-gradient(
     font-size: 28px;
 }
 
-.mobile-nav {
-    display: flex;
-    margin: 0 15px;
-    width: 100%;
-}
-
-
-header nav {
-    display: none;
-}
-
-header {
-    padding: 15px
-}
-
-.mobile-nav h1 {
-margin: 0px;
-color: white;
-font-family: "Unbounded";
-font-size: 1.6rem;
-}
-
-.hamburger-icon {
-    width: 32px;
-    height: auto;
-}
-
-.nav-second-text {
-    color:#03A271;
-    background: linear-gradient(
-        to bottom,
-        #03A271 0%,
-        #03A271 40%,
-        #06d395 100%
-    );
-    text-shadow: 0 0 25px #06d395;
-
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-
-}
-
-header .sitename {
-    display: none;
-}
-
 .metric-cards {
     gap: 50px;
     transform: translateY(0px);
@@ -1984,59 +2118,6 @@ header .sitename {
             transparent 40%
         ),
         #171B19;
-}
-.mobile-dropdown {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    position: absolute;
-    top: 80px;
-    min-width: 200px;
-    right: 40px;
-    padding: 20px;
-    border-radius: 25px 0px 25px 25px;
-    box-shadow: 0 0 20px #06d395;
-    background: linear-gradient(
-        135deg,
-        #173F36 0%,
-        #000000 45%,
-        #173F36 75%,
-        #03A271 100%
-    );
-    backdrop-filter: blur(20px);
-
-    /* Hidden */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-20px);
-
-    transition:
-        opacity 0.3s ease,
-        transform 0.3s ease,
-        visibility 0.3s ease;
-}
-
-.mobile-dropdown.active {
-    /* Visible */
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.mobile-dropdown a {
-    font-family: "Unbounded";
-    color: white;
-    text-decoration: none;
-    opacity: 0.75;
-    padding : 9px 18px;
-    border-radius: 25px 0px 25px 25px;
-    background: rgba(255, 255, 255, 0.1);
-    font-size: 1.3rem;
-
-}
-
-.mobile-dropdown a.active {
-border-radius: 25px 5px 25px 25px;
 }
 }
 
@@ -2389,18 +2470,18 @@ header {
     padding: 10px 0;
 }
 
-.mobile-nav h1 {
+.mobile-nav h1, .mobile-dropdown h1 {
+    margin: 0px;
+    color: white;
+    font-family: "Unbounded";
 font-size: 1.4rem;
 }
 
-.mobile-dropdown {
+.mobile-selection {
     gap: 10px;
-    top: 60px;
-    min-width: 150px;
-    right: 10px;
 }
 
-.mobile-dropdown a {
+.mobile-dropdown .mobile-nav-link {
     font-size: 0.9rem;
 }
 
