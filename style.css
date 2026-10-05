@@ -60,6 +60,10 @@ body.nav-open {
     z-index: 2;
     pointer-events: none;
 }
+
+section {
+    scroll-margin-top: 20px;
+}
 main {
     position: relative;
     z-index: 3;
