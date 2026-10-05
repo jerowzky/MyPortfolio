@@ -508,3 +508,4 @@ function updateProjects() {
 window.addEventListener("resize", updateProjects);
 
 updateProjects();
+
