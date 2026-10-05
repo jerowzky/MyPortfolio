@@ -168,9 +168,13 @@ header nav a.active {
 }
 
 .moving-light {
-    position: fixed;
-    width: 700px;
-    height: 700px;
+    position: absolute;
+
+    width: 600px;
+    height: 600px;
+
+    left: 0;
+    top: 0;
 
     background: radial-gradient(
         circle,
@@ -182,39 +186,42 @@ header nav a.active {
 
     border-radius: 50%;
 
-    left: -350px;
-    top: -350px;
-
     pointer-events: none;
     z-index: 1;
+
+    will-change: transform;
 
     animation: movingLight 20s linear infinite;
 }
 
 @keyframes movingLight {
     0% {
-        left: -350px;
-        top: -350px;
+        transform: translate(-350px, -350px);
     }
 
     25% {
-        left: 50%;
-        top: 0;
+        transform: translate(
+            calc(50vw - 350px),
+            -350px
+        );
     }
 
     50% {
-        left: calc(100% - 350px);
-        top: 50%;
+        transform: translate(
+            calc(100vw - 350px),
+            calc(50vh - 350px)
+        );
     }
 
     75% {
-        left: 50%;
-        top: calc(100% - 350px);
+        transform: translate(
+            calc(50vw - 350px),
+            calc(100vh - 350px)
+        );
     }
 
     100% {
-        left: -350px;
-        top: -350px;
+        transform: translate(-350px, -350px);
     }
 }
 
