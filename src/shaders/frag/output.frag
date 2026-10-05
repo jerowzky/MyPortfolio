@@ -195,7 +195,7 @@ float map(vec3 p)
         );
 
     float fixedSphere =
-        length(fixedOffset) - 0.55;
+        length(fixedOffset) - 0.35;
 
     d =
         smoothMin(
