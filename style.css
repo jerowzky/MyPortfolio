@@ -308,6 +308,7 @@ header nav a.active {
     position: relative;
     width: 100%;
     height: auto;
+    aspect-ratio: 3 / 4;
 
     -webkit-mask-image: linear-gradient(
         to bottom,
@@ -331,6 +332,7 @@ header nav a.active {
     height: 100%;
     z-index: 3;
     pointer-events: none;
+    aspect-ratio: 3 / 4;
 
     /* Make the duplicate transparent except for its edge */
     filter:
@@ -822,7 +824,7 @@ background: radial-gradient(
 }
 .about-image {
     width: auto;
-
+    aspect-ratio: 3 / 4;
     -webkit-mask-image: linear-gradient(
         to bottom,
         black 70%,
@@ -1120,6 +1122,7 @@ border-radius: 20px 20px 5px 20px;
     height: auto;
     align-self: center;
     margin-top: auto;
+    aspect-ratio: 1 / 1;
 }
 
 .expertise-card, .swiper-slide {
@@ -1406,6 +1409,7 @@ background: linear-gradient(
     width: 100%;
     height: auto;
     object-fit: cover;
+    aspect-ratio: 16 / 9;
     object-position: top;
 }
 
@@ -2020,7 +2024,9 @@ header .sitename {
 .about-content {
     flex-direction: column;
 }
-
+#webgl {
+display: none;
+}
 .description-wrapper {
     transform: translateY(-125px);
 }
