@@ -63,6 +63,7 @@ body.nav-open {
 
 section {
     scroll-margin-top: 20px;
+    padding-bottom: 75px;
 }
 main {
     position: relative;
@@ -173,7 +174,7 @@ header nav a.active {
 
 .moving-light {
     position: absolute;
-
+    display: none;
     width: 600px;
     height: 600px;
 
@@ -823,7 +824,6 @@ background: radial-gradient(
 .left-about-content,
 .right-about-content {
     flex: 1;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -860,7 +860,7 @@ background: radial-gradient(
 
 .image-container {
     width: auto;
-    height: 100%;
+    height: fit-content;
     position: relative;
     display: flex;
     flex: 1;
@@ -877,7 +877,6 @@ background: radial-gradient(
     z-index:2;
     gap: 20px;
     width: 100%;
-    top: 200px;
 }
 
 .card1, .card2, .card3{
@@ -1710,7 +1709,6 @@ background: linear-gradient(
 
 .metric-cards {
     gap: 50px;
-    transform: translateY(-100px);
 }
     .greetings h1,
 .greetings h4 {
@@ -2051,7 +2049,9 @@ display: none;
 .reveal-down-btn {
     transform: translateY(-80px);
 }
-
+.moving-light {
+    display: revert;
+}
 #about {
 background: radial-gradient(
     circle at 50% 50%,

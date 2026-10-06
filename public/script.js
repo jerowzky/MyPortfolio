@@ -120,39 +120,162 @@ function typeCode() {
 typeCode();
 
 // Reveal Animation
-const reveals = document.querySelectorAll(
-    ".reveal-right, .reveal-right-tilted1, .reveal-right-tilted2, .reveal-left, .reveal-left-tilted, .reveal-up, .reveal-title, .reveal-headline, .highlight, .reveal-image, .reveal-left-card, .reveal-right-card, .reveal-up-btn, .reveal-down-btn"
-);
+const revealSelector =
+    ".reveal-right, .reveal-right-tilted1, .reveal-right-tilted2, " +
+    ".reveal-left, .reveal-left-tilted, .reveal-up, .reveal-title, " +
+    ".reveal-headline, .highlight, .reveal-image, .reveal-left-card, " +
+    ".reveal-right-card, .reveal-up-btn, .reveal-down-btn";
 
-const headerHeight = window.innerWidth <= 500 ? 49 : 67;
+const revealStates = new WeakMap();
 
-const observer = new IntersectionObserver((entries) => {
+let ticking = false;
 
-    entries.forEach((entry) => {
 
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show");
+// =========================
+// GET HEADER HEIGHT
+// =========================
 
-            // Keep highlight shown once activated
-            if (entry.target.classList.contains("highlight")) {
-                observer.unobserve(entry.target);
+function getHeaderHeight() {
+    return window.innerWidth <= 500 ? 49 : 67;
+}
+
+
+// =========================
+// UPDATE REVEALS
+// =========================
+
+function updateReveals() {
+
+    const reveals = document.querySelectorAll(revealSelector);
+
+    const viewportHeight = window.innerHeight;
+    const headerHeight = getHeaderHeight();
+
+    // =========================
+    // SHOW ZONE
+    // =========================
+
+    const showTop = headerHeight + 30;
+    const showBottom = viewportHeight * 0.85;
+
+
+    reveals.forEach((element) => {
+
+        // Initialize newly added elements
+        if (!revealStates.has(element)) {
+            revealStates.set(element, false);
+        }
+
+        const isShown = revealStates.get(element);
+
+        const rect = element.getBoundingClientRect();
+
+
+        // =========================
+        // HIGHLIGHT
+        // Show once and stay shown
+        // =========================
+
+        if (element.classList.contains("highlight")) {
+
+            if (!isShown) {
+
+                const shouldShow =
+                    rect.bottom > showTop &&
+                    rect.top < showBottom;
+
+                if (shouldShow) {
+                    element.classList.add("show");
+                    revealStates.set(element, true);
+                }
+
             }
 
-        } else {
-            entry.target.classList.remove("show");
+            return;
+        }
+
+
+        // =========================
+        // SHOW
+        // =========================
+
+        if (!isShown) {
+
+            const shouldShow =
+                rect.bottom > showTop &&
+                rect.top < showBottom;
+
+            if (shouldShow) {
+                element.classList.add("show");
+                revealStates.set(element, true);
+            }
+
+        }
+
+
+        // =========================
+        // HIDE
+        // =========================
+
+        else {
+
+            // Element is completely above the visible area
+            const clearlyAbove =
+                rect.bottom <= headerHeight;
+
+            // Element is completely below the viewport
+            const clearlyBelow =
+                rect.top >= viewportHeight;
+
+
+            if (clearlyAbove || clearlyBelow) {
+
+                element.classList.remove("show");
+                revealStates.set(element, false);
+
+            }
+
         }
 
     });
 
-}, {
-    threshold: 0,
-    rootMargin: `-${headerHeight}px 0px 0px 0px`
+    ticking = false;
+}
+
+
+// =========================
+// REQUEST UPDATE
+// =========================
+
+function requestRevealUpdate() {
+
+    if (!ticking) {
+
+        requestAnimationFrame(updateReveals);
+
+        ticking = true;
+
+    }
+
+}
+
+
+// =========================
+// EVENTS
+// =========================
+
+window.addEventListener("scroll", requestRevealUpdate, {
+    passive: true
 });
 
-reveals.forEach((element) => {
-    observer.observe(element);
-});
+window.addEventListener("resize", requestRevealUpdate);
 
+
+// =========================
+// INITIAL CHECK
+// =========================
+
+updateReveals();
 // ================================
 // Navigation Bar
 // ================================
@@ -418,11 +541,13 @@ function updateProjects() {
 
     if (window.innerWidth <= 768) {
 
-        // Change to mobile Swiper layout
+        // =========================
+        // MOBILE SWIPER
+        // =========================
+
         if (projectsContainer) {
             projectsContainer.id = "projectsCarousel";
-            projectsContainer.className = "carousel swiper reveal-title show";
-            observer.observe(projectsContainer);
+            projectsContainer.className = "carousel swiper";
         }
 
         if (projectsWrapper) {
@@ -434,8 +559,12 @@ function updateProjects() {
         }
 
         projectCards.forEach(card => {
+
             card.classList.add("swiper-slide");
-            card.classList.remove("reveal-title", "show");
+
+            // Cards do not individually reveal on mobile
+            card.classList.remove("reveal-up", "show");
+
         });
 
 
@@ -464,16 +593,19 @@ function updateProjects() {
             });
         }
 
+
     } else {
 
-        // Destroy Swiper first
+        // =========================
+        // DESKTOP
+        // =========================
+
         if (projectsSwiper) {
             projectsSwiper.destroy(true, true);
             projectsSwiper = null;
         }
 
 
-        // Restore desktop layout
         const projectsCarousel =
             document.querySelector("#projectsCarousel");
 
@@ -497,12 +629,23 @@ function updateProjects() {
             carouselDots.className = "proj-dots";
         }
 
+
         projectCards.forEach(card => {
+
             card.classList.remove("swiper-slide");
-            card.classList.add("reveal-title", "show");
-            observer.observe(card);
+
+            // Add reveal animation back
+            card.classList.add("reveal-up");
+
+            // Let reveal system decide when to show
+            card.classList.remove("show");
+
         });
+
     }
+
+    // Re-check reveal elements
+    updateReveals();
 }
 
 window.addEventListener("resize", updateProjects);
