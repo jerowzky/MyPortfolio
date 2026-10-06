@@ -21,13 +21,10 @@ class Common {
     };
 
     constructor() {
-        // Limit DPR to prevent excessive GPU workload
         const isMobile =
             window.matchMedia('(pointer: coarse)').matches;
 
-        this.devicePixelRatio = isMobile
-            ? Math.min(window.devicePixelRatio || 1, 1)
-            : Math.min(window.devicePixelRatio || 1, 1.25);
+        this.devicePixelRatio = isMobile ? 1 : 1;
 
         this.renderer = new THREE.WebGLRenderer({
             antialias: false,
@@ -43,9 +40,6 @@ class Common {
 
         this.time = 0;
         this.timeScale = 2.0;
-
-        // Apply the capped DPR
-        this.renderer.setPixelRatio(this.devicePixelRatio);
     }
 
     /**
@@ -61,7 +55,9 @@ class Common {
             Common.RENDERER_PARAM.alpha
         );
 
-        this.renderer.setPixelRatio(this.devicePixelRatio);
+        this.renderer.setPixelRatio(
+            this.devicePixelRatio
+        );
 
         this.resize();
     }
@@ -70,7 +66,8 @@ class Common {
      * # Resize handling
      */
     resize() {
-        const home = document.querySelector('.home') as HTMLElement;
+        const home =
+            document.querySelector('.home') as HTMLElement;
 
         if (!home) return;
 

@@ -547,7 +547,7 @@ function updateProjects() {
 
         if (projectsContainer) {
             projectsContainer.id = "projectsCarousel";
-            projectsContainer.className = "carousel swiper";
+            projectsContainer.className = "carousel swiper reveal-title show";
         }
 
         if (projectsWrapper) {

@@ -5,7 +5,7 @@ precision mediump float;
 // =====================================================
 
 // Keep 15 so the pointer trail behaves like the original.
-const int TRAIL_LENGTH = 15;
+const int TRAIL_LENGTH = 10;
 
 // 10 is a good balance for mobile.
 // Original = 16.
@@ -109,13 +109,14 @@ float noise3D(vec3 p)
 
 float smoothMin(
     float d1,
-    float d2
+    float d2,
+    float k
 )
 {
-    return -log(
-        exp(-SMOOTH_K * d1) +
-        exp(-SMOOTH_K * d2)
-    ) / SMOOTH_K;
+    float h = max(k - abs(d1 - d2), 0.0) / k;
+
+    return min(d1, d2)
+        - h * h * h * k * (1.0 / 6.0);
 }
 
 
@@ -179,7 +180,8 @@ float map(vec3 p)
         d =
             smoothMin(
                 d,
-                sphere
+                sphere,
+                0.15
             );
     }
 
@@ -197,11 +199,11 @@ float map(vec3 p)
     float fixedSphere =
         length(fixedOffset) - 0.35;
 
-    d =
-        smoothMin(
-            d,
-            fixedSphere
-        );
+    d = smoothMin(
+        d,
+        fixedSphere,
+        0.15
+    );
 
     return d;
 }
@@ -250,21 +252,11 @@ vec3 dropletColor(
     vec3 noisePosition =
         reflectDir * 2.0;
 
-    float noisePositive =
+    float noiseValue =
         noise3D(
             noisePosition +
             vec3(uTime)
         );
-
-    float noiseNegative =
-        noise3D(
-            noisePosition -
-            vec3(uTime)
-        );
-
-    // -------------------------------------------------
-    // Emerald colors
-    // -------------------------------------------------
 
     const vec3 darkGreen =
         vec3(
@@ -280,11 +272,11 @@ vec3 dropletColor(
             0.26
         );
 
-    return
-        (
-            darkGreen * noisePositive +
-            lightGreen * noiseNegative
-        ) * 2.0;
+    return mix(
+        darkGreen,
+        lightGreen,
+        noiseValue
+    ) * 2.0;
 }
 
 
