@@ -744,7 +744,7 @@ background: radial-gradient(
     align-items: center;
     gap:0px;
     position: relative;
-    padding: 150px 0 75px;
+    padding: 75px 0;
 }
 .title {
     font-size: 3.5rem;
@@ -1622,7 +1622,73 @@ background: linear-gradient(
     height: 100%;
     border: none;
 }
+.carousel-3d-section {
+    width: 100%;
+    overflow: hidden;
+    background-color: black;
+}
 
+.carousel-3d-scene,
+.carousel-3d {
+    display: grid;
+}
+
+.carousel-3d-scene {
+    width: 100%;
+    overflow: hidden;
+
+    perspective: 35em;
+
+    mask: linear-gradient(
+        90deg,
+        #0000,
+        red 20% 80%,
+        #0000
+    );
+}
+
+.carousel-3d {
+    place-self: center;
+
+    transform-style: preserve-3d;
+
+    animation: carousel3dRotate 32s linear infinite;
+}
+
+@keyframes carousel3dRotate {
+    to {
+        rotate: y 1turn;
+    }
+}
+
+.carousel-3d-card {
+    --w: 17.5em;
+    --ba: 1turn / var(--n);
+
+    grid-area: 1 / 1;
+
+    width: var(--w);
+    aspect-ratio: 7 / 10;
+
+    object-fit: cover;
+
+    border-radius: 1.5em;
+
+    backface-visibility: hidden;
+
+    transform:
+        rotatey(calc(var(--i) * var(--ba)))
+        translatez(
+            calc(
+                -1 *
+                (
+                    .5 * var(--w) +
+                    .5em
+                ) /
+                tan(.5 * var(--ba))
+            )
+        );
+}
 @media (max-width: 600px) {
 
     .pdf-modal, .video-modal {
