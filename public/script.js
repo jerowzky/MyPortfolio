@@ -415,7 +415,6 @@ const expertiseSwiper = new Swiper("#expertiseCarousel", {
 
 });
 
-
 const educationBtn = document.querySelector(".education-btn");
 const experienceBtn = document.querySelector(".experience-btn");
 
@@ -423,45 +422,88 @@ const educationContent = document.querySelectorAll(".education-item");
 const experienceContent = document.querySelector(".work-item");
 
 
-// Default: Education is active
-educationBtn.classList.add("active");
-experienceBtn.classList.remove("active");
+// =====================================================
+// TAB REVEAL
+// =====================================================
 
-educationContent.forEach((item) => {
-    item.style.display = "grid";
-});
+function resetReveal(element) {
+    if (!element) return;
 
-experienceContent.style.display = "none";
+    revealStates.set(element, false);
+    element.classList.remove("show");
+}
 
 
-// Education button
-educationBtn.addEventListener("click", () => {
+// =====================================================
+// SHOW EDUCATION
+// =====================================================
 
-    educationContent.forEach((item) => {
-        item.style.display = "grid";
-    });
+function showEducation() {
 
+    // Hide Experience
     experienceContent.style.display = "none";
 
+    // Show Education
+    educationContent.forEach((item) => {
+        item.style.display = "grid";
+
+        // Reset reveal so animation can play again
+        resetReveal(item);
+    });
+
+    // Buttons
     educationBtn.classList.add("active");
     experienceBtn.classList.remove("active");
 
-});
+    // Let the browser apply display changes first
+    requestAnimationFrame(() => {
+        updateReveals();
+    });
+}
 
 
-// Experience button
-experienceBtn.addEventListener("click", () => {
+// =====================================================
+// SHOW EXPERIENCE
+// =====================================================
 
-    experienceContent.style.display = "grid";
+function showExperience() {
 
+    // Hide Education
     educationContent.forEach((item) => {
         item.style.display = "none";
     });
 
+    // Show Experience
+    experienceContent.style.display = "grid";
+
+    // Reset reveal so animation can play again
+    resetReveal(experienceContent);
+
+    // Buttons
     experienceBtn.classList.add("active");
     educationBtn.classList.remove("active");
 
-});
+    // Let the browser apply display changes first
+    requestAnimationFrame(() => {
+        updateReveals();
+    });
+}
+
+
+// =====================================================
+// DEFAULT
+// =====================================================
+
+showEducation();
+
+
+// =====================================================
+// BUTTON EVENTS
+// =====================================================
+
+educationBtn.addEventListener("click", showEducation);
+
+experienceBtn.addEventListener("click", showExperience);
 
 const demoButtons = document.querySelectorAll(".demo-btn");
 const videoModal = document.getElementById("videoModal");
