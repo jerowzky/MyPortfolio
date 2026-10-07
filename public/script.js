@@ -694,3 +694,21 @@ window.addEventListener("resize", updateProjects);
 
 updateProjects();
 
+const animatedElements = document.querySelectorAll(
+    '.moving-light, .greetings, .hero-image-outline, .process-circle, .carousel-3d, .code-cursor'
+);
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        entry.target.classList.toggle(
+            'is-paused',
+            !entry.isIntersecting
+        );
+    });
+}, {
+    threshold: 0
+});
+
+animatedElements.forEach((element) => {
+    observer.observe(element);
+});

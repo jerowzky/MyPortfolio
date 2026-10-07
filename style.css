@@ -179,6 +179,10 @@ header nav a.active {
     animation: movingLight 20s linear infinite;
 }
 
+.moving-light.is-paused {
+    animation-play-state: paused;
+}
+
 @keyframes movingLight {
     0% {
         transform: translate(-350px, -350px);
@@ -277,6 +281,10 @@ header nav a.active {
     animation: blink 0.7s infinite;
 }
 
+.greetings.is-paused h5::after {
+    animation-play-state: paused;
+}
+
 @keyframes blink {
     50% {
         opacity: 0;
@@ -315,7 +323,6 @@ header nav a.active {
     );
 }
 
-
 /* White futuristic outline */
 .hero-image-outline {
     position: absolute;
@@ -347,6 +354,9 @@ header nav a.active {
     );
 }
 
+.hero-image-outline.is-paused {
+    animation-play-state: paused;
+}
 
 @keyframes outlineLight {
 
@@ -432,8 +442,7 @@ position: relative;
     border: 1px solid rgba(255, 248, 248, 0.4);
     backdrop-filter: blur(15px);
     border-radius: 25px;
-    box-shadow:
-        inset 0 0 20px rgba(6, 211, 149, 0.25);
+
 }
 
 .code-background {
@@ -475,6 +484,10 @@ position: relative;
     color: rgba(180, 255, 230, 0.25);
 
     animation: cursorBlink 0.7s infinite;
+}
+
+.code-cursor.is-paused {
+    animation-play-state: paused;
 }
 
 @keyframes cursorBlink {
@@ -611,11 +624,8 @@ position: relative;
     border: 1px solid rgba(255, 248, 248, 0.4);
     backdrop-filter: blur(15px);
     border-radius: 50px;
-
     width: fit-content;
     padding: 20px 12px;
-    box-shadow:
-        inset 0 0 20px rgba(6, 211, 149, 0.50);
 }
 
 .socmed-wrapper svg {
@@ -654,8 +664,6 @@ display: none;
     justify-content: center;
     width: fit-content;
     gap: 10px;
-        box-shadow:
-        inset 0 0 20px rgba(6, 211, 149, 0.50);
 }
 
 .resume-button {
@@ -697,6 +705,10 @@ display: none;
     opacity: 0.5;
     top: 0;
     animation: rotateCircle 15s linear infinite;
+}
+
+.process-circle.is-paused {
+    animation-play-state: paused;
 }
 
 @keyframes rotateCircle {
@@ -1368,7 +1380,10 @@ background: linear-gradient(
 }
 #projects {
     background-color: #000000;
+    position: relative;
+    z-index: 11;
 }
+
 .projects-wrapper {
     columns: 3;
     column-gap: 30px;
@@ -1403,7 +1418,7 @@ background: linear-gradient(
     letter-spacing: 0.12em;
     line-height: 1.2rem;    
 }
-.project-card img {
+.project-card-img {
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -1635,7 +1650,6 @@ background: linear-gradient(
 
 .carousel-3d-scene {
     width: 100%;
-    overflow: hidden;
 
     perspective: 35em;
 
@@ -1655,6 +1669,10 @@ background: linear-gradient(
     animation: carousel3dRotate 32s linear infinite;
 }
 
+.carousel-3d.is-paused {
+    animation-play-state: paused;
+}
+
 @keyframes carousel3dRotate {
     to {
         rotate: y 1turn;
@@ -1664,6 +1682,7 @@ background: linear-gradient(
 .carousel-3d-card {
     --w: 17.5em;
     --ba: 1turn / var(--n);
+    --radius: 25em;
 
     grid-area: 1 / 1;
 
@@ -1678,16 +1697,7 @@ background: linear-gradient(
 
     transform:
         rotatey(calc(var(--i) * var(--ba)))
-        translatez(
-            calc(
-                -1 *
-                (
-                    .5 * var(--w) +
-                    .5em
-                ) /
-                tan(.5 * var(--ba))
-            )
-        );
+        translatez(calc(-1 * var(--radius)));
 }
 @media (max-width: 600px) {
 
