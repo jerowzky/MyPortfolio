@@ -26,7 +26,7 @@ html {
     overflow-x: clip;
 }
 body {
-    min-height: 100vh;
+    height: auto;
     margin: 0;
     padding: 0;
     overflow-x: clip;
@@ -511,6 +511,17 @@ position: relative;
 .reveal-up.show {
     opacity: 1;
     transform: translateY(0) translateX(5%);
+}
+
+.reveal-card {
+    opacity: 0;
+    transform: translateY(80px);
+    transition: opacity 2s ease, transform 2s ease;
+}
+
+.reveal-card.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .reveal-up-btn {
@@ -1693,8 +1704,8 @@ background: linear-gradient(
 ======================================== */
 
 .floating-gallery {
-    --orbit-size: 850px;
-    --card-width: 200px;
+    --orbit-size: 800px;
+    --card-width: 175px;
     --orbit-duration: 55s;
 
     position: relative;
@@ -1706,7 +1717,7 @@ background: linear-gradient(
     min-height: 560px;
     padding: 84px 75px;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: clip;
 
     background: #000;
     color: #fff;
@@ -1743,17 +1754,20 @@ background: linear-gradient(
     position: absolute;
     top: 50%;
     right: calc(var(--orbit-size) * -0.5);
+
     width: var(--orbit-size);
     height: var(--orbit-size);
-    transform: translateY(-50%);
 
+    transform: translate3d(0, -50%, 0);
+    pointer-events: none;
 }
 
 .floating-gallery__ring {
     position: absolute;
     inset: 0;
+    transform-origin: center;
     animation: galleryRotate var(--orbit-duration) linear infinite;
-    transform-origin: 50% 50%;
+    will-change: transform;
 }
 
 /* ========================================

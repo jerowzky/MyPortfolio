@@ -124,7 +124,7 @@ const revealSelector =
     ".reveal-right, .reveal-right-tilted1, .reveal-right-tilted2, " +
     ".reveal-left, .reveal-left-tilted, .reveal-up, .reveal-title, " +
     ".reveal-headline, .highlight, .reveal-image, .reveal-left-card, " +
-    ".reveal-right-card, .reveal-up-btn, .reveal-down-btn";
+    ".reveal-right-card, .reveal-up-btn, .reveal-down-btn, .reveal-card";
 
 const revealStates = new WeakMap();
 
@@ -605,7 +605,7 @@ function updateProjects() {
             card.classList.add("swiper-slide");
 
             // Cards do not individually reveal on mobile
-            card.classList.remove("reveal-up", "show");
+            card.classList.remove("reveal-card", "show");
 
         });
 
@@ -677,7 +677,7 @@ function updateProjects() {
             card.classList.remove("swiper-slide");
 
             // Add reveal animation back
-            card.classList.add("reveal-up");
+            card.classList.add("reveal-card");
 
             // Let reveal system decide when to show
             card.classList.remove("show");
