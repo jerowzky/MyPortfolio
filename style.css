@@ -1042,7 +1042,7 @@ background: radial-gradient(
     line-height: 1.4rem;
     background-color: #171B19;
     max-width: 450px;
-   border: 2px solid rgba(255, 255, 255, 0.3);
+   border: 1px solid rgb(40, 40, 40);
     position: relative;
 }
 .first-paragraph {
@@ -1060,9 +1060,9 @@ background: radial-gradient(
     position: relative;
 background: radial-gradient(
     circle at 0% 0%,
-    #03A271 0%,
-    #171B19 30%,
-    #171B19 100%
+    rgb(40, 40, 40) 0%,
+    rgb(24, 24, 24) 30%,
+    rgb(24, 24, 24) 100%
 );
 border-radius: 5px 5px 20px 5px;
 z-index: 2;
@@ -1072,9 +1072,9 @@ z-index: 2;
     text-align: right;
 background: radial-gradient(
     circle at 100% 100%,
-    #03A271 0%,
-    #171B19 30%,
-    #171B19 100%
+    rgb(40, 40, 40) 0%,
+    rgb(24, 24, 24) 30%,
+    rgb(24, 24, 24) 100%
 );
 border-radius: 20px 20px 5px 20px;
 }
@@ -1201,14 +1201,16 @@ border-radius: 20px 20px 5px 20px;
     border-radius: 30px;
 background: radial-gradient(
     circle at 0% 0%,
-    #03A271 0%,
-    #171B19 30%,
-    #171B19 100%
+    #035c43 0%,
+    rgb(24, 24, 24) 30%,
+    rgb(24, 24, 24) 85%,
+    rgb(40, 40, 40) 100%
 );
     display: flex !important;
     flex-direction: column !important;
     gap: 10px;
     height: auto !important;
+    border: 1px solid rgb(40, 40, 40);
 }
 
 
@@ -1455,17 +1457,18 @@ background: linear-gradient(
     display: flex;
     flex-direction: column;
     gap: 15px;
-    background-color: #171B19;
     padding: 25px;
     border-radius: 20px;
+    border: 1px solid rgb(40, 40, 40);
 
     break-inside: avoid;
     margin-bottom: 30px;
     background: radial-gradient(
         circle at 0% 0%,
-        #03A271 0%,
-        #171B19 30%,
-        #171B19 100%
+        rgb(40, 40, 40) 0%,
+        rgb(24, 24, 24) 30%,
+        rgb(24, 24, 24) 85%,
+        rgb(40, 40, 40) 100%
     );
 }
 
@@ -1855,14 +1858,14 @@ position: absolute;
     flex-direction: column;
     background: radial-gradient(
     circle at 100% 100%,
-    rgb(34, 34, 34) 0%,
-   rgb(14,14,14) 30%,
-    rgb(14,14,14) 100%
+    rgb(40, 40, 40) 0%,
+   rgb(24, 24, 24) 30%,
+    rgb(24, 24, 24) 100%
 );
     width: fit-content;
     padding: 0 10px 10px;
     border-radius: 7px;
-    border: 1px solid rgb(34, 34, 34);
+    border: 1px solid rgb(40, 40, 40);
 
 }
 
@@ -1897,9 +1900,67 @@ position: absolute;
     }
 }
 
+footer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.upper-footer {
+    display: flex;
+    gap: 30px;
+}
+.upper-footer p {
+    margin-left: auto;
+}
+.mid-footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+}
+.get-in-touch {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;    
+}
 
+.other-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;    
+}
 
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;    
+}
 
+.info a {
+    display: flex;
+    gap: 5px;
+}
+
+.social-connect {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;      
+}
+
+.footer-icons-wrapper {
+    display: flex;
+    gap: 5px;
+}
+
+.lower-footer {
+    display: flex;
+    gap: 30px;
+}
+
+.lower-footer .explore {
+    display: flex;
+    gap: 5px;
+    margin-left:auto;
+}
 
 @media (max-width: 1317px) {
 .hero {
@@ -2382,20 +2443,7 @@ background: radial-gradient(
 
 .project-card {
     margin-bottom: 0;
-    background:
-        radial-gradient(
-            circle at 0% 100%,
-            #03A271 0%,
-            #171B19 30%,
-            transparent 60%
-        ),
-        radial-gradient(
-            circle at 100% 0%,
-            #03A271 0%,
-            #171B19 20%,
-            transparent 40%
-        ),
-        #171B19;
+ 
 }
 }
 
