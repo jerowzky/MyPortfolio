@@ -669,6 +669,7 @@ display: none;
     justify-content: center;
     width: fit-content;
     gap: 10px;
+    text-decoration: none;
 }
 
 .resume-button {
