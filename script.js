@@ -370,25 +370,21 @@ if (menuToggle && mobileDropdown) {
     // Close Menu When Section Selected
     // ================================
 
-    const mobileLinks = mobileDropdown.querySelectorAll("a");
+const mobileLinks = mobileDropdown.querySelectorAll("a.mobile-nav-link");
 
-    mobileLinks.forEach((link) => {
+mobileLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        // Close mobile menu
+        mobileDropdown.classList.remove("active");
 
-        link.addEventListener("click", () => {
-
-            // Close mobile menu
-            mobileDropdown.classList.remove("active");
-
-            // Unlock the page
-            document.body.style.position = "";
-            document.body.style.top = "";
-            document.body.style.left = "";
-            document.body.style.right = "";
-            document.body.style.width = "";
-
-        });
-
+        // Unlock the page
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.left = "";
+        document.body.style.right = "";
+        document.body.style.width = "";
     });
+});
 
 }
 
