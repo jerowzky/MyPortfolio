@@ -1,9 +1,3 @@
-/*
-* {
-    outline: 1px solid red;
-}
-*/
-
 @font-face {
     font-family: "ICF-Regular";
     src: url("fonts/IntegralCF-Regular.woff2") format("woff2");
@@ -729,6 +723,53 @@ display: none;
 }
 
 #about {
+    position: relative;
+    z-index: 10;
+}
+
+#expertise, #journey {
+    margin-top: 0px;
+    position: relative;
+    z-index: 9;
+
+}
+
+#about,
+#expertise,
+#journey,
+#projects {
+    position: relative;
+    isolation: isolate;
+    padding-bottom: 75px;
+    background: transparent;
+}
+
+
+#expertise::before,
+#journey::before,
+#projects::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+}
+
+#about::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
 background: radial-gradient(
     circle at 50% 100%,
     #000000 0%,
@@ -738,16 +779,21 @@ background: radial-gradient(
     #000000  100%
 );
 
-    position: relative;
-    z-index: 10;
-}
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
 
-#expertise, #journey {
-    margin-top: 0px;
-    position: relative;
-    z-index: 9;
-    background:black;
-
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
 }
 
 .section-title {
@@ -756,7 +802,11 @@ background: radial-gradient(
     align-items: center;
     gap:0px;
     position: relative;
-    padding: 75px 0;
+    padding: 100px 0;
+}
+
+#about .section-title {
+    padding: 100px 0 0;
 }
 .title {
     font-size: 3.5rem;
@@ -764,11 +814,9 @@ background: radial-gradient(
     color: white;
     font-family: "ICF-ExtraBold";
     color:white;
-    text-shadow: 0 0 50px #06d395;
     padding: 1rem 2rem;
     border: 3px solid #03A271 ;
     border-radius: 50px 50px 50px 0;
-    box-shadow: 0 0 20px #06d395;
     white-space: nowrap;
     margin: 0;
 }
@@ -1379,9 +1427,10 @@ background: linear-gradient(
     height: auto;
 }
 #projects {
-    background-color: #000000;
+
     position: relative;
     z-index: 11;
+    padding-bottom: 75px;
 }
 
 .projects-wrapper {
@@ -1637,87 +1686,206 @@ background: linear-gradient(
     height: 100%;
     border: none;
 }
-.carousel-3d-section {
+
+
+/* ========================================
+   FLOATING GALLERY
+======================================== */
+
+.floating-gallery {
+    --orbit-size: 850px;
+    --card-width: 200px;
+    --orbit-duration: 55s;
+
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+
     width: 100%;
+    min-height: 560px;
+    padding: 84px 75px;
+    box-sizing: border-box;
     overflow: hidden;
-    background-color: black;
-}
 
-.carousel-3d-scene,
-.carousel-3d {
-    display: grid;
-}
-
-.carousel-3d-scene {
-    width: 100%;
-
-    perspective: 35em;
-
-    mask: linear-gradient(
-        90deg,
-        #0000,
-        red 20% 80%,
-        #0000
+    background: #000;
+    color: #fff;
+    /* Fade the top and bottom to transparency */
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        #000 10%,
+        #000 90%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        #000 15%,
+        #000 85%,
+        transparent 100%
     );
 }
 
-.carousel-3d {
-    place-self: center;
+/* ========================================
+   RIGHT-SIDE HALF CIRCLE
+======================================== */
 
-    transform-style: preserve-3d;
-
-    animation: carousel3dRotate 32s linear infinite;
+.floating-gallery__images {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
 }
 
-.carousel-3d.is-paused {
-    animation-play-state: paused;
+.floating-gallery__orbit {
+    position: absolute;
+    top: 50%;
+    right: calc(var(--orbit-size) * -0.5);
+    width: var(--orbit-size);
+    height: var(--orbit-size);
+    transform: translateY(-50%);
+
 }
 
-@keyframes carousel3dRotate {
-    to {
-        rotate: y 1turn;
-    }
+.floating-gallery__ring {
+    position: absolute;
+    inset: 0;
+    animation: galleryRotate var(--orbit-duration) linear infinite;
+    transform-origin: 50% 50%;
 }
 
-.carousel-3d-card {
-    --w: 17.5em;
-    --ba: 1turn / var(--n);
-    --radius: 25em;
+/* ========================================
+   IMAGE CARDS
+======================================== */
 
-    grid-area: 1 / 1;
 
-    width: var(--w);
+.floating-gallery__card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--card-width);
     aspect-ratio: 7 / 10;
-
-    object-fit: cover;
-
-    border-radius: 1.5em;
-
-    backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
 
     transform:
-        rotatey(calc(var(--i) * var(--ba)))
-        translatez(calc(-1 * var(--radius)));
+        translate(-50%, -50%)
+        rotate(calc(var(--i) * 45deg))
+        translateY(calc(var(--orbit-size) * -0.5));
 }
-@media (max-width: 600px) {
 
-    .pdf-modal, .video-modal {
-        padding: 15px;
-    }
 
-    .pdf-container {
-        width: 100%;
-        height: 75vh;
-        border-radius: 12px;
-    }
+.floating-gallery__card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-    .close-pdf svg {
-        top: 10px;
-        right: 10px;
-        font-size: 28px;
-    }
+/* ========================================
+   LEFT-SIDE CONTENT
+======================================== */
+
+.floating-gallery__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    width: 80%;
+    max-width: 550px;
+    margin: 0;
+    text-align: left;
+}
+
+.floating-gallery__content h2 {
+    margin: 0 0 18px;
+    font-size: 3rem;
+    font-family: "ICF-ExtraBold";
+    line-height: 1.08;
+}
+
+.gallery-content-p {
+margin: -10px 0 0 0;
+position: absolute;
+}
+
+.title-section {
+    position: relative;
+}
+
+.categories {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.category h1 {
+    font-family: "Unbounded";
+    font-weight: 500;
+    color: rgb(14,14,14);
+    margin: 0;
+    font-size: 14px;
+    margin-left: 5px;
+    padding: 5px;
+    background-color: #909794;
+    border-radius: 0 0 10px 10px;
+    width: fit-content;
+}
+.category {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    background: radial-gradient(
+    circle at 100% 100%,
+    rgb(34, 34, 34) 0%,
+   rgb(14,14,14) 30%,
+    rgb(14,14,14) 100%
+);
+    width: fit-content;
+    padding: 0 10px 10px;
+    border-radius: 7px;
+    border: 1px solid rgb(34, 34, 34);
 
 }
+
+.tools-list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.tools-list p {
+     font-family: "Unbounded";
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    background-color: #171B19;
+    color: #909794;
+    border-radius: 999px;   
+    margin: 0;
+    border: 1px solid #909794;
+}
+
+/* ========================================
+   ROTATION
+======================================== */
+
+@keyframes galleryRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+
 @media (max-width: 1317px) {
 .hero {
     left: 42px;
@@ -1728,7 +1896,11 @@ background: linear-gradient(
 .about, .experiences, .projects-wrapper {
     margin: 0 42px;
 }
-
+.floating-gallery {
+    padding: 75px 42px;
+    --orbit-size: 700px;
+    --card-width: 150px;
+}
 .buttons-wrapper {
     gap: 150px;
     top: 75%;
@@ -2112,7 +2284,7 @@ header .sitename {
     transform: translateY(-80px);
 }
 
-#about {
+#about::before {
 background: radial-gradient(
     circle at 50% 50%,
     #000000 0%,
@@ -2163,7 +2335,7 @@ background: radial-gradient(
 .lower-text {
     width: 100%;
 }
-.lower-text a, .honors a, .tools-stack p, .button-links a {
+.lower-text a, .honors a, .tools-stack p, .button-links a, .tools-list p {
     font-size: 11px;
     padding: 4px 8px;
 }
@@ -2256,6 +2428,22 @@ width: 100%;
 @media (max-width: 600px) {
 .buttons-wrapper {
     gap: 100px;
+}
+
+.pdf-modal, .video-modal {
+    padding: 15px;
+}
+
+.pdf-container {
+    width: 100%;
+    height: 75vh;
+    border-radius: 12px;
+}
+
+.close-pdf svg {
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
 }
 }
 
@@ -2429,8 +2617,8 @@ display: none;
 width: 100%;
 }
 
-#about {
-    margin-top: 50px;
+#about::before {
+
 background: radial-gradient(
     circle at 50% 85%,
     #000000 0%,
@@ -2447,8 +2635,54 @@ background: radial-gradient(
     margin: 0;
 }
 
+.floating-gallery__content h2 {
+    font-size: 2rem;
+    padding: 0.7rem 1.7rem;
+    border: 3px solid #03A271 ;
+    border-radius: 50px 50px 50px 0;
+
+}
+
+.floating-gallery__content {
+    width: 100%;
+}
+
+.title-section h2{
+    text-align: center;
+}
+
+.title-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.floating-gallery {
+    padding: 75px 20px;
+    --orbit-size: 400px;
+    --card-width: 100px;
+}
+
+.gallery-content-p {
+    margin: -10px auto 0;
+    position: relative;
+}
+
+.category h1 {
+    font-size: 12px;
+}
+
+.floating-gallery__orbit {
+    top: 70%;
+    opacity: 0.50;
+}
+
 .section-title {
-    padding: 50px 0;
+    padding: 75px 0;
+}
+
+#about .section-title {
+    padding: 75px 0 50px;
 }
 
 .headline {
@@ -2456,6 +2690,12 @@ font-size: 0.75rem;
 margin: -10px 0 0 0;
 padding: 0.3rem 0.8rem;
 
+}
+
+.gallery-content-p {
+font-size: 0.75rem;   
+margin: -30px 0 0 0;
+padding: 0.3rem 0.8rem;
 }
 
 
@@ -2614,13 +2854,6 @@ font-size: 1.4rem;
     max-width: 300px;
 }
 
-.lower-text a {
-    font-size: 10px;
-    padding: 4px 8px;
-}
-
-
-
 .timeline-line {
     left: 0;
     width: 6px;
@@ -2644,9 +2877,6 @@ font-size: 1.4rem;
     width: auto;
 }
 
-.honors a {
-    font-size: 10px
-}
 
 .honors a svg {
     width: 12px;
