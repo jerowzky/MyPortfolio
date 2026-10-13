@@ -683,7 +683,7 @@ display: none;
     align-items: center;
     justify-content: center;
     width: fit-content;
-    gap: 10px;
+    gap: 8px;
     text-decoration: none;
 }
 
@@ -693,8 +693,9 @@ display: none;
 }
 
 .email-icon, .resume-icon {
-    height: 20px;
+    height: 26px;
     width:auto;
+    color: white;
 }
 
 .image-cutter {
@@ -2087,6 +2088,7 @@ background-color: rgb(14,14,14);
     display: flex;
     gap: 10px;
     margin-left:auto;
+    flex-wrap: wrap;
 }
 
 .lower-footer a {
@@ -2793,7 +2795,7 @@ display: none;
 }
 
 .hero-image-wrapper {
-    width: 400px;
+
     position: absolute;
     left: 50%;
 }
@@ -2834,13 +2836,13 @@ display: none;
 }
 
 .email-icon, .resume-icon {
-    height: 15px;
+    height: 20px;
     width:auto;
 }
 
 .description-wrapper {
     z-index: 3;
-    margin: 80px 0 0 0;
+    margin: 60px 0 0 0;
 }
 
 .image-cutter {
@@ -2932,6 +2934,14 @@ padding: 0.3rem 0.8rem;
 .about {
     margin: 0 20px;
     padding: 0;
+}
+
+footer {
+    --footer-padding-x: 20px;
+}
+
+.lower-footer .explore {
+    justify-content: center;
 }
 
 .experiences {
@@ -3106,8 +3116,11 @@ font-size: 1.4rem;
 }
 
 .lower-footer p, .lower-footer a {
-    font-size: 12px;
+    font-size: 10px;
+    text-align: center;
 }
+
+
 .timeline-line {
     left: 0;
     width: 6px;
@@ -3169,3 +3182,59 @@ font-size: 1.4rem;
 }
 }
 
+@media (max-width: 375px) {
+.title {
+    font-size: 2rem;
+    padding: 0.5rem 1.5rem;
+}
+
+.headline {
+    font-size: 0.7rem;
+}
+
+.greetings, .description {
+    transform: scale(0.85);
+}
+
+.greetings h5 {
+    margin-bottom: 0;
+}
+
+.socmed-container {
+    margin-top: 0;
+}
+
+.socmed-wrapper {
+    padding: 12px 8px;
+    gap: 15px;
+}
+.hero-image-wrapper {
+    top: 185px;
+}
+
+.email-button, .resume-button {
+    font-size: 13px;
+    gap: 5px;
+    padding: 5px 8px;
+}
+
+.hero {
+    margin: 0px 20px 75px 20px;
+}
+
+#about .section-title, .section-title {
+    padding: 50px 0;
+}
+
+#about, #expertise, #journey, #projects {
+    padding-bottom: 50px;
+}
+
+.long-desc {
+    max-width: 70%;
+}
+
+.description-wrapper {
+    margin: 30px 0 0 0;
+}
+}

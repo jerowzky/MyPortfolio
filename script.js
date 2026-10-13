@@ -119,207 +119,280 @@ function typeCode() {
 
 typeCode();
 
-// Reveal Animation
-const revealSelector =
-    ".reveal-right, .reveal-right-tilted1, .reveal-right-tilted2, " +
-    ".reveal-left, .reveal-left-tilted, .reveal-up, .reveal-title, " +
-    ".reveal-headline, .highlight, .reveal-image, .reveal-left-card, " +
-    ".reveal-right-card, .reveal-up-btn, .reveal-down-btn, .reveal-card";
+
+
+/* =========================
+   REVEAL ANIMATION
+========================= */
+
+const revealSelector = [
+    ".reveal-right",
+    ".reveal-right-tilted1",
+    ".reveal-right-tilted2",
+    ".reveal-left",
+    ".reveal-left-tilted",
+    ".reveal-up",
+    ".reveal-title",
+    ".reveal-headline",
+    ".highlight",
+    ".reveal-image",
+    ".reveal-left-card",
+    ".reveal-right-card",
+    ".reveal-up-btn",
+    ".reveal-down-btn",
+    ".reveal-card"
+].join(", ");
 
 const revealStates = new WeakMap();
 
 let ticking = false;
+let revealNavigationFrame = null;
 
 
-// =========================
-// GET HEADER HEIGHT
-// =========================
+/* =========================
+   CONFIGURATION
+========================= */
+
+const REVEAL_CONFIG = {
+    mobileBreakpoint: 500,
+
+    mobileHeaderHeight: 49,
+    desktopHeaderHeight: 67,
+
+    // Reveal elements as they enter the visible screen.
+    revealTopOffset: 30,
+    revealBottomRatio: 0.95,
+
+    // Hide only after elements leave the viewport.
+    hideTopOffset: 20,
+    hideBottomOffset: 40
+};
+
+
+/* =========================
+   HEADER HEIGHT
+========================= */
 
 function getHeaderHeight() {
-    return window.innerWidth <= 500 ? 49 : 67;
+    return window.innerWidth <= REVEAL_CONFIG.mobileBreakpoint
+        ? REVEAL_CONFIG.mobileHeaderHeight
+        : REVEAL_CONFIG.desktopHeaderHeight;
 }
 
 
-// =========================
-// UPDATE REVEALS
-// =========================
+/* =========================
+   CHECK ELEMENT VISIBILITY
+========================= */
+
+function isInsideZone(rect, top, bottom) {
+    return rect.bottom > top && rect.top < bottom;
+}
+
+
+/* =========================
+   UPDATE REVEALS
+========================= */
 
 function updateReveals() {
-
     const reveals = document.querySelectorAll(revealSelector);
 
     const viewportHeight = window.innerHeight;
     const headerHeight = getHeaderHeight();
 
-    // =========================
-    // SHOW ZONE
-    // =========================
+    const revealTop =
+        headerHeight + REVEAL_CONFIG.revealTopOffset;
 
-    const showTop = headerHeight + 30;
-    const showBottom = viewportHeight * 0.85;
+    const revealBottom =
+        viewportHeight * REVEAL_CONFIG.revealBottomRatio;
 
+    const hideTop =
+        headerHeight - REVEAL_CONFIG.hideTopOffset;
+
+    const hideBottom =
+        viewportHeight + REVEAL_CONFIG.hideBottomOffset;
 
     reveals.forEach((element) => {
+        const rect = element.getBoundingClientRect();
+        const isHighlight = element.classList.contains("highlight");
 
-        // Initialize newly added elements
+        // Synchronize the stored state with the actual class
+        // when the element is first encountered.
         if (!revealStates.has(element)) {
-            revealStates.set(element, false);
+            revealStates.set(
+                element,
+                element.classList.contains("show")
+            );
         }
 
         const isShown = revealStates.get(element);
 
-        const rect = element.getBoundingClientRect();
-
-
-        // =========================
-        // HIGHLIGHT
-        // Show once and stay shown
-        // =========================
-
-        if (element.classList.contains("highlight")) {
-
-            if (!isShown) {
-
-                const shouldShow =
-                    rect.bottom > showTop &&
-                    rect.top < showBottom;
-
-                if (shouldShow) {
-                    element.classList.add("show");
-                    revealStates.set(element, true);
-                }
-
+        // Highlights reveal once and remain visible.
+        if (isHighlight) {
+            if (
+                !isShown &&
+                isInsideZone(rect, revealTop, revealBottom)
+            ) {
+                element.classList.add("show");
+                revealStates.set(element, true);
             }
 
             return;
         }
 
-
-        // =========================
-        // SHOW
-        // =========================
-
+        // Reveal elements inside the current reveal zone.
         if (!isShown) {
-
-            const shouldShow =
-                rect.bottom > showTop &&
-                rect.top < showBottom;
-
-            if (shouldShow) {
+            if (isInsideZone(rect, revealTop, revealBottom)) {
                 element.classList.add("show");
                 revealStates.set(element, true);
             }
 
+            return;
         }
 
+        // Hide elements after they leave the viewport.
+        const hasLeftAbove = rect.bottom <= hideTop;
+        const hasLeftBelow = rect.top >= hideBottom;
 
-        // =========================
-        // HIDE
-        // =========================
-
-        else {
-
-            // Element is completely above the visible area
-            const clearlyAbove =
-                rect.bottom <= headerHeight;
-
-            // Element is completely below the viewport
-            const clearlyBelow =
-                rect.top >= viewportHeight;
-
-
-            if (clearlyAbove || clearlyBelow) {
-
-                element.classList.remove("show");
-                revealStates.set(element, false);
-
-            }
-
+        if (hasLeftAbove || hasLeftBelow) {
+            element.classList.remove("show");
+            revealStates.set(element, false);
         }
-
     });
 
     ticking = false;
 }
 
 
-// =========================
-// REQUEST UPDATE
-// =========================
+/* =========================
+   REQUEST ANIMATION FRAME
+========================= */
 
 function requestRevealUpdate() {
+    if (ticking) return;
 
-    if (!ticking) {
+    ticking = true;
 
-        requestAnimationFrame(updateReveals);
-
-        ticking = true;
-
-    }
-
+    requestAnimationFrame(updateReveals);
 }
 
 
-// =========================
-// EVENTS
-// =========================
+/* =========================
+   FORCE IMMEDIATE CHECK
+========================= */
 
+function forceRevealCheck() {
+    // Cancel any pending scheduled update.
+    if (ticking) {
+        ticking = false;
+    }
+
+    updateReveals();
+}
+
+
+/* =========================
+   RECHECK AFTER NAVIGATION
+========================= */
+
+function refreshReveals() {
+    // Avoid stacking multiple navigation refresh loops.
+    if (revealNavigationFrame !== null) {
+        cancelAnimationFrame(revealNavigationFrame);
+    }
+
+    // Check immediately.
+    forceRevealCheck();
+
+    // Check again after the browser updates the scroll position.
+    revealNavigationFrame = requestAnimationFrame(() => {
+        forceRevealCheck();
+
+        revealNavigationFrame = requestAnimationFrame(() => {
+            forceRevealCheck();
+            revealNavigationFrame = null;
+        });
+    });
+}
+
+
+/* =========================
+   EVENT LISTENERS
+========================= */
+
+// Normal scrolling.
 window.addEventListener("scroll", requestRevealUpdate, {
     passive: true
 });
 
-window.addEventListener("resize", requestRevealUpdate);
+// Viewport resizing.
+window.addEventListener("resize", requestRevealUpdate, {
+    passive: true
+});
+
+// Page loading and restoration.
+window.addEventListener("load", refreshReveals);
+window.addEventListener("pageshow", refreshReveals);
 
 
-// =========================
-// INITIAL CHECK
-// =========================
+// Recheck after clicking section navigation links.
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", refreshReveals);
+});
 
-updateReveals();
-// ================================
-// Navigation Bar
-// ================================
+
+/* =========================
+   INITIAL CHECK
+========================= */
+
+refreshReveals();
+
+
+
+/* ================================
+   NAVIGATION BAR
+================================ */
 
 const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("header nav a, .mobile-dropdown .mobile-nav-link");
+
+const navLinks = document.querySelectorAll(
+    "header nav a, .mobile-dropdown .mobile-nav-link"
+);
 
 function updateActiveNav() {
-
     let currentSection = "home";
+    const activationPoint = window.innerHeight * 0.4;
 
     sections.forEach((section) => {
-
         const sectionTop = section.getBoundingClientRect().top;
 
-        if (sectionTop <= window.innerHeight * 0.4) {
+        if (sectionTop <= activationPoint) {
             currentSection = section.id;
         }
-
     });
 
     navLinks.forEach((link) => {
-
-        link.classList.remove("active");
-
         const href = link.getAttribute("href");
 
-        if (
+        link.classList.toggle(
+            "active",
             href === `#${currentSection}` ||
             (currentSection === "home" && href === "#")
-        ) {
-            link.classList.add("active");
-        }
-
+        );
     });
 }
 
-window.addEventListener("scroll", updateActiveNav);
+window.addEventListener("scroll", updateActiveNav, {
+    passive: true
+});
+
 window.addEventListener("load", updateActiveNav);
+window.addEventListener("resize", updateActiveNav);
 
 
-// ================================
-// Mobile Navigation
-// ================================
+
+/* ================================
+   MOBILE NAVIGATION
+================================ */
 
 const menuToggle = document.getElementById("menuToggle");
 const mobileDropdown = document.getElementById("mobileDropdown");
@@ -327,66 +400,109 @@ const mobileDropdown = document.getElementById("mobileDropdown");
 let scrollPosition = 0;
 
 
-// ================================
-// Open / Close Mobile Navigation
-// ================================
+/* ================================
+   LOCK PAGE SCROLL
+================================ */
+
+function lockPageScroll() {
+    scrollPosition = window.scrollY;
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollPosition}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+}
+
+
+/* ================================
+   UNLOCK PAGE SCROLL
+================================ */
+
+function unlockPageScroll(restorePosition = true) {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+
+    if (restorePosition) {
+        window.scrollTo(0, scrollPosition);
+    }
+}
+
+
+/* ================================
+   REFRESH PAGE STATE
+================================ */
+
+function refreshPageState() {
+    requestAnimationFrame(() => {
+        updateActiveNav();
+
+        if (typeof refreshReveals === "function") {
+            refreshReveals();
+        } else if (typeof requestRevealUpdate === "function") {
+            requestRevealUpdate();
+        }
+    });
+}
+
+
+/* ================================
+   OPEN / CLOSE MENU
+================================ */
 
 if (menuToggle && mobileDropdown) {
-
     menuToggle.addEventListener("click", () => {
+        const isOpening = !mobileDropdown.classList.contains("active");
 
-        const isOpen = mobileDropdown.classList.toggle("active");
+        mobileDropdown.classList.toggle("active", isOpening);
 
-        if (isOpen) {
-
-            // Save the current scroll position
-            scrollPosition = window.scrollY;
-
-            // Lock the page at its current position
-            document.body.style.position = "fixed";
-            document.body.style.top = `-${scrollPosition}px`;
-            document.body.style.left = "0";
-            document.body.style.right = "0";
-            document.body.style.width = "100%";
-
+        if (isOpening) {
+            lockPageScroll();
         } else {
-
-            // Unlock the page
-            document.body.style.position = "";
-            document.body.style.top = "";
-            document.body.style.left = "";
-            document.body.style.right = "";
-            document.body.style.width = "";
-
-            // Restore the exact scroll position
-            window.scrollTo(0, scrollPosition);
-
+            unlockPageScroll();
+            refreshPageState();
         }
-
     });
 
 
-    // ================================
-    // Close Menu When Section Selected
-    // ================================
+    /* ================================
+       CLOSE MENU WHEN SECTION SELECTED
+    ================================ */
 
-const mobileLinks = mobileDropdown.querySelectorAll("a.mobile-nav-link");
+    const mobileLinks = mobileDropdown.querySelectorAll(
+        "a.mobile-nav-link"
+    );
 
-mobileLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-        // Close mobile menu
-        mobileDropdown.classList.remove("active");
+    mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            // Close the mobile menu.
+            mobileDropdown.classList.remove("active");
 
-        // Unlock the page
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.left = "";
-        document.body.style.right = "";
-        document.body.style.width = "";
+            // Unlock without restoring the previous position.
+            // The browser can now follow the clicked anchor.
+            unlockPageScroll(false);
+
+            // Recheck after the browser updates the scroll position.
+            refreshPageState();
+
+            requestAnimationFrame(() => {
+                refreshPageState();
+            });
+        });
     });
-});
-
 }
+
+
+/* ================================
+   PAGE RESTORATION
+================================ */
+
+window.addEventListener("pageshow", refreshPageState);
+
+
 
 // Swiper
 const expertiseSwiper = new Swiper("#expertiseCarousel", {
