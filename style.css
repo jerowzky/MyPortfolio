@@ -2097,6 +2097,7 @@ background-color: rgb(14,14,14);
     font-size: 14px;
     font-weight: 500;
     margin: 0;
+    text-decoration: none;
 }
 
 @media (max-width: 1317px) {
@@ -2108,6 +2109,10 @@ background-color: rgb(14,14,14);
 
 .about, .experiences, .projects-wrapper {
     margin: 0 42px;
+}
+
+footer {
+    --footer-padding-x: 42px;
 }
 .floating-gallery {
     padding: 75px 42px;
@@ -2221,9 +2226,6 @@ header {
     gap: 40px;
 }
 
-footer {
-    --footer-padding-x: 42px;
-}
 .right-about-content .firstp, .right-about-content .secondp {
     font-size: 16px;
     padding: 0.8em;

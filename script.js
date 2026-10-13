@@ -348,36 +348,51 @@ refreshReveals();
 
 
 
+
 /* ================================
    NAVIGATION BAR
 ================================ */
 
-const sections = document.querySelectorAll("section");
+const sections = document.querySelectorAll("section, footer");
 
 const navLinks = document.querySelectorAll(
     "header nav a, .mobile-dropdown .mobile-nav-link"
 );
 
 function updateActiveNav() {
-    let currentSection = "home";
+    if (!sections.length) return;
+
+    let currentSection = sections[0].id || "home";
+
     const activationPoint = window.innerHeight * 0.4;
 
-    sections.forEach((section) => {
-        const sectionTop = section.getBoundingClientRect().top;
+    const pageBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
 
-        if (sectionTop <= activationPoint) {
+    // Detect the section crossing the activation point.
+    sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+
+        if (rect.top <= activationPoint) {
             currentSection = section.id;
         }
     });
 
+    // Always activate the last section at the bottom of the page.
+    if (pageBottom) {
+        currentSection = sections[sections.length - 1].id;
+    }
+
+    // Update desktop and mobile navigation links.
     navLinks.forEach((link) => {
         const href = link.getAttribute("href");
 
-        link.classList.toggle(
-            "active",
+        const isActive =
             href === `#${currentSection}` ||
-            (currentSection === "home" && href === "#")
-        );
+            (currentSection === "home" && href === "#");
+
+        link.classList.toggle("active", isActive);
     });
 }
 
@@ -387,7 +402,6 @@ window.addEventListener("scroll", updateActiveNav, {
 
 window.addEventListener("load", updateActiveNav);
 window.addEventListener("resize", updateActiveNav);
-
 
 
 /* ================================
@@ -455,7 +469,8 @@ function refreshPageState() {
 
 if (menuToggle && mobileDropdown) {
     menuToggle.addEventListener("click", () => {
-        const isOpening = !mobileDropdown.classList.contains("active");
+        const isOpening =
+            !mobileDropdown.classList.contains("active");
 
         mobileDropdown.classList.toggle("active", isOpening);
 
@@ -478,14 +493,12 @@ if (menuToggle && mobileDropdown) {
 
     mobileLinks.forEach((link) => {
         link.addEventListener("click", () => {
-            // Close the mobile menu.
             mobileDropdown.classList.remove("active");
 
-            // Unlock without restoring the previous position.
-            // The browser can now follow the clicked anchor.
+            // Unlock the page without restoring the old position.
             unlockPageScroll(false);
 
-            // Recheck after the browser updates the scroll position.
+            // Recheck after anchor navigation begins.
             refreshPageState();
 
             requestAnimationFrame(() => {
@@ -497,11 +510,25 @@ if (menuToggle && mobileDropdown) {
 
 
 /* ================================
+   SECTION NAVIGATION
+================================ */
+
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", () => {
+        requestAnimationFrame(() => {
+            refreshPageState();
+
+            requestAnimationFrame(refreshPageState);
+        });
+    });
+});
+
+
+/* ================================
    PAGE RESTORATION
 ================================ */
 
 window.addEventListener("pageshow", refreshPageState);
-
 
 
 // Swiper
