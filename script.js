@@ -349,6 +349,7 @@ refreshReveals();
 
 
 
+
 /* ================================
    NAVIGATION BAR
 ================================ */
@@ -359,40 +360,46 @@ const navLinks = document.querySelectorAll(
     "header nav a, .mobile-dropdown .mobile-nav-link"
 );
 
+const menuToggle = document.getElementById("menuToggle");
+const mobileDropdown = document.getElementById("mobileDropdown");
+
 function updateActiveNav() {
     if (!sections.length) return;
 
-    let currentSection = sections[0].id || "home";
+    // Do not update navigation while the mobile menu is open.
+    if (mobileDropdown?.classList.contains("active")) return;
 
     const activationPoint = window.innerHeight * 0.4;
 
     const pageBottom =
-        window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 2;
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 5;
 
-    // Detect the section crossing the activation point.
+    let currentSection = sections[0].id || "home";
+
     sections.forEach((section) => {
         const rect = section.getBoundingClientRect();
 
         if (rect.top <= activationPoint) {
-            currentSection = section.id;
+            currentSection = section.id || currentSection;
         }
     });
 
-    // Always activate the last section at the bottom of the page.
-    if (pageBottom) {
-        currentSection = sections[sections.length - 1].id;
+    // Activate Contact only when the page actually reaches the bottom.
+    const footer = document.querySelector("footer#contact");
+
+    if (pageBottom && footer) {
+        currentSection = footer.id;
     }
 
-    // Update desktop and mobile navigation links.
     navLinks.forEach((link) => {
         const href = link.getAttribute("href");
 
-        const isActive =
+        link.classList.toggle(
+            "active",
             href === `#${currentSection}` ||
-            (currentSection === "home" && href === "#");
-
-        link.classList.toggle("active", isActive);
+            (currentSection === "home" && href === "#")
+        );
     });
 }
 
@@ -407,9 +414,6 @@ window.addEventListener("resize", updateActiveNav);
 /* ================================
    MOBILE NAVIGATION
 ================================ */
-
-const menuToggle = document.getElementById("menuToggle");
-const mobileDropdown = document.getElementById("mobileDropdown");
 
 let scrollPosition = 0;
 
@@ -482,11 +486,7 @@ if (menuToggle && mobileDropdown) {
         }
     });
 
-
-    /* ================================
-       CLOSE MENU WHEN SECTION SELECTED
-    ================================ */
-
+    /* Close menu when a navigation link is selected. */
     const mobileLinks = mobileDropdown.querySelectorAll(
         "a.mobile-nav-link"
     );
@@ -495,14 +495,13 @@ if (menuToggle && mobileDropdown) {
         link.addEventListener("click", () => {
             mobileDropdown.classList.remove("active");
 
-            // Unlock the page without restoring the old position.
             unlockPageScroll(false);
 
-            // Recheck after anchor navigation begins.
-            refreshPageState();
-
+            // Let anchor scrolling begin before updating navigation.
             requestAnimationFrame(() => {
-                refreshPageState();
+                requestAnimationFrame(() => {
+                    refreshPageState();
+                });
             });
         });
     });
@@ -517,8 +516,6 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", () => {
         requestAnimationFrame(() => {
             refreshPageState();
-
-            requestAnimationFrame(refreshPageState);
         });
     });
 });
@@ -529,6 +526,7 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 ================================ */
 
 window.addEventListener("pageshow", refreshPageState);
+
 
 
 // Swiper
