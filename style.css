@@ -1675,8 +1675,14 @@ background: linear-gradient(
     cursor: pointer;
     transition: 0.2s ease;
 }
-
-.close-video svg:hover, .close-pdf svg:hover {
+.close-nav svg {
+    width: 35px;
+    height: 35px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.close-video svg:hover, .close-pdf svg:hover, .close-nav svg:hover {
     transform: scale(1.1);
 }
 
@@ -2396,12 +2402,17 @@ header .sitename {
     text-align: center;
 
 }
-
+.upper-nav {
+    display: flex;
+}
+.upper-nav a {
+    margin-left: auto;
+}
 .lower-nav {
     display: flex;
-
     margin-top: auto;
 }
+
 .left-nav-part {
     display: flex;
     flex-direction: column;

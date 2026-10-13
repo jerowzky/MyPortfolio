@@ -497,7 +497,6 @@ if (menuToggle && mobileDropdown) {
 
             unlockPageScroll(false);
 
-            // Let anchor scrolling begin before updating navigation.
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     refreshPageState();
@@ -505,8 +504,38 @@ if (menuToggle && mobileDropdown) {
             });
         });
     });
-}
 
+    /* Close menu using the close button without navigating. */
+
+const closeButtons = mobileDropdown.querySelectorAll("a.close-nav");
+
+closeButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        mobileDropdown.classList.remove("active");
+
+        // Save the current position before unlocking.
+        const currentPosition = scrollPosition;
+
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.left = "";
+        document.body.style.right = "";
+        document.body.style.width = "";
+
+        // Restore the exact position without smooth scrolling.
+        window.scrollTo({
+            top: currentPosition,
+            left: 0,
+            behavior: "instant"
+        });
+
+        refreshPageState();
+    });
+});
+
+}
 
 /* ================================
    SECTION NAVIGATION
