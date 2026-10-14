@@ -817,7 +817,21 @@
                         </div>
                     </div>
                     <div class="project-card"> 
-                        <img class="project-card-img" src="images/villa-gilda-img.webp" width="800" height="800" loading="lazy">
+                            <button
+                                class="gallery-trigger"
+                                data-title="Villa Gilda Resort Reservation System"
+                                data-gallery="images/villa-gilda-img.webp,images/villa-gilda-img-2.webp,images/villa-gilda-img-3.webp,images/villa-gilda-img-4.webp,images/villa-gilda-img-5.webp"
+                                aria-label="View Resort Reservation project gallery"
+                            >
+                                <img
+                                    class="project-card-img"
+                                    src="images/villa-gilda-img.webp"
+                                    width="800"
+                                    height="800"
+                                    loading="lazy"
+                                    alt="Resort Reservation project preview"
+                                >
+                            </button>      
                         <div class = "project-name">
                             <h1><span class="role-pill">ROLE</span> UI/UX Designer</h1>
                             <h2>Villa Gilda Resort Reservation System</h2>
@@ -915,10 +929,23 @@
                         </div>
                     </div>
                     <div class="project-card"> 
-                        <img class="project-card-img" src="images/bus-reservation-img.webp" width="800" height="800" loading="lazy">
-                        <div class = "project-name">
+                <button
+                                class="gallery-trigger"
+                                data-title="JAC Liner Bus Reservation System"
+                                data-gallery="images/bus-reservation-img.webp,images/bus-reservation-img-2.webp,images/bus-reservation-img-3.webp,images/bus-reservation-img-4.webp"
+                                aria-label="View Bus Reservation project gallery"
+                            >
+                                <img
+                                    class="project-card-img"
+                                    src="images/bus-reservation-img.webp"
+                                    width="800"
+                                    height="800"
+                                    loading="lazy"
+                                    alt="Bus Reservation project preview"
+                                >
+                            </button>                          <div class = "project-name">
                             <h1><span class="role-pill">ROLE</span> Frontend Developer | UI/UX Designer</h1>
-                            <h2>Bus Reservation System</h2>
+                            <h2>JAC Liner Bus Reservation System</h2>
                         </div>
                         <p class="project-description">A computerized solution designed to replace the manual, paper-based reservation processes currently used by JAC Liner Inc. This system enhances speed, accuracy, and overall customer service by providing a streamlined platform for managing bus ticket reservations, cancellations, and travel history.</p>
                         <div class="tech-stack">
@@ -956,10 +983,24 @@
                         </div>
                     </div>
                     <div class="project-card"> 
-                        <img class="project-card-img" src="images/incident-management-img.webp" width="800" height="800" loading="lazy">
-                        <div class = "project-name">
+                            <button
+                                class="gallery-trigger"
+                                data-title="Nexus: Incident Report Management System"
+                                data-gallery="images/incident-management-img.webp,images/incident-management-img-2.webp,images/incident-management-img-3.webp,images/incident-management-img-4.webp,images/incident-management-img-5.webp"
+                                aria-label="View Incident Management project gallery"
+                            >
+                                <img
+                                    class="project-card-img"
+                                    src="images/incident-management-img.webp"
+                                    width="800"
+                                    height="800"
+                                    loading="lazy"
+                                    alt="Incident Management project preview"
+                                >
+                            </button>                        
+                            <div class = "project-name">
                             <h1><span class="role-pill">ROLE</span> Project Manager</h1>
-                            <h2>Incident Report Management System</h2>
+                            <h2>Nexus: Incident Report Management System</h2>
                         </div>
                         <p class="project-description">A web-based incident reporting system for subdivision communities. Residents can submit reports online, while administrators can review, verify, and manage submissions digitally. The system centralizes incident records and supports communication between residents and administrators for a more organized and efficient reporting process.</p>
                         <div class="tech-stack">
@@ -1119,7 +1160,31 @@
                 <iframe id="pdfViewer" loading="lazy"></iframe>
             </div>
         </div>
+        <div class="gallery-modal" id="galleryModal" aria-hidden="true">
+            <button class="gallery-close" aria-label="Close gallery">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M18 18L6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
 
+            </button>
+            <button class="gallery-prev" aria-label="Previous image">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.6664 5L3.99976 12L10.6664 19M3.99976 12L19.9998 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <div class="gallery-container">
+                <h2 class="gallery-title"></h2>
+                <img class="gallery-image" src="" alt="">
+                <p class="gallery-counter"></p>
+            </div>
+
+            <button class="gallery-next" aria-label="Next image">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.3333 19L20 12L13.3333 5M20 12L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
         <footer id="contact">
 
            <div class="mid-footer">

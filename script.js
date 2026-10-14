@@ -878,3 +878,102 @@ const observer = new IntersectionObserver((entries) => {
 animatedElements.forEach((element) => {
     observer.observe(element);
 });
+
+
+const galleryModal = document.getElementById("galleryModal");
+
+if (galleryModal) {
+    const galleryImage = galleryModal.querySelector(".gallery-image");
+    const galleryTitle = galleryModal.querySelector(".gallery-title");
+    const galleryCounter = galleryModal.querySelector(".gallery-counter");
+    const closeButton = galleryModal.querySelector(".gallery-close");
+    const prevButton = galleryModal.querySelector(".gallery-prev");
+    const nextButton = galleryModal.querySelector(".gallery-next");
+
+    let images = [];
+    let currentIndex = 0;
+    let previousFocus = null;
+
+    function showImage(index) {
+        currentIndex = (index + images.length) % images.length;
+
+        galleryImage.src = images[currentIndex];
+        galleryImage.alt = `Gallery image ${currentIndex + 1}`;
+        galleryCounter.textContent =
+            `${currentIndex + 1}\u00A0\u00A0•\u00A0\u00A0${images.length}`;
+
+        // Hide arrows when there's only one image
+        const multipleImages = images.length > 1;
+        prevButton.hidden = !multipleImages;
+        nextButton.hidden = !multipleImages;
+    }
+
+    function openGallery(trigger) {
+        images = trigger.dataset.gallery
+            .split(",")
+            .map(src => src.trim())
+            .filter(Boolean);
+
+        if (!images.length) return;
+
+        previousFocus = trigger;
+        galleryTitle.textContent = trigger.dataset.title || "Project Gallery"; 
+        showImage(0);
+
+        galleryModal.classList.add("active");
+        galleryModal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("no-scroll");
+
+        closeButton.focus();
+    }
+
+    function closeGallery() {
+    galleryModal.classList.remove("active");
+    galleryModal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
+
+        galleryImage.removeAttribute("src");
+
+        if (previousFocus?.isConnected) {
+            previousFocus.focus();
+        }
+    }
+
+    // Event delegation: works for every current or future trigger
+    document.addEventListener("click", event => {
+        const trigger = event.target.closest(".gallery-trigger");
+
+        if (trigger) {
+            openGallery(trigger);
+        }
+    });
+
+    closeButton.addEventListener("click", closeGallery);
+
+    prevButton.addEventListener("click", () => {
+        showImage(currentIndex - 1);
+    });
+
+    nextButton.addEventListener("click", () => {
+        showImage(currentIndex + 1);
+    });
+
+    galleryModal.addEventListener("click", event => {
+        if (event.target === galleryModal) {
+            closeGallery();
+        }
+    });
+
+    document.addEventListener("keydown", event => {
+        if (!galleryModal.classList.contains("active")) return;
+
+        if (event.key === "Escape") {
+            closeGallery();
+        } else if (event.key === "ArrowRight" && images.length > 1) {
+            showImage(currentIndex + 1);
+        } else if (event.key === "ArrowLeft" && images.length > 1) {
+            showImage(currentIndex - 1);
+        }
+    });
+}
+
