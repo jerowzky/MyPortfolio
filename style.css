@@ -970,11 +970,45 @@ background: radial-gradient(
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #171B19;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     padding: 20px;
     gap: 20px;
     border-radius: 30px;
-    box-shadow: 0 0 20px #06d395;
+   background: linear-gradient(
+        135deg,
+        #ffffff12,
+        #ffffff04
+    );
+
+    box-shadow:
+        inset 0 2px 2px #ffffff30,
+        inset 0 0 0 2px #ffffff15;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); 
+
+}
+
+
+
+.card1::before, .card2::before, .card3::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: radial-gradient(
+        circle at 0% 0%,
+        #035c43 0%,
+        rgb(24, 24, 24) 30%,
+        rgb(24, 24, 24) 85%,
+        rgb(40, 40, 40) 100%
+    );
+
+    filter: blur(25px);
+    pointer-events: none;
 }
 
 .card1-full, .card3-full {
@@ -995,7 +1029,6 @@ background: radial-gradient(
     position: absolute;
     font-family: "Unbounded";
     font-weight: 600;
-    background-color: #03A271;
     color: white;
     border: none;
     padding: 5px 12px;
@@ -1003,8 +1036,18 @@ background: radial-gradient(
     align-items: center;
     justify-content: center;
     gap: 5px;
-    box-shadow: inset 0 0 8px #025139;
-    text-decoration: none;
+    background: linear-gradient(
+        135deg,
+        #03a271cc,
+        #03a27180
+    );
+    box-shadow:
+        inset 0 1px 1px #ffffff80,
+        inset 0 0 0 1px #ffffff35,
+        0 2px 8px #03a27130;
+        text-decoration: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .right-btn {
@@ -1038,10 +1081,22 @@ background: radial-gradient(
     width: 26px;
     height: auto;
     color: #FFFFFF;
-    background-color: #03A271;
+    background: linear-gradient(
+        135deg,
+        #03a271cc,
+        #03a27180
+    );
+
+    box-shadow:
+        inset 0 1px 1px #ffffff80,
+        inset 0 0 0 1px #ffffff35,
+        0 2px 8px #03a27130;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 50%;
     padding: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    
 }
 
 .number {
@@ -1067,10 +1122,50 @@ background: radial-gradient(
     letter-spacing: 0.12em;
     color: #B8C0BC;
     line-height: 1.4rem;
-    background-color: #171B19;
     max-width: 450px;
-   border: 1px solid rgb(40, 40, 40);
     position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(
+        135deg,
+        #ffffff12,
+        #ffffff04
+    );
+
+    box-shadow:
+        inset 0 2px 2px #ffffff30,
+        inset 0 0 0 2px #ffffff15;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);   
+}
+
+
+.right-about-content .firstp::before, .right-about-content .secondp::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(
+    circle at 0% 0%,
+    #424242 0%,
+    rgb(24, 24, 24) 30%,
+    rgb(24, 24, 24) 85%,
+    rgb(40, 40, 40) 100%
+);
+
+    filter: blur(25px);
+    pointer-events: none;
+}
+
+.right-about-content .secondp::before {
+    background: radial-gradient(
+    circle at 100% 100%,
+    #424242 0%,
+    rgb(24, 24, 24) 30%,
+    rgb(24, 24, 24) 85%,
+    rgb(40, 40, 40) 100%
+        );
 }
 .first-paragraph {
     align-self: flex-start;
