@@ -1517,7 +1517,16 @@ background: linear-gradient(
     font-family: "Unbounded";
     font-size: 0.8rem;
     padding: 5px 10px;
-    background-color: #171B19;
+    background-color: #181d1b;
+    background-image: linear-gradient(
+        135deg,
+        #ffffff12,
+        #ffffff04
+    );
+
+    box-shadow:
+        inset 0 2px 2px #ffffff30,
+        inset 0 0 0 2px #ffffff15;
     color: #B8C0BC;
     border-radius: 999px;
     display: flex;
@@ -1559,17 +1568,43 @@ background: linear-gradient(
     justify-content: center;
     margin: 0 auto 30px;
     width: fit-content;
-    background-color: #151A18;
     padding: 10px 15px;
     gap: 10px;
     border-radius: 999px;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: linear-gradient(
+        135deg,
+        #ffffff12,
+        #ffffff04
+    );
+
+    box-shadow:
+        inset 0 2px 2px #ffffff30,
+        inset 0 0 0 2px #ffffff15;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);  
+}
+
+
+
+.picker::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: #151A18;
+    filter: blur(25px);
+    pointer-events: none;
 }
 
 .picker a {
     color: #B8C0BC;
     font-family: "Unbounded";
     padding: 7px 15px;
-    background-color: #151A18;
+
     border-radius: 999px;
     display: flex;
     align-items: center;
@@ -1580,17 +1615,48 @@ background: linear-gradient(
 }
 
 .picker a.active {
-    background-color: #03A271;
     color: white;
+    background: linear-gradient(
+        135deg,
+        #03a271cc,
+        #03a27180
+    );
+    box-shadow:
+        inset 0 1px 1px #ffffff80,
+        inset 0 0 0 1px #ffffff35,
+        0 2px 8px #03a27130;
+        text-decoration: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .picker a.active:hover {
-    background-color: #03A271;
     color: white;
+    background: linear-gradient(
+        135deg,
+        #03a271cc,
+        #03a27180
+    );
+    box-shadow:
+        inset 0 1px 1px #ffffff80,
+        inset 0 0 0 1px #ffffff35,
+        0 2px 8px #03a27130;
+        text-decoration: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .picker a:hover {
     background-color: #242C29;
+    background-image: linear-gradient(
+        135deg,
+        #ffffff12,
+        #ffffff04
+    );
+
+    box-shadow:
+        inset 0 2px 2px #ffffff30,
+        inset 0 0 0 2px #ffffff15;
 }
 
 .picker svg {
