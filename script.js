@@ -679,8 +679,8 @@ const videoSource = document.getElementById("videoSource");
 const videoTitle = document.querySelector(".video-title");
 const videoLabel = document.querySelector(".video-label");
 
+// Open video modal
 demoButtons.forEach((button) => {
-
     button.addEventListener("click", (e) => {
         e.preventDefault();
 
@@ -688,38 +688,38 @@ demoButtons.forEach((button) => {
         const title = button.dataset.title;
         const label = button.dataset.label;
 
-        // Display title and label
         videoTitle.textContent = title || "";
         videoLabel.textContent = label || "";
+
         videoSource.src = videoFile;
         demoVideo.load();
 
         videoModal.classList.add("show");
         demoVideo.play();
     });
-
 });
 
-closeVideo.addEventListener("click", (e) => {
-    e.preventDefault();
-
+// Function to close video modal
+function closeVideoModal() {
     videoModal.classList.remove("show");
 
     demoVideo.pause();
     demoVideo.currentTime = 0;
     videoSource.src = "";
+    demoVideo.load();
+}
+
+// Close only when the close button is clicked
+closeVideo.addEventListener("click", (e) => {
+    e.preventDefault();
+    closeVideoModal();
 });
 
-videoModal.addEventListener("click", (e) => {
-
-    if (e.target === videoModal) {
-        videoModal.classList.remove("show");
-
-        demoVideo.pause();
-        demoVideo.currentTime = 0;
-        videoSource.src = "";
+// Close when Escape key is pressed
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && videoModal.classList.contains("show")) {
+        closeVideoModal();
     }
-
 });
 
 const pdfLinks = document.querySelectorAll(".open-pdf");
@@ -729,6 +729,7 @@ const closePdf = document.getElementById("closePdf");
 const pdfTitle = document.querySelector(".pdf-title");
 const pdfLabel = document.querySelector(".pdf-label");
 
+// Open PDF modal
 pdfLinks.forEach(link => {
     link.addEventListener("click", (e) => {
         e.preventDefault();
@@ -737,7 +738,6 @@ pdfLinks.forEach(link => {
         const title = link.dataset.title;
         const label = link.dataset.label;
 
-        // Display title and label
         pdfTitle.textContent = title || "";
         pdfLabel.textContent = label || "";
 
@@ -746,11 +746,23 @@ pdfLinks.forEach(link => {
     });
 });
 
-closePdf.addEventListener("click", (e) => {
-    e.preventDefault();
-
+// Function to close PDF modal
+function closePdfModal() {
     pdfModal.classList.remove("active");
     pdfViewer.src = "";
+}
+
+// Close only when the close button is clicked
+closePdf.addEventListener("click", (e) => {
+    e.preventDefault();
+    closePdfModal();
+});
+
+// Close when Escape key is pressed
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && pdfModal.classList.contains("active")) {
+        closePdfModal();
+    }
 });
 
 let projectsSwiper = null;
