@@ -19,6 +19,12 @@
     src: url("fonts/Walkway-BlackV2.woff2") format("woff2");
 }
 
+:root {
+    --close-button-size: 45px; 
+    --gallery-modal-padding: 25px;
+
+}
+
 html {
     scroll-behavior: smooth;
     margin: 0;
@@ -47,7 +53,7 @@ body.nav-open, body.no-scroll {
     height: 100%;
 }
 
-html:has(#galleryModal.active) {
+html:has(#galleryModal.active), html:has(#pdfModal.active), html:has(#videoModal.show) {
     overflow: hidden;
 }
 
@@ -1887,6 +1893,7 @@ box-shadow:
     height: 16px;
 }
 
+
 .video-modal {
     position: fixed;
     inset: 0;
@@ -1895,12 +1902,16 @@ box-shadow:
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+    padding: var(--gallery-modal-padding);
+    background: linear-gradient(
+    135deg,
+    rgba(15, 20, 18, 0.82),
+    rgba(25, 30, 28, 0.72)
+    );
 
-    padding: 30px;
-
-    background: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(8px);
-
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -1914,13 +1925,15 @@ box-shadow:
     pointer-events: auto;
 }
 
-
 /* Video box */
 .video-container {
     position: relative;
 
-    width: min(900px, 90vw);
+    width: fit-content;
+    max-width: 90vw;
     max-height: 85vh;
+
+    margin: auto;
 
     transform: scale(0.9);
     transition: transform 0.3s ease;
@@ -1930,43 +1943,56 @@ box-shadow:
     transform: scale(1);
 }
 
-
 /* Video */
 .video-container video {
     display: block;
-    width: 100%;
+
+    width: auto;
     height: auto;
-    max-height: 80vh;
+
+    max-width: 75vw;
+    max-height: 70vh;
+
     object-fit: contain;
+    box-shadow: 0 10px 40px #00000050;
 }
 
 
 /* Close button */
-.close-video svg, .close-pdf svg{
-    top: 15px;
-    right: 15px;
+.close-video, .close-pdf{
     position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 35px;
-    height: 35px;
-    color: white;
-    font-size: 46px;
-    line-height: 1;
-    text-decoration: none;
+    border: none;
+    background: linear-gradient(#ffffff1a, #ffffff15);
+    box-shadow:
+    inset 0 3px 2px #ffffff30,
+    inset 0 0 0 2px #ffffff12;
+    border-radius: 50%;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: background 0.2s ease;
+    width: var(--close-button-size);
+    height: var(--close-button-size);
+    top: var(--gallery-modal-padding);
+    right: var(--gallery-modal-padding);
+    display: flex;
+    justify-content: center;
+    transition: background 0.2s ease;
+
 }
 .close-nav svg {
     width: 35px;
     height: 35px;
     color: white;
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: background 0.2s ease;
 }
-.close-video svg:hover, .close-pdf svg:hover, .close-nav svg:hover {
-    transform: scale(1.1);
+
+.close-pdf svg, .close-video svg {
+    color: #B8C0BC;
+    width: 24px;
+    height: auto;
+}
+.close-video:hover, .close-pdf:hover, .close-nav:hover {
+    background: #ffffff40;
 }
 
 .pdf-modal {
@@ -1974,9 +2000,14 @@ box-shadow:
     position: fixed;
     inset: 0;
     z-index: 9999;
-
-    background: rgba(0, 0, 0, 0.75);
-
+    padding: var(--gallery-modal-padding);
+    background: linear-gradient(
+    135deg,
+    rgba(15, 20, 18, 0.82),
+    rgba(25, 30, 28, 0.72)
+    );
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
     align-items: center;
     justify-content: center;
 }
@@ -1987,18 +2018,23 @@ box-shadow:
 
 .pdf-container {
     position: relative;
-
-    width: 85%;
-    height: 90%;
-
-    background: white;
+    width: 90vw;
+    height: 85vh;
+    background: transparent;
     overflow: hidden;
 }
 
 .pdf-modal iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+    position: relative;
+
+    width: fit-content;
+    max-width: 90vw;
+    max-height: 85vh;
+
+    margin: auto;
+
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
 }
 
 #pdfViewer {
@@ -2467,7 +2503,7 @@ background-color: rgb(14,14,14);
     cursor: pointer;
 }
 
-.gallery-title {
+.gallery-title, .video-title, .pdf-title {
     margin: 0;
     color: #06d395;
     font-family: "Unbounded";
@@ -2517,8 +2553,7 @@ background-color: rgb(14,14,14);
     display: flex;
     align-items: center;
     justify-content: center;
-
-    padding: 30px;
+    padding: var(--gallery-modal-padding);
     background: linear-gradient(#353535cb, #2c2c2ca8);
     box-shadow:
     inset 0 5px 4px #ffffff30,
@@ -2544,13 +2579,20 @@ background-color: rgb(14,14,14);
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    max-width: 100vw;
+    max-width: 90vw;
     max-height: 85vh;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
 }
+
+.gallery-modal.active .gallery-container {
+transform: scale(1);
+}
+
 
 .gallery-image {
     display: block;
-    max-width: 100%;
+    max-width: 75vw;
     max-height: 70vh;
     width: auto;
     height: auto;
@@ -2558,11 +2600,13 @@ background-color: rgb(14,14,14);
     box-shadow: 0 10px 40px #00000050;
 }
 
-.gallery-counter {
+
+.gallery-counter, .modal-label, .video-label, .pdf-label {
+    --gallery-counter-font-size: 14px;
     margin: 0;
     color: #B8C0BC;
     font-family: "Unbounded", sans-serif;
-    font-size: 14px;
+    font-size: var(--gallery-counter-font-size);
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -2575,14 +2619,32 @@ background-color: rgb(14,14,14);
     border-radius: 999px;
 }
 
+.modal-label, .video-label, .pdf-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    top: var(--gallery-modal-padding);
+    left: var(--gallery-modal-padding);
+    transform: none;
+    bottom: auto;
+    font-size: var(--gallery-counter-font-size);
+    font-weight: normal;
+}
+
+.modal-label::before, .video-label::before, .pdf-label::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background-color: #B8C0BC;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
 .gallery-close,
 .gallery-prev,
 .gallery-next {
     position: absolute;
-    display: grid;
-    place-items: center;
     border: none;
-
     background: linear-gradient(#ffffff1a, #ffffff15);
     box-shadow:
     inset 0 3px 2px #ffffff30,
@@ -2604,11 +2666,11 @@ background-color: rgb(14,14,14);
     background: #ffffff40;
 }
 
-.gallery-close {
-    top: 25px;
-    right: 25px;
-    width: 45px;
-    height: 45px;
+.gallery-close {  
+    top: var(--gallery-modal-padding);
+    right: var(--gallery-modal-padding);
+    width: var(--close-button-size);
+    height: var(--close-button-size);
     font-size: 30px;
     display: flex;
     justify-content: center;
@@ -2618,8 +2680,8 @@ background-color: rgb(14,14,14);
 .gallery-next {
     top: 50%;
     transform: translateY(-50%);
-    width: 45px;
-    height: 45px;
+    width: var(--close-button-size);
+    height: var(--close-button-size);
     font-size: 20px;
     display: flex;
     justify-content: center;
@@ -3026,6 +3088,14 @@ box-shadow:
 }
 
 @media (max-width: 768px) {
+.pdf-container {
+    height: 60vh;
+
+}
+
+.gallery-title, .video-title, .pdf-title {
+    top: 10%;    
+}
 .about-content {
     flex-direction: column;
 }
@@ -3214,29 +3284,22 @@ width: 100%;
     gap: 100px;
 }
 
-.pdf-modal, .video-modal {
-    padding: 15px;
-}
-
 .pdf-container {
     width: 100%;
-    height: 75vh;
-    border-radius: 12px;
+    height: 50vh;
+    margin: auto;
 }
 
-.close-pdf svg {
-    top: 10px;
-    right: 10px;
-    font-size: 28px;
-}
+
 }
 
 @media (max-width: 500px) {
-.gallery-prev, .gallery-next, .gallery-close {
-    width: 30px;
-    height: 30px;
+:root {
+    --close-button-size: 35px; 
+    --gallery-modal-padding: 20px;
 
 }
+
 
 .gallery-prev svg, .gallery-next svg, .gallery-close svg {
     width: 20px;
@@ -3257,24 +3320,29 @@ width: 100%;
     right: 22%;
 }
 
-.gallery-close {
-    top: 20px;
-    right: 20px;
+.gallery-image, .video-container video {
+    max-width: 100%;
 }
+
 
 .gallery-counter {
     bottom: 15%;
 }
 
-.gallery-modal {
-    padding: 20px;
+.gallery-counter, .modal-label, .video-label, .pdf-label {
+    --gallery-counter-font-size: 13px;
 }
 
-.gallery-title {
+.modal-label, .video-label, .pdf-label {
+    padding: 6px 12px;
+}
+
+
+.gallery-title, .video-title, .pdf-title {
     font-size: 13px;
     top: 15%;
     width: 80%;
-    padding: 8px 12px;
+    padding: 10px 12px;
 }
 .experience-title, .projects-title {
     transform: scale(1);

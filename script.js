@@ -676,6 +676,8 @@ const videoModal = document.getElementById("videoModal");
 const closeVideo = document.getElementById("closeVideo");
 const demoVideo = document.getElementById("demoVideo");
 const videoSource = document.getElementById("videoSource");
+const videoTitle = document.querySelector(".video-title");
+const videoLabel = document.querySelector(".video-label");
 
 demoButtons.forEach((button) => {
 
@@ -683,7 +685,12 @@ demoButtons.forEach((button) => {
         e.preventDefault();
 
         const videoFile = button.dataset.video;
+        const title = button.dataset.title;
+        const label = button.dataset.label;
 
+        // Display title and label
+        videoTitle.textContent = title || "";
+        videoLabel.textContent = label || "";
         videoSource.src = videoFile;
         demoVideo.load();
 
@@ -719,12 +726,20 @@ const pdfLinks = document.querySelectorAll(".open-pdf");
 const pdfModal = document.getElementById("pdfModal");
 const pdfViewer = document.getElementById("pdfViewer");
 const closePdf = document.getElementById("closePdf");
+const pdfTitle = document.querySelector(".pdf-title");
+const pdfLabel = document.querySelector(".pdf-label");
 
 pdfLinks.forEach(link => {
     link.addEventListener("click", (e) => {
         e.preventDefault();
 
         const pdfFile = link.dataset.pdf;
+        const title = link.dataset.title;
+        const label = link.dataset.label;
+
+        // Display title and label
+        pdfTitle.textContent = title || "";
+        pdfLabel.textContent = label || "";
 
         pdfViewer.src = pdfFile;
         pdfModal.classList.add("active");
@@ -958,11 +973,6 @@ if (galleryModal) {
         showImage(currentIndex + 1);
     });
 
-    galleryModal.addEventListener("click", event => {
-        if (event.target === galleryModal) {
-            closeGallery();
-        }
-    });
 
     document.addEventListener("keydown", event => {
         if (!galleryModal.classList.contains("active")) return;
