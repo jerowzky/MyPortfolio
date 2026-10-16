@@ -103,7 +103,7 @@ header::before {
     background: linear-gradient(
         135deg,
         #03A271 0%,
-        #000000 45%,
+        #000000 15%,
         #173F36 75%,
         #03A271 100%
     );
@@ -209,6 +209,20 @@ header nav a.active {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 
+}
+.forjfolio, .forjfolio-mobile, .forjfolio-footer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+}
+.forjfolio img, .forjfolio-mobile img {
+    width: 25px;
+    height: auto
+}
+.forjfolio-footer img {
+    width: 27px;
+    height: auto;
 }
 .mobile-nav {
     display: none;
@@ -2903,7 +2917,7 @@ font-size: 1.6rem;
 }
 
 
-header .sitename {
+header .forjfolio {
     display: none;
 }
 .mobile-dropdown {
@@ -3289,8 +3303,12 @@ width: 100%;
     --gallery-counter-font-size: 13px;
 
 }
-
-
+.forjfolio-mobile img {
+    width: 22px;
+}
+.forjfolio-footer img {
+    width: 24px;
+}
 .gallery-prev svg, .gallery-next svg, .gallery-close svg {
     width: 20px;
 
@@ -3706,9 +3724,26 @@ font-size: 1.4rem;
 }
 
 .mobile-dropdown .mobile-nav-link {
-    font-size: 0.9rem;
+    font-size: 14px;
+}
+.socmed-nav svg {
+    width: 14px;
+    height: 14px;
 }
 
+.socmed-nav a {
+    width: 18px;
+    height: 18px;
+    padding: 4px;
+}
+
+.nav-resume-btn {
+    font-size: 12px;
+}
+
+.resume-icon-nav {
+width: 10px;
+}
 .hamburger-icon {
     width: 24px;
     height: auto;
