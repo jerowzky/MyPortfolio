@@ -877,7 +877,20 @@ animatedElements.forEach((element) => {
     observer.observe(element);
 });
 
+const galleryTriggers = document.querySelectorAll(".gallery-trigger");
 
+galleryTriggers.forEach(trigger => {
+    const images = (trigger.dataset.gallery || "")
+        .split(",")
+        .map(src => src.trim())
+        .filter(Boolean);
+
+    const imageCounter = trigger.querySelector(".image-counter");
+
+    if (imageCounter) {
+        imageCounter.textContent = `+${Math.max(0, images.length - 1)}`;
+    }
+});
 const galleryModal = document.getElementById("galleryModal");
 
 if (galleryModal) {
@@ -887,8 +900,7 @@ if (galleryModal) {
     const closeButton = galleryModal.querySelector(".gallery-close");
     const prevButton = galleryModal.querySelector(".gallery-prev");
     const nextButton = galleryModal.querySelector(".gallery-next");
-
-    let images = [];
+    const imageCounter = document.getElementById("image-counter");
     let currentIndex = 0;
     let previousFocus = null;
 
@@ -913,7 +925,7 @@ if (galleryModal) {
             .filter(Boolean);
 
         if (!images.length) return;
-
+        
         previousFocus = trigger;
         galleryTitle.textContent = trigger.dataset.title || "Project Gallery"; 
         showImage(0);

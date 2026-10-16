@@ -85,9 +85,7 @@ header {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);  
     border-radius: 0 0 30px 30px;
-
     padding: 12px 15px;
-
     display: flex;
     justify-content: space-between;
 }
@@ -2238,8 +2236,8 @@ background: radial-gradient(
     color: #909794;
     border-radius: 999px;   
     margin: 0;
-background: linear-gradient(#ffffff12, #ffffff05);
-box-shadow:
+    background: linear-gradient(#ffffff12, #ffffff05);
+    box-shadow:
     inset 0 1px 1px #ffffff30,
     inset 0 0 0 1px #ffffff12;
 }
@@ -2485,6 +2483,7 @@ background-color: rgb(14,14,14);
     width: 100%;
     padding: 0;
     border: none;
+    position: relative;
 
     overflow: hidden;
     background: transparent;
@@ -2529,6 +2528,31 @@ background-color: rgb(14,14,14);
 
 .gallery-trigger:hover .project-card-img {
     transform: scale(1.04);
+}
+
+.gallery-trigger a, .gallery-trigger p {
+    padding: 5px 10px;
+    color: white;
+    background: linear-gradient(#1d1d1ddc, #3d3d3dbb);
+    box-shadow:
+    inset 0 1px 1px #ffffff30,
+    inset 0 0 0 1px #ffffff12;
+    border-radius: 999px;
+    font-family: "Unbounded";
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    font-weight: 500;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); 
+    font-size: 10px;
+    letter-spacing: 0.06em;
+}
+
+.gallery-trigger p {
+    right: auto;
+    left: 5px;
+    margin: 0;
 }
 
 /* Shared modal */
