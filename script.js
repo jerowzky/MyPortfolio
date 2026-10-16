@@ -648,12 +648,20 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
+
+
 const pdfLinks = document.querySelectorAll(".open-pdf");
 const pdfModal = document.getElementById("pdfModal");
 const pdfViewer = document.getElementById("pdfViewer");
 const closePdf = document.getElementById("closePdf");
 const pdfTitle = document.querySelector(".pdf-title");
 const pdfLabel = document.querySelector(".pdf-label");
+
+// Local PDF.js viewer
+const pdfJsViewer = new URL(
+    "pdfjs/web/viewer.html",
+    document.baseURI
+).href;
 
 // Open PDF modal
 pdfLinks.forEach(link => {
@@ -664,32 +672,69 @@ pdfLinks.forEach(link => {
         const title = link.dataset.title;
         const label = link.dataset.label;
 
-        pdfTitle.textContent = title || "";
-        pdfLabel.textContent = label || "";
+        if (!pdfFile) {
+            console.error("PDF file path is missing.");
+            return;
+        }
 
-        pdfViewer.src = pdfFile;
+        // Resolve the PDF path
+        const pdfUrl = new URL(
+            pdfFile,
+            document.baseURI
+        ).href;
+
+        // Update modal title and label
+        if (pdfTitle) {
+            pdfTitle.textContent = title || "";
+        }
+
+        if (pdfLabel) {
+            pdfLabel.textContent = label || "";
+        }
+
+        // Build the local PDF.js viewer URL
+        const viewerUrl = new URL(pdfJsViewer);
+        viewerUrl.searchParams.set("file", pdfUrl);
+
+        // Show the modal
         pdfModal.classList.add("active");
+
+        // Load the PDF
+        pdfViewer.src = viewerUrl.href;
+
+        // Debugging information
+        console.log("PDF file URL:", pdfUrl);
+        console.log("PDF.js viewer URL:", pdfViewer.src);
     });
 });
 
-// Function to close PDF modal
+// Close PDF modal
 function closePdfModal() {
     pdfModal.classList.remove("active");
-    pdfViewer.src = "";
+
+    // Stop the viewer when closing
+    pdfViewer.src = "about:blank";
 }
 
-// Close only when the close button is clicked
-closePdf.addEventListener("click", (e) => {
-    e.preventDefault();
-    closePdfModal();
-});
+// Close using the X button
+if (closePdf) {
+    closePdf.addEventListener("click", (e) => {
+        e.preventDefault();
+        closePdfModal();
+    });
+}
 
-// Close when Escape key is pressed
+// Close using the Escape key
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && pdfModal.classList.contains("active")) {
+    if (
+        e.key === "Escape" &&
+        pdfModal.classList.contains("active")
+    ) {
         closePdfModal();
     }
 });
+
+
 
 let projectsSwiper = null;
 
