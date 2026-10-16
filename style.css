@@ -322,13 +322,23 @@ header nav a.active {
     font-size: 64px;
     color: #FFFFFF;
     margin-top: -28px;
+    background: linear-gradient(
+        180deg,
+        #9cecc4 0%,
+        #9cecc4 25%,
+        #FFFFFF 60%,
+        #FFFFFF 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;  
 }
 
 .greetings h3 {
     font-family: "ICF-ExtraBold";
     font-size: 90px;
     color: #FFFFFF;
-    margin-top: -85px;
+    margin-top: -85px;  
 }
 
 .greetings h4 {
@@ -349,6 +359,9 @@ header nav a.active {
 .greetings h5::after {
     content: "|";
     margin-left: 5px;
+    font-family: "Courier New", monospace;
+    font-weight: 400;
+    vertical-align: middle;
     animation: blink 0.7s infinite;
 }
 
@@ -472,33 +485,41 @@ position: relative;
 }
 
 .description h1,
-.description h2,
-.description h3 {
+.description h2 {
     margin: 0;
     text-align: right;
     white-space: nowrap;
 }
 
 .description h1 {
-    font-family: "Archivo", sans-serif;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    font-weight: 600;
-    font-size: 1.1rem;
-    background: #03A271;
-    padding: 0.45rem 0.9rem;
+    font-family: "ICF-Bold";
+    font-size: 30px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
     width: fit-content;
-    margin-left: auto;
+    margin-left: auto;  
+ 
 }
 
-.description h2,
-.description h3 {
-    font-family: "ICF-Bold";
-    font-size: 35px;
-    letter-spacing: 0.12em;
+.description h2 {
+    font-family: "ICF-ExtraBold";
+    font-size: 50px;
+    letter-spacing: 0.05em;
     color: #FFFFFF;
+    margin-top: -10px;
+
+    background: linear-gradient(
+        180deg,
+        #FFFFFF 0%,
+        #FFFFFF 50%,
+        #9cecc4 100%
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;   
 }
+
 
 .long-desc {
     font-family: "WW-Black";
@@ -511,70 +532,14 @@ position: relative;
     margin-left: auto;
     background: linear-gradient(135deg, #ffffff30, #ffffff17);
     box-shadow:
-        inset 0 1px 1px #ffffff50,
-        inset 0 0 0 1px #ffffff35;
+        inset 0 2px 2px #ffffff50,
+        inset 0 0 0 2px #ffffff35;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);  
-    border-radius: 25px;
+    border-radius: 15px;
 
 }
 
-.code-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    z-index: 0;
-    pointer-events: none;
-
-    padding: 50px 80px;
-    box-sizing: border-box;
-
-    font-family: "Courier New", monospace;
-    font-size: 30px;
-    line-height: 1.8;
-
-    color: rgba(180, 255, 230, 0.08);
-
-    text-shadow:
-        0 0 8px rgba(255, 255, 255, 0.15),
-        0 0 20px rgba(3, 162, 113, 0.15);
-
-    overflow: hidden;
-}
-
-#code-text {
-    margin: 0;
-    white-space: pre-wrap;
-}
-
-.code-cursor {
-    display: inline-block;
-    margin-left: 2px;
-
-    color: rgba(180, 255, 230, 0.25);
-
-    animation: cursorBlink 0.7s infinite;
-}
-
-.code-cursor.is-paused {
-    animation-play-state: paused;
-}
-
-@keyframes cursorBlink {
-    0%,
-    50% {
-        opacity: 1;
-    }
-
-    51%,
-    100% {
-        opacity: 0;
-    }
-}
 
 .reveal-right, .reveal-right-tilted1, .reveal-right-tilted2 {
     opacity: 0;
@@ -2764,7 +2729,7 @@ footer {
 .metric-cards {
     gap: 50px;
 }
-    .greetings h1,
+.greetings h1,
 .greetings h4 {
     font-size: 0.85rem;
     letter-spacing: 0.19em;
@@ -2795,14 +2760,14 @@ footer {
 }
 
 .description h1 {
-    letter-spacing: 0.19em;
-    font-size: 1.05rem;
-    padding: 0.42rem 0.88rem;
+    font-size: 25px;
+    padding: 0.42rem 0;
 
 }
 
-.description h2, .description h3 {
-    font-size: 28px;
+.description h2{
+    font-size: 42px;
+        margin-top: -15px;
 }
 
 }
@@ -3399,13 +3364,13 @@ width: 100%;
 }
 
 .description h1 {
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
-    padding: 0.45rem 0.85rem;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    padding: 0.45rem 0;
 }
 
-.description h2, .description h3 {
-    font-size: 24px;
+.description h2 {
+    font-size: 35px;
 }
 
 .description {
