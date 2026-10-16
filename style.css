@@ -195,7 +195,7 @@ backdrop-filter: blur(12px);
 header nav a.active {
     border-radius: 50px;
 }
-.nav-second-text {
+.nav-second-text, .desktop-second-text {
     color:#03A271;
     background: linear-gradient(
         to bottom,
