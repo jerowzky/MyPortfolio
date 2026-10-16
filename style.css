@@ -3726,24 +3726,7 @@ font-size: 1.4rem;
 .mobile-dropdown .mobile-nav-link {
     font-size: 14px;
 }
-.socmed-nav svg {
-    width: 14px;
-    height: 14px;
-}
 
-.socmed-nav a {
-    width: 18px;
-    height: 18px;
-    padding: 4px;
-}
-
-.nav-resume-btn {
-    font-size: 12px;
-}
-
-.resume-icon-nav {
-width: 10px;
-}
 .hamburger-icon {
     width: 24px;
     height: auto;
@@ -3925,4 +3908,25 @@ width: 10px;
 .description-wrapper {
     margin: 30px 0 0 0;
 }
+}
+
+@media (max-width: 320px) {
+.socmed-nav svg {
+    width: 14px;
+    height: 14px;
+}
+
+.socmed-nav a {
+    width: 18px;
+    height: 18px;
+    padding: 4px;
+}
+
+.nav-resume-btn {
+    font-size: 12px;
+}
+
+.resume-icon-nav {
+    width: 10px;
+}    
 }
