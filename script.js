@@ -983,24 +983,3 @@ if (galleryModal) {
         }
     });
 }
-
-
-const marqueeColumns = document.querySelectorAll(".diagonal-marquee-column");
-
-function updateMarqueeDistances() {
-    marqueeColumns.forEach(column => {
-        const groups = column.querySelectorAll(".marquee-group");
-
-        if (groups.length < 2) return;
-
-        const firstGroup = groups[0];
-        const distance = firstGroup.getBoundingClientRect().width + 18;
-
-        column.style.setProperty("--marquee-distance", `${distance}px`);
-    });
-}
-
-window.addEventListener("load", updateMarqueeDistances);
-
-window.addEventListener("resize", updateMarqueeDistances);
-
