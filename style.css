@@ -37,7 +37,7 @@ body {
     padding: 0;
     overflow-x: clip;
 background:
-    url("https://www.transparenttextures.com/patterns/3px-tile.png"),
+    url("https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/3px-tile.png"),
     radial-gradient(circle at 15% 20%, rgba(3, 162, 113, 0.45), transparent 35%),
     radial-gradient(circle at 80% 15%, rgba(3, 162, 113, 0.35), transparent 32%),
     radial-gradient(circle at 45% 45%, rgba(3, 162, 113, 0.40), transparent 38%),
