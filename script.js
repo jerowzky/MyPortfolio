@@ -119,6 +119,7 @@ function isInsideZone(rect, top, bottom) {
    UPDATE REVEALS
 ========================= */
 
+
 function updateReveals() {
     const reveals = document.querySelectorAll(revealSelector);
 
@@ -137,12 +138,13 @@ function updateReveals() {
     const hideBottom =
         viewportHeight + REVEAL_CONFIG.hideBottomOffset;
 
+    const updates = [];
+
+    // Read layout first, without changing classes.
     reveals.forEach((element) => {
         const rect = element.getBoundingClientRect();
         const isHighlight = element.classList.contains("highlight");
 
-        // Synchronize the stored state with the actual class
-        // when the element is first encountered.
         if (!revealStates.has(element)) {
             revealStates.set(
                 element,
@@ -151,42 +153,42 @@ function updateReveals() {
         }
 
         const isShown = revealStates.get(element);
+        let shouldShow = isShown;
 
-        // Highlights reveal once and remain visible.
         if (isHighlight) {
             if (
                 !isShown &&
                 isInsideZone(rect, revealTop, revealBottom)
             ) {
-                element.classList.add("show");
-                revealStates.set(element, true);
+                shouldShow = true;
             }
-
-            return;
-        }
-
-        // Reveal elements inside the current reveal zone.
-        if (!isShown) {
+        } else if (!isShown) {
             if (isInsideZone(rect, revealTop, revealBottom)) {
-                element.classList.add("show");
-                revealStates.set(element, true);
+                shouldShow = true;
             }
+        } else {
+            const hasLeftAbove = rect.bottom <= hideTop;
+            const hasLeftBelow = rect.top >= hideBottom;
 
-            return;
+            if (hasLeftAbove || hasLeftBelow) {
+                shouldShow = false;
+            }
         }
 
-        // Hide elements after they leave the viewport.
-        const hasLeftAbove = rect.bottom <= hideTop;
-        const hasLeftBelow = rect.top >= hideBottom;
-
-        if (hasLeftAbove || hasLeftBelow) {
-            element.classList.remove("show");
-            revealStates.set(element, false);
+        if (shouldShow !== isShown) {
+            updates.push({ element, shouldShow });
         }
+    });
+
+    // Apply class changes after all layout reads.
+    updates.forEach(({ element, shouldShow }) => {
+        element.classList.toggle("show", shouldShow);
+        revealStates.set(element, shouldShow);
     });
 
     ticking = false;
 }
+
 
 
 /* =========================

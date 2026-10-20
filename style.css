@@ -2,21 +2,25 @@
 @font-face {
     font-family: "ICF-Regular";
     src: url("https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/fonts/IntegralCF-Regular.woff2") format("woff2");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ICF-Bold";
     src: url("https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/fonts/IntegralCF-Bold.woff2") format("woff2");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "ICF-ExtraBold";
     src: url("https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/fonts/IntegralCF-ExtraBold.woff2") format("woff2");
+    font-display: swap;
 }
 
 @font-face {
     font-family: "WW-Black";
     src: url("https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/fonts/Walkway-BlackV2.woff2") format("woff2");
+    font-display: swap;
 }
 
 
