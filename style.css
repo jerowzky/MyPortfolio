@@ -121,7 +121,7 @@ header nav {
 header .sitename {
     margin: 0;
     color: white;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 1.5rem;
 }
 
@@ -139,7 +139,7 @@ header nav a {
 }
 
 .contact-btn {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     text-transform: none;
     opacity: 0.75;
     font-weight: 500;
@@ -420,7 +420,7 @@ header nav a.active {
     );
 }
 
-/* White futuristic outline */
+
 .hero-image-outline {
     position: absolute;
     inset: 0;
@@ -430,26 +430,24 @@ header nav a.active {
     pointer-events: none;
     aspect-ratio: 3 / 4;
 
-    /* Make the duplicate transparent except for its edge */
-    filter:
-        drop-shadow(0px 0px 2px white)
-        drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.8));
+    filter: drop-shadow(0 0 2px white)
+            drop-shadow(0 0 5px rgba(255, 255, 255, 0.65));
 
     opacity: 0;
+    animation: outlineLight 5s ease-in-out infinite;
 
-    animation: outlineLight 5s linear infinite;
     -webkit-mask-image: linear-gradient(
         to bottom,
         black 70%,
         transparent 100%
     );
-
     mask-image: linear-gradient(
         to bottom,
         black 70%,
         transparent 100%
     );
 }
+
 
 .hero-image-outline.is-paused {
     animation-play-state: paused;
@@ -767,36 +765,7 @@ display: none;
     object-fit: fill;
 
 }
-.process-circle {
-    width: 300px;
-    height: 300px;
-    position: absolute;
-    right: 0;
-    opacity: 0.5;
-    top: 0;
-    animation: rotateCircle 15s linear infinite;
-}
 
-.process-circle.is-paused {
-    animation-play-state: paused;
-}
-
-@keyframes rotateCircle {
-    from {
-        transform: translateX(50%) rotate(0deg);
-    }
-
-    to {
-        transform: translateX(50%) rotate(360deg);
-    }
-}
-
-.process-text {
-    font-family: "Unbounded", sans-serif;
-    font-size: 20px;
-    fill: white;
-    letter-spacing: 0.08em;
-}
 
 #about {
     position: relative;
@@ -1067,7 +1036,7 @@ background: radial-gradient(
     width: fit-content;
     top: -45px;
     position: absolute;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-weight: 600;
     color: white;
     border: none;
@@ -1146,7 +1115,7 @@ background: radial-gradient(
 }
 
 .label {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 12px;
     color: #B8C0BC;
 
@@ -1304,7 +1273,7 @@ border-radius: 20px 20px 5px 20px;
 }
 
 .upper-text h1 {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-weight: 900;
     font-size: 32px;
     margin: 0;
@@ -1312,7 +1281,7 @@ border-radius: 20px 20px 5px 20px;
 }
 
 .upper-text h2 {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-weight: 600;
     font-size: 20px;
     margin: 0;
@@ -1331,7 +1300,7 @@ border-radius: 20px 20px 5px 20px;
 }
 
 .lower-text a {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
     
@@ -1484,7 +1453,7 @@ background: linear-gradient(
     color: white;
     font-size: 32px;
     line-height: 1.15;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-weight: 900;
 }
 
@@ -1498,7 +1467,7 @@ background: linear-gradient(
     color: white;
     font-size: 32px;
     line-height: 1.15;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-weight: 900;
     text-align: left;
     margin-left: auto;
@@ -1513,7 +1482,7 @@ background: linear-gradient(
     font-size: 20px;
     line-height: 1.15;
     margin: 0;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-weight: 600;
 }
 
@@ -1540,7 +1509,7 @@ background: linear-gradient(
     gap: 5px;
 }
 .honors a {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
     background-color: #181d1b;
@@ -1628,7 +1597,7 @@ background: linear-gradient(
 
 .picker a {
     color: #B8C0BC;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     padding: 7px 15px;
 
     border-radius: 999px;
@@ -1760,13 +1729,6 @@ background: radial-gradient(
     letter-spacing: 0.12em;
     line-height: 1.3rem;    
 }
-.project-card-img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    aspect-ratio: 16 / 9;
-    object-position: top;
-}
 
 .project-name {
     display: flex;
@@ -1775,7 +1737,7 @@ background: radial-gradient(
 }
 
 .project-name h1 {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 16px;
     line-height: 1.15;
     font-weight: 600;
@@ -1785,7 +1747,7 @@ background: radial-gradient(
     margin: 0;
 }
 .project-name h2 {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 20px;
     font-weight: 900;
     color: #06d395;
@@ -1800,7 +1762,7 @@ background: radial-gradient(
     font-size: 7px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
 
     background: #171B19;
     color: white;
@@ -1816,7 +1778,7 @@ background: radial-gradient(
 }
 
 .tech-stack h1 {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-weight: 500;
     color: #B8C0BC;
     margin: 0;
@@ -1830,7 +1792,7 @@ background: radial-gradient(
 }
 
 .tools-stack p {  
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
     color: #B8C0BC;
@@ -1855,7 +1817,7 @@ box-shadow:
     display: flex;
     gap: 5px;
     align-items: center;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
     color: #06d395;
@@ -2173,7 +2135,7 @@ position: absolute;
     flex-wrap: wrap;
 }
 .category h1 {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-weight: 500;
     color: rgb(14,14,14);
     margin: 0;
@@ -2234,7 +2196,7 @@ background: radial-gradient(
     gap: 5px;
 }
 .tools-list p {
-     font-family: "Unbounded";
+     font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
    
@@ -2324,14 +2286,14 @@ footer::before {
 .get-in-touch h1 {
     margin: 0;
     color: white;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 2rem;
 }
 
 .get-in-touch h2, .social-connect h1 {
     margin: 0;
     color: #06d395;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     padding: 5px 10px;
     background: linear-gradient(135deg, #03a27130, #03a2710a);
     box-shadow:
@@ -2348,7 +2310,7 @@ footer::before {
 .get-in-touch h3, .social-connect h2 {
     margin: 0;
     color: white;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 1.3rem;
     font-weight: 600;
 }
@@ -2376,7 +2338,7 @@ footer::before {
         inset 0 0 0 2px #ffffff35,
         0 2px 8px #03a27130;
     width: fit-content;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     margin-top: 20px;
 }
 
@@ -2396,7 +2358,7 @@ footer::before {
     display: flex;
     gap: 5px;
     color: #06d395;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     align-items: center;
 }
 
@@ -2460,7 +2422,7 @@ background-color: rgb(14,14,14);
 }
 
 .lower-footer p {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     color: #B8C0BC;
     font-size: 14px;
     margin: 0;
@@ -2474,7 +2436,7 @@ background-color: rgb(14,14,14);
 }
 
 .lower-footer a {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     color: #B8C0BC;
     font-size: 14px;
     font-weight: 500;
@@ -2498,7 +2460,7 @@ background-color: rgb(14,14,14);
 .gallery-title, .video-title, .pdf-title {
     margin: 0;
     color: #06d395;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 16px;
     text-align: center;
     font-weight: 500;
@@ -2529,6 +2491,15 @@ background-color: rgb(14,14,14);
     width: 100%;
     height: auto;
     transition: transform 0.3s ease;
+    aspect-ratio: 16 / 9;
+}
+
+.project-card-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+    object-position: top;
 }
 
 .gallery-trigger:hover .project-card-img {
@@ -2543,7 +2514,7 @@ background-color: rgb(14,14,14);
     inset 0 1px 1px #ffffff30,
     inset 0 0 0 1px #ffffff12;
     border-radius: 999px;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     position: absolute;
     right: 5px;
     bottom: 5px;
@@ -2852,10 +2823,6 @@ footer {
     height: auto;
 }
 
-.process-circle {
-    width: 300px;
-    height: 300px;
-}
 
 .image-cutter {
     width: 625px;
@@ -3051,7 +3018,7 @@ header {
 .mobile-nav h1, .mobile-dropdown h1{
 margin: 0px;
 color: white;
-font-family: "Unbounded";
+font-family: "Unbounded", sans-serif;
 font-size: 1.6rem;
 }
 
@@ -3109,7 +3076,7 @@ header .forjfolio {
 }
 
 .mobile-dropdown .mobile-nav-link {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     color: white;
     text-decoration: none;
     opacity: 0.75;
@@ -3150,7 +3117,7 @@ box-shadow:
 
 .left-nav-part p {
     margin: 0;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     color:white;
     font-size: 12px;
 }
@@ -3182,7 +3149,7 @@ box-shadow:
     margin-left: auto;
     padding: 5px 10px;
     color: #06d395;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-weight: 400;
     font-size: 13px;
     border-radius: 50px;
@@ -3641,31 +3608,6 @@ display: none;
     gap:20px;
 }
 
-.process-circle {
-    width: 225px;
-    height: 225px;
-    position: absolute;
-    right: 0;
-    opacity: 0.5;
-    top: 0;
-    animation: rotateCircle 15s linear infinite;
-}
-
-@keyframes rotateCircle {
-    from {
-        transform: translateX(50%) rotate(0deg);
-    }
-
-    to {
-        transform: translateX(50%) rotate(360deg);
-    }
-}
-.code-background {
-    font-size: 18px;
-    padding: 50px 20px;
-
-}
-
 .email-button, .resume-button {
     padding: 7px 10px;
     font-size: 14px;
@@ -3848,7 +3790,7 @@ footer {
 }
 
 .label {
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
     font-size: 12px;
     color: #B8C0BC;
 
@@ -3883,7 +3825,7 @@ header {
 .mobile-nav h1, .mobile-dropdown h1 {
     margin: 0px;
     color: white;
-    font-family: "Unbounded";
+    font-family: "Unbounded", sans-serif;
 font-size: 1.4rem;
 }
 

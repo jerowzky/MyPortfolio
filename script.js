@@ -859,7 +859,7 @@ window.addEventListener("resize", updateProjects);
 updateProjects();
 
 const animatedElements = document.querySelectorAll(
-    '.moving-light, .greetings, .hero-image-outline, .process-circle, .carousel-3d, .code-cursor, .floating-gallery__ring, .diagonal-marquee-column'
+    '.moving-light, .greetings, .hero-image-outline, .carousel-3d, .code-cursor, .floating-gallery__ring, .diagonal-marquee-column'
 );
 
 const observer = new IntersectionObserver((entries) => {
@@ -982,6 +982,7 @@ if (galleryModal) {
     });
 }
 
+
 const marqueeColumns = document.querySelectorAll(".diagonal-marquee-column");
 
 function updateMarqueeDistances() {
@@ -991,27 +992,13 @@ function updateMarqueeDistances() {
         if (groups.length < 2) return;
 
         const firstGroup = groups[0];
-        const secondGroup = groups[1];
-
-        // Make both groups exactly the same width
-        secondGroup.style.width = `${firstGroup.getBoundingClientRect().width}px`;
-
-        // Measure the distance between the start of both groups
-        const distance = secondGroup.offsetLeft - firstGroup.offsetLeft;
+        const distance = firstGroup.getBoundingClientRect().width + 18;
 
         column.style.setProperty("--marquee-distance", `${distance}px`);
     });
 }
 
 window.addEventListener("load", updateMarqueeDistances);
+
 window.addEventListener("resize", updateMarqueeDistances);
-
-document.querySelectorAll(".diagonal-marquee img").forEach(img => {
-    if (!img.complete) {
-        img.addEventListener("load", updateMarqueeDistances, { once: true });
-    }
-});
-
-updateMarqueeDistances();
-
 

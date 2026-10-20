@@ -4,18 +4,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>My Website</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/style.css">
-        <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/logo.png">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+        <!-- Preconnect to Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,100..900&display=swap" rel="stylesheet">    
+        <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,100..900&display=swap" rel="stylesheet">
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/logo.png">
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+        <!-- Main stylesheet -->
+        <link rel="stylesheet" href="style.css"> 
     </head>
     <body>
         <header>
-            <a href="#home" class = "forjfolio" lazy="loading">
-                <img src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/logo.png">
+            <a href="#home" class = "forjfolio">
+                <img src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/logo.png" fetchpriority="high" loading="eager" decoding="async">
                 <h1 class="sitename">ForJ<span class="desktop-second-text">folio.</span></h1>
             </a>
             <nav>
@@ -29,7 +34,7 @@
 
             <div class = "mobile-nav">
                 <a href="#home" class="forjfolio-mobile">
-                    <img src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/logo.png">
+                    <img src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/logo.png" fetchpriority="high" loading="eager" decoding="async">
                     <h1>ForJ<span class="nav-second-text">folio.</span></h1>
                 </a>
                 <button class="menu-toggle" id="menuToggle">
@@ -148,27 +153,9 @@
                             View Resume
                         </a>
                     </div>
-                <svg class="process-circle" viewBox="0 0 400 400">
-
-                    <defs>
-                        <path
-                            id="circle-path"
-                            d="M 200,200
-                            m -150,0
-                            a 150,150 0 1,1 300,0
-                            a 150,150 0 1,1 -300,0"
-                        />
-                    </defs>
-
-                    <text class="process-text">
-                        <textPath href="#circle-path">
-                            DESIGN • BUILD • TEST • IMPROVE • DESIGN • BUILD • TEST • IMPROVE • 
-                        </textPath>
-                    </text>
-                </svg>
                <div class="hero-image-wrapper reveal-up">
-                    <img class="hero-image" src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/myportrait.webp" width="800" height="800" loading="lazy" alt="Jeruh Fornal" >
-                    <img class="hero-image-outline" loading="lazy" width="800" height="800" src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/myportrait.webp" alt="Jeruh Fornal">
+                    <img class="hero-image" src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/myportrait.webp" width="800" height="800" fetchpriority="high" loading="eager" decoding="async" alt="Jeruh Fornal" >
+                    <img class="hero-image-outline" fetchpriority="high" loading="eager" decoding="async" width="800" height="800" src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/myportrait.webp" alt="Jeruh Fornal">
                     <div class="buttons-wrapper">
                         <a href="https://mail.google.com/mail/?view=cm&fs=1&to=jeruhasis%40gmail.com" class="email-button reveal-right">
                             <svg class="email-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1425,7 +1412,7 @@
             </div>
         </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/script.js" defer></script>
+    <script src="script.js" defer></script>
 
     </body> 
 </html> 
