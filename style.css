@@ -3539,6 +3539,37 @@ display: none;
     height: 300px;
 }
 
+@keyframes movingLight {
+    0% {
+        transform: translate(-150px, -150px);
+    }
+
+    25% {
+        transform: translate(
+            calc(50vw - 150px),
+            -150px
+        );
+    }
+
+    50% {
+        transform: translate(
+            calc(100vw - 150px),
+            calc(50vh - 150px)
+        );
+    }
+
+    75% {
+        transform: translate(
+            calc(50vw - 150px),
+            calc(100vh - 150px)
+        );
+    }
+
+    100% {
+        transform: translate(-150px, -150px);
+    }
+}
+
 .hero-image-wrapper {
 
     position: absolute;
