@@ -485,14 +485,15 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 window.addEventListener("pageshow", refreshPageState);
 
 
-
-// Swiper
+ // Swiper
 const expertiseSwiper = new Swiper("#expertiseCarousel", {
 
     slidesPerView: 3,
+    slidesPerGroup: 1,
     spaceBetween: 20,
 
     loop: true,
+    loopAddBlankSlides: false,
     speed: 600,
     grabCursor: true,
 
@@ -506,8 +507,8 @@ const expertiseSwiper = new Swiper("#expertiseCarousel", {
         clickable: true,
     },
 
-
 });
+
 
 const educationBtn = document.querySelector(".education-btn");
 const experienceBtn = document.querySelector(".experience-btn");
