@@ -1001,6 +1001,4 @@ function updateMarqueeDistances() {
 }
 
 window.addEventListener("load", updateMarqueeDistances);
-
 window.addEventListener("resize", updateMarqueeDistances);
-

@@ -221,11 +221,13 @@ header nav a.active {
 }
 .forjfolio img, .forjfolio-mobile img {
     width: 25px;
-    height: auto
+    height: auto;
+    aspect-ratio: 1 / 1;
 }
 .forjfolio-footer img {
     width: 27px;
     height: auto;
+    aspect-ratio: 1 / 1;
 }
 .mobile-nav {
     display: none;
@@ -1934,7 +1936,6 @@ box-shadow:
     transition: none;
 }
 
-
 /* ========================================
    FLOATING GALLERY
 ======================================== */
@@ -1957,7 +1958,7 @@ box-shadow:
 
     background: #000;
     color: #fff;
-    /* Fade the top and bottom to transparency */
+
     -webkit-mask-image: linear-gradient(
         to bottom,
         transparent 0%,
@@ -1965,6 +1966,7 @@ box-shadow:
         #000 90%,
         transparent 100%
     );
+
     mask-image: linear-gradient(
         to bottom,
         transparent 0%,
@@ -1975,7 +1977,7 @@ box-shadow:
 }
 
 /* ========================================
-   RIGHT-SIDE HALF CIRCLE
+   GALLERY IMAGES
 ======================================== */
 
 .floating-gallery__images {
@@ -2002,6 +2004,7 @@ box-shadow:
     position: absolute;
     inset: 0;
     transform-origin: center;
+
     animation: galleryRotate var(--orbit-duration) linear infinite;
     will-change: transform;
 }
@@ -2014,13 +2017,15 @@ box-shadow:
    IMAGE CARDS
 ======================================== */
 
-
 .floating-gallery__card {
     position: absolute;
     top: 50%;
     left: 50%;
+
     width: var(--card-width);
-    aspect-ratio: 7 / 10;
+    height: calc(var(--card-width) * 10 / 7);
+
+    box-sizing: border-box;
     border-radius: 10px;
     overflow: hidden;
 
@@ -2030,12 +2035,28 @@ box-shadow:
         translateY(calc(var(--orbit-size) * -0.5));
 }
 
-
 .floating-gallery__card img {
     display: block;
+
     width: 100%;
     height: 100%;
+
+    max-width: none;
     object-fit: cover;
+}
+
+/* ========================================
+   RING ANIMATION
+======================================== */
+
+@keyframes galleryRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* ========================================
@@ -2045,25 +2066,29 @@ box-shadow:
 .floating-gallery__content {
     position: relative;
     z-index: 2;
+
     display: flex;
     flex-direction: column;
     gap: 45px;
+
     width: 80%;
     max-width: 550px;
     margin: 0;
+
     text-align: left;
 }
 
 .floating-gallery__content h2 {
     margin: 0 0 18px;
+
     font-size: 3rem;
     font-family: "ICF-ExtraBold";
     line-height: 1.08;
 }
 
 .gallery-content-p {
-margin: -10px 0 0 0;
-position: absolute;
+    position: absolute;
+    margin: -10px 0 0;
 }
 
 .title-section {
