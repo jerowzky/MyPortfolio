@@ -1149,7 +1149,15 @@ border-radius: 20px 20px 5px 20px;
     right: -50px;
     width: 200px;
     z-index: -1;
-    height: auto;
+    height: 200px;
+    background: radial-gradient(
+        circle,
+        #03A271 0%,
+        rgba(3, 162, 113, 0.7) 20%,
+        rgba(3, 162, 113, 0.3) 45%,
+        transparent 70%
+    );
+    border-radius: 50%;
 }
 
 .design2 {
@@ -1158,8 +1166,17 @@ border-radius: 20px 20px 5px 20px;
     left: -70px;
     width: 150px;
     z-index: -1;
-    height: auto;
+    height: 150px;
+    background: radial-gradient(
+        circle,
+        #03A271 0%,
+        rgba(3, 162, 113, 0.7) 20%,
+        rgba(3, 162, 113, 0.3) 45%,
+        transparent 70%
+    );
+    border-radius: 50%;
 }
+
 .highlight {
     position: relative;
 
@@ -3738,6 +3755,7 @@ footer {
     left: -50px;
     top: auto;
     width: 125px;
+    height: 125px;
 }
 
 .design2 {
@@ -3747,6 +3765,7 @@ footer {
     left: auto;
     right: -70px;
     width: 150px;
+    height: 150px;
 }
 .about-image {
     width: 100%;
