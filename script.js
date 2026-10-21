@@ -783,9 +783,11 @@ function updateProjects() {
             projectsSwiper = new Swiper("#projectsCarousel", {
 
                 slidesPerView: 3,
+                slidesPerGroup: 1,
                 spaceBetween: 20,
 
                 loop: true,
+                loopAddBlankSlides: false,
                 speed: 600,
                 grabCursor: true,
 
@@ -800,6 +802,7 @@ function updateProjects() {
                 },
 
             });
+
         }
 
 
