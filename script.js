@@ -290,12 +290,15 @@ const navLinks = document.querySelectorAll(
 
 const menuToggle = document.getElementById("menuToggle");
 const mobileDropdown = document.getElementById("mobileDropdown");
+let isNavScrolling = false;
+let navScrollTimeout;
 
 function updateActiveNav() {
     if (!sections.length) return;
 
-    // Do not update navigation while the mobile menu is open.
+    // Do not update navigation while the mobile menu is open or scrolling to a clicked section.
     if (mobileDropdown?.classList.contains("active")) return;
+    if (isNavScrolling) return;
 
     const activationPoint = window.innerHeight * 0.4;
 
@@ -471,9 +474,26 @@ closeButtons.forEach((button) => {
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", () => {
-        requestAnimationFrame(() => {
-            refreshPageState();
+        const targetId = link.getAttribute("href");
+
+        if (!targetId || targetId === "#") return;
+
+        // Immediately activate the clicked navigation link.
+        navLinks.forEach((navLink) => {
+            navLink.classList.toggle(
+                "active",
+                navLink.getAttribute("href") === targetId
+            );
         });
+
+        // Prevent intermediate sections from becoming active.
+        isNavScrolling = true;
+        clearTimeout(navScrollTimeout);
+
+        navScrollTimeout = setTimeout(() => {
+            isNavScrolling = false;
+            updateActiveNav();
+        }, 1000);
     });
 });
 
