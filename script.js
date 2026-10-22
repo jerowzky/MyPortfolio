@@ -507,7 +507,7 @@ window.addEventListener("pageshow", refreshPageState);
 
 // Swiper
 
-const expertiseSwiper = new Swiper("#expertiseCarousel", {
+const expertiseSwiper = new Swiper("#skillsCarousel", {
 
     slidesPerView: 3,
     spaceBetween: 20,
@@ -525,7 +525,7 @@ const expertiseSwiper = new Swiper("#expertiseCarousel", {
     },
 
     pagination: {
-        el: "#expertiseCarousel .carousel-dots",
+        el: "#skillsCarousel .carousel-dots",
         clickable: true,
     },
 

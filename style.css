@@ -715,7 +715,7 @@ display: none;
     z-index: 10;
 }
 
-#expertise, #journey {
+#skills, #journey {
     margin-top: 0px;
     position: relative;
     z-index: 9;
@@ -723,7 +723,7 @@ display: none;
 }
 
 #about,
-#expertise,
+#skills,
 #journey,
 #projects {
     position: relative;
@@ -733,7 +733,7 @@ display: none;
 }
 
 
-#expertise::before,
+#skills::before,
 #journey::before,
 #projects::before {
     content: "";
@@ -1259,7 +1259,7 @@ border-radius: 20px 20px 5px 20px;
     width: 80%;
 }
 
-.lower-text a {
+.lower-text span {
     font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
@@ -1468,7 +1468,7 @@ background: linear-gradient(
     flex-wrap: wrap;
     gap: 5px;
 }
-.honors a {
+.honors span {
     font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
@@ -1488,7 +1488,7 @@ background: linear-gradient(
     align-items: center;
 }
 
-.honors a svg {
+.honors span svg {
     width: 18px;
     height: auto;
     margin-right: 5px;
@@ -1567,6 +1567,7 @@ background: linear-gradient(
     gap: 7px;
     cursor: pointer;
     background-color: transparent;
+    font-size: 16px;
     
 }
 
@@ -1752,7 +1753,7 @@ background: radial-gradient(
     flex-wrap: wrap;
 }
 
-.tools-stack p {  
+.tools-stack span {  
     font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
@@ -2179,7 +2180,7 @@ background: radial-gradient(
     flex-wrap: wrap;
     gap: 5px;
 }
-.tools-list p {
+.tools-list span {
      font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
@@ -3266,7 +3267,7 @@ background: radial-gradient(
     font-size: 14px;
     padding: 5px 10px;
 }
-.honors a svg, .picker svg, .button-links svg {
+.honors span svg, .picker svg, .button-links svg {
     width: 16px;
 }
 .right-about-content .firstp, .right-about-content .secondp {
@@ -3286,7 +3287,7 @@ background: radial-gradient(
 .lower-text {
     width: 100%;
 }
-.lower-text a, .honors a, .tools-stack p, .button-links a, .tools-list p {
+.lower-text span, .honors span, .tools-stack span, .button-links a, .tools-list span {
     font-size: 11px;
     padding: 4px 8px;
 }
@@ -3942,7 +3943,7 @@ font-size: 1.4rem;
 }
 
 
-.honors a svg {
+.honors span svg {
     width: 12px;
     height: auto;
     margin-right: 5px;
@@ -4023,7 +4024,7 @@ font-size: 1.4rem;
     padding: 50px 0;
 }
 
-#about, #expertise, #journey, #projects {
+#about, #skills, #journey, #projects {
     padding-bottom: 50px;
 }
 
