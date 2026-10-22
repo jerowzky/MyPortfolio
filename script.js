@@ -802,7 +802,6 @@ function updateProjects() {
 
         // Initialize Swiper only once
         if (!projectsSwiper) {
-
             projectsSwiper = new Swiper("#projectsCarousel", {
 
                 slidesPerView: 3,
@@ -815,6 +814,9 @@ function updateProjects() {
                 autoplay: {
                     delay: 3000,
                     disableOnInteraction: false,
+                    pauseOnMouseEnter: false,
+                    stopOnLastSlide: false,
+                    waitForTransition: true,
                 },
 
                 pagination: {
@@ -823,7 +825,6 @@ function updateProjects() {
                 },
 
             });
-
         }
 
 
