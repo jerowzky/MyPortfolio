@@ -1026,8 +1026,10 @@ window.addEventListener("resize", updateMarqueeDistances);
 
 
 
+
 /* ========================================
    PAGE PRELOADER
+   LOAD AND DECODE ALL IMAGES
 ======================================== */
 
 (function () {
@@ -1037,20 +1039,137 @@ window.addEventListener("resize", updateMarqueeDistances);
 
     document.body.classList.add("loading");
 
-    function hidePreloader() {
+    // Load and decode an image from its URL
+    function loadAndDecodeImage(src, srcset = "", sizes = "") {
+        return new Promise(function (resolve) {
+            const img = new Image();
+
+            if (sizes) img.sizes = sizes;
+            if (srcset) img.srcset = srcset;
+
+            img.onload = async function () {
+                try {
+                    if (img.decode) {
+                        await img.decode();
+                    }
+                } catch (error) {
+                    console.warn("Image decoding failed:", src);
+                }
+
+                resolve();
+            };
+
+            img.onerror = function () {
+                console.warn("Image failed to load:", src);
+                resolve();
+            };
+
+            img.src = src;
+
+            // Handle cached images
+            if (img.complete) {
+                if (img.naturalWidth > 0) {
+                    img.onload();
+                } else {
+                    img.onerror();
+                }
+            }
+        });
+    }
+
+    // Wait for all HTML images, including hidden modal images
+    async function loadAllImages() {
+        const images = Array.from(document.querySelectorAll("img"));
+        const tasks = [];
+
+        images.forEach(function (img) {
+            // Force lazy-loaded images to start loading
+            img.loading = "eager";
+
+            const src = img.currentSrc || img.src;
+
+            if (src) {
+                tasks.push(
+                    (async function () {
+                        // Wait for the original image to load
+                        if (!img.complete) {
+                            await new Promise(function (resolve) {
+                                img.addEventListener("load", resolve, {
+                                    once: true
+                                });
+
+                                img.addEventListener("error", resolve, {
+                                    once: true
+                                });
+                            });
+                        }
+
+                        // Decode the displayed image
+                        if (img.naturalWidth > 0 && img.decode) {
+                            try {
+                                await img.decode();
+                            } catch (error) {
+                                console.warn(
+                                    "Image decoding failed:",
+                                    img.currentSrc || img.src
+                                );
+                            }
+                        }
+                    })()
+                );
+            }
+        });
+
+        // Preload images stored in project gallery data attributes
+        document.querySelectorAll("[data-gallery]").forEach(function (el) {
+            const gallery = el.getAttribute("data-gallery");
+
+            if (!gallery) return;
+
+            try {
+                const urls = JSON.parse(gallery);
+
+                if (Array.isArray(urls)) {
+                    urls.forEach(function (url) {
+                        if (typeof url === "string" && url.trim()) {
+                            tasks.push(loadAndDecodeImage(url));
+                        }
+                    });
+                }
+            } catch (error) {
+                console.warn("Invalid data-gallery format:", el);
+            }
+        });
+
+        await Promise.all(tasks);
+    }
+
+    async function hidePreloader() {
+        // Wait for the initial page resources
+        if (document.readyState !== "complete") {
+            await new Promise(function (resolve) {
+                window.addEventListener("load", resolve, {
+                    once: true
+                });
+            });
+        }
+
+        // Wait for all discovered images to load and decode
+        await loadAllImages();
+
+        // Short pause before revealing the page
+        await new Promise(function (resolve) {
+            setTimeout(resolve, 300);
+        });
+
         preloader.classList.add("loaded");
         document.body.classList.remove("loading");
 
+        // Remove after the fade-out transition
         setTimeout(function () {
             preloader.remove();
         }, 500);
     }
 
-    if (document.readyState === "complete") {
-        setTimeout(hidePreloader, 300);
-    } else {
-        window.addEventListener("load", function () {
-            setTimeout(hidePreloader, 300);
-        }, { once: true });
-    }
+    hidePreloader();
 })();
