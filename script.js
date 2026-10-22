@@ -1023,3 +1023,34 @@ function updateMarqueeDistances() {
 
 window.addEventListener("load", updateMarqueeDistances);
 window.addEventListener("resize", updateMarqueeDistances);
+
+
+
+/* ========================================
+   PAGE PRELOADER
+======================================== */
+
+(function () {
+    const preloader = document.getElementById("preloader");
+
+    if (!preloader) return;
+
+    document.body.classList.add("loading");
+
+    function hidePreloader() {
+        preloader.classList.add("loaded");
+        document.body.classList.remove("loading");
+
+        setTimeout(function () {
+            preloader.remove();
+        }, 500);
+    }
+
+    if (document.readyState === "complete") {
+        setTimeout(hidePreloader, 300);
+    } else {
+        window.addEventListener("load", function () {
+            setTimeout(hidePreloader, 300);
+        }, { once: true });
+    }
+})();
