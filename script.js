@@ -1,3 +1,23 @@
+const enablePointerHover = () => {
+    document.addEventListener("pointerover", (event) => {
+        if (event.pointerType === "mouse" || event.pointerType === "pen") {
+            document.documentElement.classList.add("pointer-hover");
+        }
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+        if (event.pointerType === "touch") {
+            document.documentElement.classList.remove("pointer-hover");
+        } else if (
+            event.pointerType === "mouse" ||
+            event.pointerType === "pen"
+        ) {
+            document.documentElement.classList.add("pointer-hover");
+        }
+    });
+};
+
+enablePointerHover();
 // Writing Code Background
     const texts = [
         "Web Development",
@@ -921,7 +941,7 @@ window.addEventListener("resize", updateProjects);
 updateProjects();
 
 const animatedElements = document.querySelectorAll(
-    '.moving-light, .greetings, .hero-image-outline, .carousel-3d, .code-cursor, .floating-gallery__ring, .diagonal-marquee-column'
+    '.moving-light, .greetings, .floating-gallery__ring, .diagonal-marquee-column'
 );
 
 const observer = new IntersectionObserver((entries) => {
@@ -1062,24 +1082,3 @@ function updateMarqueeDistances() {
 
 window.addEventListener("load", updateMarqueeDistances);
 window.addEventListener("resize", updateMarqueeDistances);
-
-const enablePointerHover = () => {
-    document.addEventListener("pointerover", (event) => {
-        if (event.pointerType === "mouse" || event.pointerType === "pen") {
-            document.documentElement.classList.add("pointer-hover");
-        }
-    });
-
-    document.addEventListener("pointerdown", (event) => {
-        if (event.pointerType === "touch") {
-            document.documentElement.classList.remove("pointer-hover");
-        } else if (
-            event.pointerType === "mouse" ||
-            event.pointerType === "pen"
-        ) {
-            document.documentElement.classList.add("pointer-hover");
-        }
-    });
-};
-
-enablePointerHover();

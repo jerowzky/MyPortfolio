@@ -1662,7 +1662,7 @@ background: linear-gradient(
     transition: transform 0.2s ease-out;
 }
 
-.pointer-hover .project-card-inner:hover, .pointer-hover .expertise-card:hover {
+.pointer-hover .project-card-inner:hover, .pointer-hover .expertise-card:hover, .pointer-hover .category-inner:hover {
     background: linear-gradient(
         135deg,
         #03a27160,
@@ -2163,14 +2163,25 @@ box-shadow:
     width: fit-content;
 }
 .category {
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    width: fit-content;
-    padding: 0 10px 10px;
-    border-radius: 7px;
+    position: relative;
     isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: auto !important;
+    min-width: 0;
+}
+
+.category-inner {
+    position: relative;
     overflow: hidden;
+    padding: 0 10px 10px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px;
+    width: fit-content;
     background: linear-gradient(
         135deg,
         #ffffff12,
@@ -2185,9 +2196,7 @@ box-shadow:
     -webkit-backdrop-filter: blur(12px); 
 }
 
-
-
-.category::before {
+.category-inner::before {
     content: "";
     position: absolute;
     inset: 0;
