@@ -1063,4 +1063,23 @@ function updateMarqueeDistances() {
 window.addEventListener("load", updateMarqueeDistances);
 window.addEventListener("resize", updateMarqueeDistances);
 
+const enablePointerHover = () => {
+    document.addEventListener("pointerover", (event) => {
+        if (event.pointerType === "mouse" || event.pointerType === "pen") {
+            document.documentElement.classList.add("pointer-hover");
+        }
+    });
 
+    document.addEventListener("pointerdown", (event) => {
+        if (event.pointerType === "touch") {
+            document.documentElement.classList.remove("pointer-hover");
+        } else if (
+            event.pointerType === "mouse" ||
+            event.pointerType === "pen"
+        ) {
+            document.documentElement.classList.add("pointer-hover");
+        }
+    });
+};
+
+enablePointerHover();
