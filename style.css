@@ -163,11 +163,6 @@ header nav a {
 
 }
 
-header nav a:hover {
-    opacity: 1;
-    font-weight: 600;
-}
-
 header nav a.active,
 .mobile-dropdown .mobile-nav-link.active {
     opacity: 1;
@@ -1587,35 +1582,6 @@ background: linear-gradient(
     -webkit-backdrop-filter: blur(12px);
 }
 
-.picker button.active:hover {
-    color: white;
-    background: linear-gradient(
-        135deg,
-        #03a271cc,
-        #03a27180
-    );
-    box-shadow:
-        inset 0 1px 1px #ffffff80,
-        inset 0 0 0 1px #ffffff35,
-        0 2px 8px #03a27130;
-        text-decoration: none;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
-
-.picker button:hover {
-    background-color: #242C29;
-    background-image: linear-gradient(
-        135deg,
-        #ffffff12,
-        #ffffff04
-    );
-
-    box-shadow:
-        inset 0 2px 2px #ffffff30,
-        inset 0 0 0 2px #ffffff15;
-}
-
 .picker svg {
     width: 18px;
     height: auto;
@@ -1862,7 +1828,7 @@ box-shadow:
 
 
 /* Close button */
-.close-video, .close-pdf{
+.close-video, .close-pdf, .close-nav{
     position: absolute;
     border: none;
     background: linear-gradient(#ffffff1a, #ffffff15);
@@ -1881,21 +1847,11 @@ box-shadow:
     transition: background 0.2s ease;
 
 }
-.close-nav svg {
-    width: 35px;
-    height: 35px;
-    color: white;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
 
-.close-pdf svg, .close-video svg {
+.close-pdf svg, .close-video svg, .close-nav svg {
     color: #B8C0BC;
     width: 24px;
     height: auto;
-}
-.close-video:hover, .close-pdf:hover, .close-nav:hover {
-    background: #ffffff40;
 }
 
 .pdf-modal {
@@ -2436,7 +2392,6 @@ background-color: rgb(14,14,14);
     padding: 0;
     border: none;
     position: relative;
-
     overflow: hidden;
     background: transparent;
     cursor: pointer;
@@ -2487,9 +2442,6 @@ background-color: rgb(14,14,14);
     object-position: top;
 }
 
-.gallery-trigger:hover .project-card-img {
-    transform: scale(1.04);
-}
 
 .gallery-trigger a, .gallery-trigger p {
     padding: 5px 10px;
@@ -2634,12 +2586,6 @@ transform: scale(1);
     color: #B8C0BC;
     width: 24px;
     height: auto;
-}
-
-.gallery-close:hover,
-.gallery-prev:hover,
-.gallery-next:hover {
-    background: #ffffff40;
 }
 
 .gallery-close {  
@@ -4056,4 +4002,40 @@ font-size: 1.4rem;
 .resume-icon-nav {
     width: 10px;
 }    
+}
+
+@media (hover: hover) and (pointer: fine) {
+.close-video:hover,
+.close-pdf:hover,
+.close-nav:hover {
+    background: #ffffff40;
+}
+
+.gallery-trigger:hover .project-card-img {
+    transform: scale(1.04);
+}
+
+.gallery-close:hover,
+.gallery-prev:hover,
+.gallery-next:hover {
+    background: #ffffff40;
+}
+
+.picker button:hover {
+    background-color: #242C29;
+    background-image: linear-gradient(
+        135deg,
+        #ffffff12,
+        #ffffff04
+    );
+
+    box-shadow:
+        inset 0 2px 2px #ffffff30,
+        inset 0 0 0 2px #ffffff15;
+}
+
+header nav a:hover {
+    opacity: 1;
+    font-weight: 600;
+}
 }
