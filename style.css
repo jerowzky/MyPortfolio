@@ -142,6 +142,11 @@ header nav a {
      white-space: nowrap;
 }
 
+header nav a:hover {
+    opacity: 1;
+    font-weight: 600;
+}
+
 .contact-btn {
     font-family: "Unbounded", sans-serif;
     text-transform: none;
@@ -627,11 +632,27 @@ position: relative;
     border-radius: 50px;
     width: fit-content;
     padding: 20px 12px;
+    transition: box-shadow 0.2s ease-out;
 }
 
 .socmed-wrapper svg {
     width: 30px;
     height: auto;
+    color: white;
+    transition: transform 0.2s ease-out, color 0.2s ease-out;
+}
+
+.socmed-wrapper a:hover svg {
+    color:#4FD9A8;
+    transform: scale(1.10); 
+}
+
+.socmed-wrapper:hover {
+    box-shadow:
+    inset 0 1px 1px #4fd9a963,
+    inset 0 0 0 1px #4fd9a9a4,
+    0 0 15px #4fd9a963,
+    0 0 30px #4fd9a9a4;
 }
 
 .buttons-wrapper2 {
@@ -1298,7 +1319,8 @@ box-shadow:
         inset 0 2px 2px #ffffff30,
         inset 0 0 0 2px #ffffff15;
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);    
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.2s ease-out;    
 }
 
 .expertise-card::before {
@@ -1564,6 +1586,19 @@ background: linear-gradient(
     
 }
 
+.picker button:hover {
+    background-color: #242C29;
+    background-image: linear-gradient(
+        135deg,
+        #ffffff12,
+        #ffffff04
+    );
+
+    box-shadow:
+        inset 0 2px 2px #ffffff30,
+        inset 0 0 0 2px #ffffff15;
+}
+
 .picker button.active {
     color: white;
     background: linear-gradient(
@@ -1624,8 +1659,23 @@ background: linear-gradient(
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 
-    transition: transform 0.1s ease-out;
+    transition: transform 0.2s ease-out;
 }
+
+.project-card-inner:hover, .expertise-card:hover {
+
+background: linear-gradient(
+    135deg,
+    #03a27160,
+    #03a27130
+);
+
+box-shadow:
+    inset 0 2px 2px #03a27180,
+    inset 0 0 0 2px #03a27150;
+    transform: translateY(0) scale(1.05);
+    transition: transform 0.1s ease-out;
+};
 
 #projectsCarousel .swiper-wrapper {
     align-items: stretch;
@@ -1872,6 +1922,12 @@ box-shadow:
     color: #B8C0BC;
     width: 24px;
     height: auto;
+}
+
+.close-video:hover,
+.close-pdf:hover,
+.close-nav:hover {
+    background: #ffffff40;
 }
 
 .pdf-modal {
@@ -2462,6 +2518,9 @@ background-color: rgb(14,14,14);
     object-position: top;
 }
 
+.gallery-trigger:hover .project-card-img {
+    transform: scale(1.04);
+}
 
 .gallery-trigger a, .gallery-trigger p {
     padding: 5px 10px;
@@ -2668,6 +2727,12 @@ transform: scale(1);
 
 .gallery-next {
     right: 25px;
+}
+
+.gallery-close:hover,
+.gallery-prev:hover,
+.gallery-next:hover {
+    background: #ffffff40;
 }
 
 .diagonal-marquee {
@@ -4061,56 +4126,4 @@ font-size: 1.4rem;
 .resume-icon-nav {
     width: 10px;
 }    
-}
-
-@media (hover: hover) and (pointer: fine) {
-.close-video:hover,
-.close-pdf:hover,
-.close-nav:hover {
-    background: #ffffff40;
-}
-
-.gallery-trigger:hover .project-card-img {
-    transform: scale(1.04);
-}
-
-.gallery-close:hover,
-.gallery-prev:hover,
-.gallery-next:hover {
-    background: #ffffff40;
-}
-
-.picker button:hover {
-    background-color: #242C29;
-    background-image: linear-gradient(
-        135deg,
-        #ffffff12,
-        #ffffff04
-    );
-
-    box-shadow:
-        inset 0 2px 2px #ffffff30,
-        inset 0 0 0 2px #ffffff15;
-}
-
-header nav a:hover {
-    opacity: 1;
-    font-weight: 600;
-}
-
-.project-card-inner:hover, .expertise-card:hover {
-
-background: linear-gradient(
-    135deg,
-    #03a27160,
-    #03a27130
-);
-
-box-shadow:
-    inset 0 2px 2px #03a27180,
-    inset 0 0 0 2px #03a27150;
-    transform: translateY(0) scale(1.05);
-    transition: transform 0.1s ease-out;
-};
-
 }
