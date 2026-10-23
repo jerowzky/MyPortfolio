@@ -506,11 +506,19 @@ window.addEventListener("pageshow", refreshPageState);
 
 
 // Swiper
-
 const expertiseSwiper = new Swiper("#skillsCarousel", {
 
     slidesPerView: 3,
-    spaceBetween: 20,
+    spaceBetween: 30,
+
+    breakpoints: {
+        0: {
+            spaceBetween: 20,
+        },
+        501: {
+            spaceBetween: 30,
+        },
+    },
 
     loop: true,
     speed: 600,
@@ -675,13 +683,13 @@ document.addEventListener("keydown", (e) => {
 });
 
 
-
 const pdfLinks = document.querySelectorAll(".open-pdf");
 const pdfModal = document.getElementById("pdfModal");
 const pdfViewer = document.getElementById("pdfViewer");
 const closePdf = document.getElementById("closePdf");
 const pdfTitle = document.querySelector(".pdf-title");
 const pdfLabel = document.querySelector(".pdf-label");
+const downloadPdf = document.getElementById("downloadPdf");
 
 // Local PDF.js viewer
 const pdfJsViewer = new URL(
@@ -716,6 +724,22 @@ pdfLinks.forEach(link => {
 
         if (pdfLabel) {
             pdfLabel.textContent = label || "";
+        }
+
+        // Show download button only for resume.pdf
+        if (downloadPdf) {
+            const filename = new URL(pdfUrl).pathname
+                .split("/")
+                .pop();
+
+            if (filename.toLowerCase() === "fornal_resume.pdf") {
+                downloadPdf.href = pdfUrl;
+                downloadPdf.style.display = "flex";
+                downloadPdf.setAttribute("download", "Fornal_Resume.pdf");
+            } else {
+                downloadPdf.style.display = "none";
+                downloadPdf.removeAttribute("href");
+            }
         }
 
         // Build the local PDF.js viewer URL
@@ -762,6 +786,7 @@ document.addEventListener("keydown", (e) => {
 
 
 
+
 let projectsSwiper = null;
 
 function updateProjects() {
@@ -804,20 +829,29 @@ function updateProjects() {
         if (!projectsSwiper) {
             projectsSwiper = new Swiper("#projectsCarousel", {
 
-                slidesPerView: 3,
-                spaceBetween: 20,
+            slidesPerView: 3,
+            spaceBetween: 30,
 
-                loop: true,
-                speed: 600,
-                grabCursor: true,
-
-                autoplay: {
-                    delay: 3000,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: false,
-                    stopOnLastSlide: false,
-                    waitForTransition: true,
+            breakpoints: {
+                0: {
+                    spaceBetween: 20,
                 },
+                501: {
+                    spaceBetween: 30,
+                },
+            },
+
+            loop: true,
+            speed: 600,
+            grabCursor: true,
+
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: false,
+                stopOnLastSlide: false,
+                waitForTransition: true,
+            },
 
                 pagination: {
                     el: "#projectsCarousel .carousel-dots",
