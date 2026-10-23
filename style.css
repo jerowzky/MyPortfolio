@@ -142,7 +142,7 @@ header nav a {
      white-space: nowrap;
 }
 
-header nav a:hover {
+.pointer-hover header nav a:hover {
     opacity: 1;
     font-weight: 600;
 }
@@ -642,12 +642,12 @@ position: relative;
     transition: transform 0.2s ease-out, color 0.2s ease-out;
 }
 
-.socmed-wrapper a:hover svg {
+.pointer-hover .socmed-wrapper a:hover svg {
     color:#4FD9A8;
     transform: scale(1.10); 
 }
 
-.socmed-wrapper:hover {
+.pointer-hover .socmed-wrapper:hover {
     box-shadow:
     inset 0 1px 1px #4fd9a963,
     inset 0 0 0 1px #4fd9a9a4,
@@ -1586,7 +1586,7 @@ background: linear-gradient(
     
 }
 
-.picker button:hover {
+.pointer-hover .picker button:hover {
     background-color: #242C29;
     background-image: linear-gradient(
         135deg,
@@ -1662,19 +1662,18 @@ background: linear-gradient(
     transition: transform 0.2s ease-out;
 }
 
-.project-card-inner:hover, .expertise-card:hover {
+.pointer-hover .project-card-inner:hover, .pointer-hover .expertise-card:hover {
+    background: linear-gradient(
+        135deg,
+        #03a27160,
+        #03a27130
+    );
 
-background: linear-gradient(
-    135deg,
-    #03a27160,
-    #03a27130
-);
-
-box-shadow:
-    inset 0 2px 2px #03a27180,
-    inset 0 0 0 2px #03a27150;
-    transform: translateY(0) scale(1.05);
-    transition: transform 0.1s ease-out;
+    box-shadow:
+        inset 0 2px 2px #03a27180,
+        inset 0 0 0 2px #03a27150;
+        transform: translateY(0) scale(1.05);
+        transition: transform 0.1s ease-out;
 };
 
 #projectsCarousel .swiper-wrapper {
@@ -1924,9 +1923,9 @@ box-shadow:
     height: auto;
 }
 
-.close-video:hover,
-.close-pdf:hover,
-.close-nav:hover {
+.pointer-hover .close-video:hover,
+.pointer-hover .close-pdf:hover,
+.pointer-hover .close-nav:hover {
     background: #ffffff40;
 }
 
@@ -2518,7 +2517,7 @@ background-color: rgb(14,14,14);
     object-position: top;
 }
 
-.gallery-trigger:hover .project-card-img {
+.pointer-hover .gallery-trigger:hover .project-card-img {
     transform: scale(1.04);
 }
 
@@ -2729,9 +2728,9 @@ transform: scale(1);
     right: 25px;
 }
 
-.gallery-close:hover,
-.gallery-prev:hover,
-.gallery-next:hover {
+.pointer-hover .gallery-close:hover,
+.pointer-hover .gallery-prev:hover,
+.pointer-hover .gallery-next:hover {
     background: #ffffff40;
 }
 
