@@ -619,6 +619,14 @@ position: relative;
     transform: translateX(0) rotate(2deg);
 }
 
+#home .reveal-right,
+#home .reveal-right-tilted1,
+#home .reveal-right-tilted2,
+#home .reveal-left,
+#home .reveal-up {
+    will-change: opacity, transform;
+}
+
 .socmed-wrapper {
     display: flex;
     flex-direction: column;
@@ -2490,6 +2498,7 @@ background-color: rgb(14,14,14);
     text-align: center;
     font-weight: 500;
     padding: 10px 16px;
+    white-space: nowrap;
 
     border-radius: 999px;
 
@@ -2531,7 +2540,7 @@ background-color: rgb(14,14,14);
     transform: scale(1.04);
 }
 
-.gallery-trigger a, .gallery-trigger p {
+.gallery-trigger span, .gallery-trigger p {
     padding: 5px 10px;
     color: white;
     background: linear-gradient(#1d1d1ddc, #3d3d3dbb);
@@ -3263,6 +3272,7 @@ box-shadow:
 
 .gallery-title, .video-title, .pdf-title {
     top: 10%;    
+    white-space: normal;
 }
 .about-content {
     flex-direction: column;
@@ -3733,8 +3743,8 @@ background: radial-gradient(
 );
 }
 .title {
-    font-size: 2.3rem;
-    padding: 0.7rem 1.7rem;
+    font-size: 2.2rem;
+    padding: 0.6rem 1.2rem;
 
     margin: 0;
 }
@@ -4060,13 +4070,32 @@ font-size: 1.4rem;
 }
 
 @media (max-width: 375px) {
-.title {
-    font-size: 2rem;
-    padding: 0.5rem 1.5rem;
+.title, .floating-gallery__content h2 {
+    font-size: 1.8rem;
+    padding: 0.5rem 1rem;
+}
+
+.project-name h2 {
+    font-size: 18px;
+}
+
+.project-name h1, .upper-text h2 {
+    font-size: 14px;
+}
+.expertise-images {
+    width: 100%;
+}
+.upper-text h1 {
+    font-size: 24px;
+}
+
+.education-title h2, .education-title span {
+    font-size: 22px;
 }
 
 .headline {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
+    padding: 0.25rem 0.6rem;
 }
 
 .greetings, .description {
@@ -4134,5 +4163,5 @@ font-size: 1.4rem;
 
 .resume-icon-nav {
     width: 10px;
-}    
+}   
 }

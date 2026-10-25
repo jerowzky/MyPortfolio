@@ -67,6 +67,7 @@ enablePointerHover();
 
     typeEffect();
 
+
 /* =========================
    REVEAL ANIMATION
 ========================= */
@@ -92,7 +93,9 @@ const revealSelector = [
 const revealStates = new WeakMap();
 
 let ticking = false;
+let revealFrame = null;
 let revealNavigationFrame = null;
+let pageLoaded = false;
 
 
 /* =========================
@@ -101,15 +104,10 @@ let revealNavigationFrame = null;
 
 const REVEAL_CONFIG = {
     mobileBreakpoint: 500,
-
     mobileHeaderHeight: 49,
     desktopHeaderHeight: 67,
-
-    // Reveal elements as they enter the visible screen.
     revealTopOffset: 30,
     revealBottomRatio: 0.95,
-
-    // Hide only after elements leave the viewport.
     hideTopOffset: 20,
     hideBottomOffset: 40
 };
@@ -139,8 +137,13 @@ function isInsideZone(rect, top, bottom) {
    UPDATE REVEALS
 ========================= */
 
-
 function updateReveals() {
+    if (!pageLoaded) {
+        ticking = false;
+        revealFrame = null;
+        return;
+    }
+
     const reveals = document.querySelectorAll(revealSelector);
 
     const viewportHeight = window.innerHeight;
@@ -160,33 +163,21 @@ function updateReveals() {
 
     const updates = [];
 
-    // Read layout first, without changing classes.
     reveals.forEach((element) => {
         const rect = element.getBoundingClientRect();
         const isHighlight = element.classList.contains("highlight");
 
-        if (!revealStates.has(element)) {
-            revealStates.set(
-                element,
-                element.classList.contains("show")
-            );
-        }
+        const isShown = element.classList.contains("show");
 
-        const isShown = revealStates.get(element);
+        revealStates.set(element, isShown);
+
         let shouldShow = isShown;
 
-        if (isHighlight) {
-            if (
-                !isShown &&
-                isInsideZone(rect, revealTop, revealBottom)
-            ) {
-                shouldShow = true;
-            }
-        } else if (!isShown) {
+        if (!isShown) {
             if (isInsideZone(rect, revealTop, revealBottom)) {
                 shouldShow = true;
             }
-        } else {
+        } else if (!isHighlight) {
             const hasLeftAbove = rect.bottom <= hideTop;
             const hasLeftBelow = rect.top >= hideBottom;
 
@@ -200,15 +191,14 @@ function updateReveals() {
         }
     });
 
-    // Apply class changes after all layout reads.
     updates.forEach(({ element, shouldShow }) => {
         element.classList.toggle("show", shouldShow);
         revealStates.set(element, shouldShow);
     });
 
     ticking = false;
+    revealFrame = null;
 }
-
 
 
 /* =========================
@@ -216,11 +206,11 @@ function updateReveals() {
 ========================= */
 
 function requestRevealUpdate() {
-    if (ticking) return;
+    if (!pageLoaded || ticking) return;
 
     ticking = true;
 
-    requestAnimationFrame(updateReveals);
+    revealFrame = requestAnimationFrame(updateReveals);
 }
 
 
@@ -229,11 +219,14 @@ function requestRevealUpdate() {
 ========================= */
 
 function forceRevealCheck() {
-    // Cancel any pending scheduled update.
-    if (ticking) {
-        ticking = false;
+    if (!pageLoaded) return;
+
+    if (revealFrame !== null) {
+        cancelAnimationFrame(revealFrame);
+        revealFrame = null;
     }
 
+    ticking = false;
     updateReveals();
 }
 
@@ -243,21 +236,41 @@ function forceRevealCheck() {
 ========================= */
 
 function refreshReveals() {
-    // Avoid stacking multiple navigation refresh loops.
+    if (!pageLoaded) return;
+
     if (revealNavigationFrame !== null) {
         cancelAnimationFrame(revealNavigationFrame);
+        revealNavigationFrame = null;
     }
 
-    // Check immediately.
     forceRevealCheck();
 
-    // Check again after the browser updates the scroll position.
     revealNavigationFrame = requestAnimationFrame(() => {
+        revealNavigationFrame = null;
         forceRevealCheck();
 
         revealNavigationFrame = requestAnimationFrame(() => {
-            forceRevealCheck();
             revealNavigationFrame = null;
+            forceRevealCheck();
+        });
+    });
+}
+
+
+/* =========================
+   INITIALIZE AFTER PAGE LOAD
+========================= */
+
+function initializeRevealAnimations() {
+    if (pageLoaded) return;
+
+    pageLoaded = true;
+
+    requestAnimationFrame(() => {
+        forceRevealCheck();
+
+        requestAnimationFrame(() => {
+            forceRevealCheck();
         });
     });
 }
@@ -267,22 +280,30 @@ function refreshReveals() {
    EVENT LISTENERS
 ========================= */
 
-// Normal scrolling.
 window.addEventListener("scroll", requestRevealUpdate, {
     passive: true
 });
 
-// Viewport resizing.
 window.addEventListener("resize", requestRevealUpdate, {
     passive: true
 });
 
-// Page loading and restoration.
-window.addEventListener("load", refreshReveals);
-window.addEventListener("pageshow", refreshReveals);
+window.addEventListener("load", initializeRevealAnimations, {
+    once: true
+});
 
+window.addEventListener("pageshow", () => {
+    initializeRevealAnimations();
 
-// Recheck after clicking section navigation links.
+    requestAnimationFrame(() => {
+        forceRevealCheck();
+
+        requestAnimationFrame(() => {
+            forceRevealCheck();
+        });
+    });
+});
+
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", refreshReveals);
 });
@@ -292,9 +313,9 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
    INITIAL CHECK
 ========================= */
 
-refreshReveals();
-
-
+if (document.readyState === "complete") {
+    initializeRevealAnimations();
+}
 
 
 
