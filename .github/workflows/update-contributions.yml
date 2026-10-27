@@ -34,6 +34,7 @@ jobs:
         env:
           GH_CONTRIBUTIONS_TOKEN: ${{ secrets.GH_CONTRIBUTIONS_TOKEN }}
 
+
       - name: Save updated JSON
         run: |
           git config user.name "github-actions[bot]"
@@ -48,5 +49,11 @@ jobs:
 
           git commit -m "Update GitHub contributions"
 
-          git pull --rebase origin main
-          git push origin main
+          git fetch origin main
+          git rebase origin/main
+
+          git log -1 --oneline
+          git status --short
+
+          git push origin HEAD:main
+
