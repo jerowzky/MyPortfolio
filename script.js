@@ -825,9 +825,6 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-
-
-
 let projectsSwiper = null;
 
 function updateProjects() {
@@ -1103,3 +1100,318 @@ function updateMarqueeDistances() {
 
 window.addEventListener("load", updateMarqueeDistances);
 window.addEventListener("resize", updateMarqueeDistances);
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const grid = document.getElementById("contribution-grid");
+  const monthLabels = document.getElementById("month-labels");
+  const totalElement = document.getElementById("contribution-total");
+  const periodElement = document.getElementById("contribution-period");
+  const statusElement = document.getElementById("contribution-status");
+  const tooltip = document.getElementById("contribution-tooltip");
+
+  if (!grid || !monthLabels || !totalElement) return;
+
+  const DAY_MS = 86400000;
+  const MIN_COLUMN_WIDTH = 12;
+
+  const formatDate = (date) =>
+    date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      timeZone: "UTC"
+    });
+
+  const parseDate = (value) => {
+    if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+      throw new Error(`Invalid date format: ${value}`);
+    }
+
+    const [year, month, day] = value.split("-").map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day));
+
+    if (
+      date.getUTCFullYear() !== year ||
+      date.getUTCMonth() !== month - 1 ||
+      date.getUTCDate() !== day
+    ) {
+      throw new Error(`Invalid calendar date: ${value}`);
+    }
+
+    return date;
+  };
+
+  const toDateString = (date) => date.toISOString().slice(0, 10);
+
+  const showTooltip = (cell, event) => {
+    if (!tooltip || !cell.dataset.tooltip) return;
+
+    tooltip.textContent = cell.dataset.tooltip;
+    tooltip.classList.add("visible");
+
+    const rect = cell.getBoundingClientRect();
+    const x = event?.clientX ?? rect.left + rect.width / 2;
+    const y = event?.clientY ?? rect.top;
+
+    const tooltipWidth = tooltip.offsetWidth;
+    const tooltipHeight = tooltip.offsetHeight;
+
+    tooltip.style.left = `${Math.max(
+      8,
+      Math.min(x + 12, window.innerWidth - tooltipWidth - 8)
+    )}px`;
+
+    tooltip.style.top = `${Math.max(
+      8,
+      y - tooltipHeight - 10
+    )}px`;
+  };
+
+  const hideTooltip = () => {
+    tooltip?.classList.remove("visible");
+  };
+
+  try {
+    const response = await fetch("./contributions.json", {
+      cache: "no-store"
+    });
+
+    if (!response.ok) {
+      throw new Error(
+        `Could not load contributions.json (${response.status})`
+      );
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data.contributions)) {
+      throw new Error("The contributions array is missing.");
+    }
+
+    if (!data.from || !data.to) {
+      throw new Error("The contribution date range is missing.");
+    }
+
+    const firstDate = parseDate(data.from);
+    const lastDate = parseDate(data.to);
+
+    if (firstDate > lastDate) {
+      throw new Error("The contribution date range is invalid.");
+    }
+
+    const dailyData = new Map();
+
+    for (const day of data.contributions) {
+      if (
+        !day ||
+        typeof day.date !== "string" ||
+        !Number.isFinite(Number(day.count))
+      ) {
+        continue;
+      }
+
+      dailyData.set(day.date, day);
+    }
+
+    // Extend the calendar to complete Sunday-to-Saturday weeks.
+    const calendarStart = new Date(firstDate);
+    calendarStart.setUTCDate(
+      calendarStart.getUTCDate() - calendarStart.getUTCDay()
+    );
+
+    const calendarEnd = new Date(lastDate);
+    calendarEnd.setUTCDate(
+      calendarEnd.getUTCDate() + (6 - calendarEnd.getUTCDay())
+    );
+
+    const dayCount =
+      Math.round((calendarEnd - calendarStart) / DAY_MS) + 1;
+
+    const weekCount = dayCount / 7;
+
+    if (!Number.isInteger(weekCount) || weekCount <= 0) {
+      throw new Error("Could not calculate the contribution calendar.");
+    }
+
+    grid.replaceChildren();
+    monthLabels.replaceChildren();
+
+    // Use the same column template for both grids.
+    const columnTemplate =
+      `repeat(${weekCount}, minmax(${MIN_COLUMN_WIDTH}px, 1fr))`;
+
+    grid.style.display = "grid";
+    grid.style.gridTemplateColumns = columnTemplate;
+    grid.style.gridTemplateRows = "repeat(7, auto)";
+    grid.style.gridAutoFlow = "row";
+    grid.style.width = "100%";
+    grid.style.boxSizing = "border-box";
+
+    monthLabels.style.display = "grid";
+    monthLabels.style.gridTemplateColumns = columnTemplate;
+    monthLabels.style.gridAutoFlow = "row";
+    monthLabels.style.width = "100%";
+    monthLabels.style.boxSizing = "border-box";
+
+    // Match the horizontal gap and minimum width.
+    const gridStyles = getComputedStyle(grid);
+    const columnGap = parseFloat(gridStyles.columnGap) || 0;
+
+    const minimumWidth =
+      weekCount * MIN_COLUMN_WIDTH +
+      (weekCount - 1) * columnGap;
+
+    grid.style.minWidth = `${minimumWidth}px`;
+    monthLabels.style.minWidth = `${minimumWidth}px`;
+    monthLabels.style.columnGap = gridStyles.columnGap;
+
+    totalElement.textContent =
+      `${Number(data.total ?? 0).toLocaleString()} contributions`;
+
+    if (periodElement) {
+      periodElement.textContent =
+        `from ${formatDate(firstDate)} to ${formatDate(lastDate)}`;
+    }
+
+    // Render each week as one column.
+    for (let week = 0; week < weekCount; week++) {
+      const weekStart = new Date(calendarStart);
+      weekStart.setUTCDate(calendarStart.getUTCDate() + week * 7);
+
+      const weekDates = [];
+
+      for (let dayOffset = 0; dayOffset < 7; dayOffset++) {
+        const date = new Date(weekStart);
+        date.setUTCDate(weekStart.getUTCDate() + dayOffset);
+        weekDates.push(date);
+
+        const dateString = toDateString(date);
+        const day = dailyData.get(dateString);
+
+        const cell = document.createElement("button");
+        cell.type = "button";
+        cell.className = "contribution-day";
+        cell.dataset.date = dateString;
+        cell.style.gridColumn = String(week + 1);
+        cell.style.gridRow = String(dayOffset + 1);
+
+        if (date < firstDate || date > lastDate) {
+          cell.classList.add("empty-day");
+          cell.disabled = true;
+          cell.setAttribute("aria-hidden", "true");
+        } else {
+          const count = Number(day?.count ?? 0);
+          const rawLevel = Number(day?.level ?? 0);
+          const level = Math.max(0, Math.min(4, rawLevel));
+
+          cell.classList.add(`level-${level}`);
+
+          cell.dataset.tooltip =
+            `${count} contribution${count === 1 ? "" : "s"} on ${formatDate(date)}`;
+
+          cell.setAttribute("aria-label", cell.dataset.tooltip);
+
+          if (day?.color) {
+            cell.style.backgroundColor = day.color;
+          }
+
+          if (tooltip) {
+            cell.addEventListener("mouseenter", (event) => {
+              showTooltip(cell, event);
+            });
+
+            cell.addEventListener("mousemove", (event) => {
+              showTooltip(cell, event);
+            });
+
+            cell.addEventListener("mouseleave", hideTooltip);
+
+            cell.addEventListener("focus", () => {
+              showTooltip(cell);
+            });
+
+            cell.addEventListener("blur", hideTooltip);
+            
+            cell.addEventListener("click", (event) => {
+            event.stopPropagation();
+
+            if (
+                tooltip.classList.contains("visible") &&
+                tooltip.dataset.activeDate === cell.dataset.date
+            ) {
+                hideTooltip();
+                tooltip.dataset.activeDate = "";
+            } else {
+                tooltip.dataset.activeDate = cell.dataset.date;
+                showTooltip(cell);
+            }
+            });
+          }
+        }
+
+        grid.appendChild(cell);
+      }
+
+      // Find the first day of each month in this week.
+      const monthStarts = weekDates.filter(
+        (date) =>
+          date.getUTCDate() === 1 &&
+          date >= firstDate &&
+          date <= lastDate
+      );
+
+      // Label the first visible week when the range starts mid-month.
+      if (week === 0 && monthStarts.length === 0) {
+        monthStarts.push(firstDate);
+      }
+
+      monthStarts.forEach((date, index) => {
+        const label = document.createElement("span");
+
+        label.className = "month-label";
+        label.textContent = date.toLocaleDateString("en-US", {
+          month: "short",
+          timeZone: "UTC"
+        });
+
+        label.style.gridColumn = String(week + 1);
+        label.style.gridRow = "1";
+        label.style.justifySelf = "start";
+        label.style.whiteSpace = "nowrap";
+        label.style.position = "relative";
+
+        // Avoid two labels starting at the same position in one week.
+        if (index > 0) {
+          label.style.marginLeft = "12px";
+        }
+
+        monthLabels.appendChild(label);
+      });
+    }
+
+    if (statusElement) {
+      statusElement.textContent = "Daily contribution activity";
+    }
+  } catch (error) {
+    console.error("Contribution graph error:", error);
+
+    totalElement.textContent = "Unable to load";
+
+    if (periodElement) {
+      periodElement.textContent = "";
+    }
+
+    if (statusElement) {
+      statusElement.textContent =
+        "Could not load contributions. Check contributions.json and the browser console.";
+    }
+  }
+});
+
+
+

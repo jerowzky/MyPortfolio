@@ -24,6 +24,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
         <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
         <!-- Favicon -->
+        <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css"/>
         <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/logo.webp">
         <!-- Preload Swiper CSS -->
         <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -1236,7 +1237,70 @@
                     </div>
                 </div>
             </section>
+            <section class="contribution-section" aria-labelledby="contribution-title">
+            <div class="contribution-card">
+                <div class="contribution-header">
+                <div>
+                    <p class="contribution-eyebrow">OPEN SOURCE ACTIVITY</p>
+                    <h2 id="contribution-title">GitHub Contributions</h2>
+                    <p class="contribution-summary">
+                    <strong id="contribution-total">Loading...</strong>
+                    <span id="contribution-period"></span>
+                    </p>
+                </div>
 
+                <a
+                    class="github-profile-link"
+                    href="https://github.com/jerowzky"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View GitHub <span aria-hidden="true">↗</span>
+                </a>
+                </div>
+
+                <div class="contribution-scroll">
+                <div class="contribution-calendar">
+                    <div class="month-labels" id="month-labels" aria-hidden="true"></div>
+
+                    <div class="calendar-body">
+                    <div class="weekday-labels" aria-hidden="true">
+                        <span></span>
+                        <span>Mon</span>
+                        <span></span>
+                        <span>Wed</span>
+                        <span></span>
+                        <span>Fri</span>
+                        <span></span>
+                    </div>
+
+                    <div
+                        class="contribution-grid"
+                        id="contribution-grid"
+                        role="group"
+                        aria-label="Daily GitHub contributions"
+                    ></div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="contribution-footer">
+                <span id="contribution-status" role="status">Loading contributions...</span>
+
+                <div class="contribution-legend" aria-label="Contribution activity scale">
+                    <span>Less</span>
+                    <span class="legend-cell level-0"></span>
+                    <span class="legend-cell level-1"></span>
+                    <span class="legend-cell level-2"></span>
+                    <span class="legend-cell level-3"></span>
+                    <span class="legend-cell level-4"></span>
+                    <span>More</span>
+                </div>
+                </div>
+            </div>
+
+            <div class="contribution-tooltip" id="contribution-tooltip" role="status"></div>
+            </section>
 
         </main>
         <div class="video-modal" id="videoModal">
@@ -1416,6 +1480,7 @@
             </div>
         </footer>
     <script src="https://cdn.jsdelivr.net/npm/swiper@14.3.0/swiper-bundle.min.js" defer></script>
+    <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js" defer></script>
     <script src="script.js" defer></script>
 
     </body> 
