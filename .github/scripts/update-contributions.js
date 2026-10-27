@@ -9,10 +9,24 @@ if (!token) {
 }
 
 async function main() {
+  const today = new Date();
+
+  const to = new Date(Date.UTC(
+    today.getUTCFullYear(),
+    today.getUTCMonth(),
+    today.getUTCDate()
+  ));
+
+  const from = new Date(to);
+  from.setUTCDate(from.getUTCDate() - 364);
+
+  const toDate = to.toISOString().slice(0, 10);
+  const fromDate = from.toISOString().slice(0, 10);
+
   const query = `
-    query($login: String!) {
+    query($login: String!, $from: DateTime!, $to: DateTime!) {
       user(login: $login) {
-        contributionsCollection {
+        contributionsCollection(from: $from, to: $to) {
           contributionCalendar {
             totalContributions
             colors
@@ -38,7 +52,11 @@ async function main() {
     },
     body: JSON.stringify({
       query,
-      variables: { login: username }
+      variables: {
+        login: username,
+        from: `${fromDate}T00:00:00Z`,
+        to: `${toDate}T23:59:59Z`
+      }
     })
   });
 
@@ -74,6 +92,8 @@ async function main() {
     username,
     total: calendar.totalContributions,
     colors: calendar.colors,
+    from: contributions[0]?.date ?? fromDate,
+    to: contributions[contributions.length - 1]?.date ?? toDate,
     contributions
   };
 
@@ -83,7 +103,7 @@ async function main() {
   );
 
   console.log(
-    `Updated ${contributions.length} days; total: ${output.total}`
+    `Updated ${contributions.length} days (${output.from} to ${output.to}); total: ${output.total}`
   );
 }
 
