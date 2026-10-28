@@ -28,26 +28,14 @@
     --close-button-size: 45px; 
     --gallery-modal-padding: 25px;
     --gallery-counter-font-size: 14px;
+    --section-x-margin: 84px;
+    --section-y-margin: 75px;
+}
 
-    --bg: #0d1117;
-    --text: #c9d1d9;
-    --muted: #8b949e;
-
-    /* Level colors: 0 = none ... 4 = most */
-    --level-0: #161b22;
-    --level-1: #0e4429;
-    --level-2: #006d32;
-    --level-3: #26a641;
-    --level-4: #39d353;
-
-    --cell-size: 12px;
-    --cell-gap: 3px;
-    --cell-radius: 2px;
-
-    --tooltip-bg: #1f2937;
-    --tooltip-text: #ffffff;
-    --tooltip-radius: 6px;
-    --font: -apple-system, "Segoe UI", Roboto, sans-serif;
+li, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 html {
@@ -73,10 +61,10 @@ background:
     position: relative;
 }
 
-html.nav-open,
-body.nav-open, body.no-scroll {
+html.nav-scroll-locked,
+body.nav-scroll-locked {
     overflow: hidden;
-    height: 100%;
+    overscroll-behavior: none;
 }
 
 html:has(#galleryModal.active), html:has(#pdfModal.active), html:has(#videoModal.show) {
@@ -134,7 +122,7 @@ header::before {
     pointer-events: none;
 }
 
-header nav {
+header nav ul {
     display: flex;
     gap: 5px;
     align-items: center;
@@ -188,8 +176,7 @@ header nav a {
 
 }
 
-header nav a.active,
-.mobile-dropdown .mobile-nav-link.active {
+header nav a.active{
     opacity: 1;
 background: linear-gradient(
     135deg,
@@ -208,12 +195,15 @@ backdrop-filter: blur(12px);
     font-weight: 600;
 }
 
-.mobile-dropdown .mobile-nav-link.active {
-        color: #06d395;
-    background: linear-gradient(135deg, #03a2723f, #03a2721e);
-    box-shadow:
-        inset 0 2px 2px #ffffff46,
-        inset 0 0 0 2px #03a27248;
+.mobile-dropdown li:has(.mobile-nav-link.active) {
+  background: linear-gradient(135deg, rgba(3, 162, 114, 0.247), rgba(3, 162, 114, 0.118));
+  box-shadow: rgba(255, 255, 255, 0.275) 0px 2px 2px inset, rgba(3, 162, 114, 0.282) 0px 0px 0px 2px inset;
+  font-weight: 600;
+  opacity: 1;
+}
+
+.mobile-nav-link.active {
+  color: #06d395;
 }
 header nav a.active {
     border-radius: 50px;
@@ -329,8 +319,8 @@ header nav a.active {
     position: absolute;
     z-index: 2;
     top: 50px;
-    left: 84px;
-    right: 84px;
+    left: var(--section-x-margin);
+    right: var(--section-x-margin);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -771,7 +761,7 @@ display: none;
 #projects {
     position: relative;
     isolation: isolate;
-    padding-bottom: 75px;
+    padding-bottom: var(--section-y-margin);
     background: transparent;
 }
 
@@ -884,12 +874,12 @@ background: radial-gradient(
     margin: -15px 0 0 0;
 }
 .about {
-    margin: 0 84px;
+    margin: 0 var(--section-x-margin);
 
 }
 
 .experiences {
-   margin: 0 84px 0 84px;
+   margin: 0 var(--section-x-margin) 0 var(--section-x-margin);
    min-height: 200px;
 }
 .about {
@@ -1304,7 +1294,7 @@ border-radius: 20px 20px 5px 20px;
     width: 80%;
 }
 
-.lower-text span {
+.lower-text li {
     font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
@@ -1333,7 +1323,6 @@ box-shadow:
     flex-direction: column !important;
     gap: 10px;
     height: auto !important;
-    border: 1px solid rgb(40, 40, 40);
     position: relative;
     isolation: isolate;
     overflow: hidden;
@@ -1648,16 +1637,15 @@ background: linear-gradient(
     height: auto;
 }
 #projects {
-
     position: relative;
     z-index: 11;
-    padding-bottom: 75px;
+    padding-bottom: var(--section-y-margin);
 }
 
 .projects-wrapper {
     columns: 3;
     column-gap: 30px;
-    margin: 0 84px;
+    margin: 0 var(--section-x-margin);
 }
 
 .project-card-inner {
@@ -1816,7 +1804,7 @@ background: linear-gradient(
     flex-wrap: wrap;
 }
 
-.tools-stack span {  
+.tools-stack li {  
     font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
@@ -2029,7 +2017,7 @@ box-shadow:
 
     width: 100%;
     min-height: 560px;
-    padding: 84px 75px;
+    padding: var(--section-y-margin) var(--section-x-margin);
     box-sizing: border-box;
     overflow: clip;
 
@@ -2249,7 +2237,7 @@ background: radial-gradient(
     flex-wrap: wrap;
     gap: 5px;
 }
-.tools-list span {
+.tools-list li {
      font-family: "Unbounded", sans-serif;
     font-size: 0.8rem;
     padding: 5px 10px;
@@ -2282,7 +2270,7 @@ footer {
     isolation: isolate;
     overflow: hidden;
     --footer-padding-y: 30px;
-    --footer-padding-x: 84px;
+    --footer-padding-x: var(--section-x-margin);
 
     display: flex;
     flex-direction: column;
@@ -2773,6 +2761,10 @@ transform: scale(1);
     background: #ffffff40;
 }
 
+#image-gallery {
+    margin: 0 0 var(--section-y-margin) 0;
+}
+
 .diagonal-marquee {
     position: relative;
     width: 100%;
@@ -2885,7 +2877,7 @@ transform: scale(1);
   --contribution-card: #171d19;
   --contribution-border: #28332c;
   --contribution-text: #f0f5f1;
-  --contribution-muted: #8b9990;
+  --contribution-muted: rgb(184, 192, 188);
   --contribution-gap: 4px;
 
   width: 100%;
@@ -2904,17 +2896,41 @@ transform: scale(1);
 .contribution-card {
   position: relative;
   min-width: 0;
-  padding: 26px;
-  background:
-    radial-gradient(
-      ellipse at top right,
-      rgba(3, 162, 113, 0.09),
-      transparent 45%
-    ),
-    var(--contribution-card);
-  border: 1px solid var(--contribution-border);
+  margin: 0 var(--section-x-margin) var(--section-y-margin);
+  padding: 25px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(
+        135deg,
+        #ffffff12,
+        #ffffff04
+  );
   border-radius: 16px;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.16);
+
+    box-shadow:
+        inset 0 2px 2px #ffffff30,
+        inset 0 0 0 2px #ffffff15;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; 
+}
+
+.contribution-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+background: radial-gradient(
+    circle at 0% 0%,
+    #035c43 0%,
+    rgb(24, 24, 24) 30%,
+    rgb(24, 24, 24) 85%,
+    rgb(40, 40, 40) 100%
+);
+    filter: blur(25px);
+    pointer-events: none;
 }
 
 .contribution-header {
@@ -2960,25 +2976,22 @@ transform: scale(1);
 .github-profile-link {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  flex-shrink: 0;
-  padding: 9px 12px;
+  gap: 5px;
+  flex-shrink: 0;;
   border: 1px solid #344239;
   border-radius: 8px;
-  color: #dce9e0;
   font-size: 12px;
   font-weight: 600;
   text-decoration: none;
-  transition:
-    border-color 0.2s ease,
-    color 0.2s ease,
-    background 0.2s ease;
-}
-
-.github-profile-link:hover {
-  color: #6de5b5;
-  border-color: var(--contribution-green);
-  background: rgba(3, 162, 113, 0.08);
+  margin: 0;
+  color: #06d395;
+  font-family: "Unbounded", sans-serif;
+  padding: 7px 12px;
+  background: linear-gradient(135deg, #03a27130, #03a2710a);
+  box-shadow:
+    inset 0 1px 1px #ffffff30,
+    inset 0 0 0 1px #03a27135;
+  width: fit-content;
 }
 
 .contribution-scroll {
@@ -3032,6 +3045,7 @@ transform: scale(1);
   font-size: 9px;
   line-height: 1;
   text-align: right;
+  font-family: "Unbounded";
 }
 
 .weekday-labels span {
@@ -3039,6 +3053,9 @@ transform: scale(1);
   align-items: center;
   justify-content: flex-end;
   min-height: 0;
+}
+#contribution-period, #contribution-total, #contribution-title {
+    font-family: "Unbounded";
 }
 
 .contribution-grid {
@@ -3076,8 +3093,6 @@ transform: scale(1);
   z-index: 2;
 }
 
-
-
 .contribution-day.empty-day {
   visibility: hidden;
   pointer-events: none;
@@ -3097,6 +3112,7 @@ transform: scale(1);
 #contribution-status {
   color: var(--contribution-muted);
   font-size: 11px;
+  font-family: "Unbounded";
 }
 
 .contribution-legend {
@@ -3105,6 +3121,7 @@ transform: scale(1);
   gap: 5px;
   color: var(--contribution-muted);
   font-size: 10px;
+  font-family: "Unbounded";
 }
 
 .legend-cell {
@@ -3115,37 +3132,50 @@ transform: scale(1);
   border-radius: 3px;
 }
 
-.legend-cell.level-0 {
-  background: #222b25;
-}
-
-.legend-cell.level-1 {
+.legend-cell.level-4 {
   background: #0e513b;
 }
 
-.legend-cell.level-2 {
+.legend-cell.level-3 {
   background: #087b54;
 }
 
-.legend-cell.level-3 {
+.legend-cell.level-2 {
   background: #03a271;
 }
 
-.legend-cell.level-4 {
+.legend-cell.level-1 {
   background: #65e6ad;
+}
+
+.contribution-day.level-1 {
+  background: #65e6ad !important;
+}
+
+.contribution-day.level-2 {
+  background: #03a271 !important;
+}
+
+.contribution-day.level-3 {
+  background: #087b54 !important;
+}
+
+.contribution-day.level-4 {
+  background: #0e513b !important;
 }
 
 .contribution-tooltip {
   position: fixed;
   z-index: 9999;
   display: none;
-  max-width: 230px;
-  padding: 9px 12px;
+  width: fit-content;
+  padding: 7px 10px;
   border: 1px solid #35483b;
   border-radius: 8px;
   background: #0c110e;
   color: #f1f7f2;
-  font-size: 12px;
+  font-size: 10px;
+  font-family: "Unbounded";
   line-height: 1.6;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   pointer-events: none;
@@ -3155,73 +3185,13 @@ transform: scale(1);
   display: block;
 }
 
-@media (max-width: 600px) {
-  .contribution-card {
-    padding: 16px;
-  }
 
-  .contribution-header {
-    gap: 12px;
-  }
-
-  .contribution-header h2 {
-    font-size: 19px;
-  }
-
-  .github-profile-link {
-    padding: 8px;
-    font-size: 11px;
-  }
-}
-
-
-@media (max-width: 600px) {
-  .contribution-card {
-    padding: 18px 14px;
-    border-radius: 12px;
-  }
-
-  .contribution-header {
-    gap: 12px;
-    margin-bottom: 22px;
-  }
-
-  .github-profile-link {
-    padding: 8px 9px;
-    font-size: 10px;
-  }
-
-  .contribution-footer {
-    align-items: flex-start;
-  }
-
-  .contribution-legend {
-    gap: 4px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .contribution-day,
-  .github-profile-link {
-    transition: none;
-  }
-}
 @media (max-width: 1317px) {
-.hero {
-    left: 42px;
-    right: 42px;
-
+:root {
+    --section-x-margin: 42px;
 }
 
-.about, .experiences, .projects-wrapper {
-    margin: 0 42px;
-}
-
-footer {
-    --footer-padding-x: 42px;
-}
 .floating-gallery {
-    padding: 75px 42px;
     --orbit-size: 700px;
     --card-width: 150px;
 }
@@ -3474,7 +3444,7 @@ header .forjfolio {
         visibility 0.3s ease;
 }
 
-.mobile-selection {
+.mobile-dropdown nav ul {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -3487,27 +3457,34 @@ header .forjfolio {
     transform: translateY(0);
 }
 
-.mobile-dropdown .mobile-nav-link {
+.mobile-dropdown li {
+    opacity: 0.75;
+    border-radius: 10px;
+    text-align: center;
+    background: linear-gradient(
+        135deg,
+        #ffffff2c,
+        #ffffff0e
+    );
+
+    box-shadow:
+        inset 0 2px 2px #ffffff69,
+        inset 0 0 0 2px #ffffff3d,
+        0 2px 8px #00000012;
+
+    overflow: hidden;
+}
+
+.mobile-dropdown li a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 9px 18px;
+
     font-family: "Unbounded", sans-serif;
     color: white;
     text-decoration: none;
-    opacity: 0.75;
-    padding : 9px 18px;
-    border-radius: 10px;
-background: linear-gradient(
-    135deg,
-    #ffffff2c,
-    #ffffff0e
-);
-
-box-shadow:
-    inset 0 2px 2px #ffffff69,
-    inset 0 0 0 2px #ffffff3d,
-    0 2px 8px #00000012;
-
     font-size: 1.2rem;
-    text-align: center;
-
 }
 .upper-nav {
     display: flex;
@@ -3716,7 +3693,7 @@ background: radial-gradient(
 .lower-text {
     width: 100%;
 }
-.lower-text span, .honors span, .tools-stack span, .button-links a, .tools-list span {
+.lower-text li, .honors span, .tools-stack li, .button-links a, .tools-list li {
     font-size: 11px;
     padding: 4px 8px;
 }
@@ -3823,6 +3800,7 @@ width: 100%;
     --close-button-size: 35px; 
     --gallery-modal-padding: 20px;
     --gallery-counter-font-size: 13px;
+    --section-x-margin: 20px;
 
 }
 
@@ -3976,11 +3954,11 @@ width: 100%;
 }
 
 .hero {
-margin: 0px 20px 100px 20px;
-position: relative;
-left: 0;
-right: auto;
-justify-content: space-between;
+    margin: 0px var(--section-x-margin) 100px var(--section-x-margin);
+    position: relative;
+    left: 0;
+    right: auto;
+    justify-content: space-between;
 
 }
 .home {
@@ -3992,7 +3970,7 @@ justify-content: space-between;
 }
 
 .buttons-wrapper {
-display: none;
+    display: none;
 }
 
 .buttons-wrapper2 {
@@ -4121,7 +4099,6 @@ background: radial-gradient(
 }
 
 .floating-gallery {
-    padding: 75px 20px;
     --orbit-size: 400px;
     --card-width: 100px;
 }
@@ -4145,7 +4122,7 @@ background: radial-gradient(
 }
 
 #about .section-title {
-    padding: 75px 0 50px;
+    padding: var(--section-y-margin) 0 50px;
 }
 
 .headline {
@@ -4161,14 +4138,8 @@ margin: -25px 0 0 0;
 padding: 0.3rem 0.8rem;
 }
 
-
 .about {
-    margin: 0 20px;
     padding: 0;
-}
-
-footer {
-    --footer-padding-x: 20px;
 }
 
 .lower-footer .explore {
@@ -4176,7 +4147,7 @@ footer {
 }
 
 .experiences {
-   margin: 0 20px 0 20px;
+   margin: 0 var(--section-x-margin) 0 var(--section-x-margin);
 }
 
 .about-content {
@@ -4281,7 +4252,7 @@ header {
 font-size: 1.4rem;
 }
 
-.mobile-selection {
+.mobile-dropdown nav ul {
     gap: 10px;
 }
 
@@ -4416,6 +4387,9 @@ font-size: 1.4rem;
 }
 
 @media (max-width: 375px) {
+:root {
+    --section-y-margin: 50px;
+}
 .title, .floating-gallery__content h2 {
     font-size: 1.8rem;
     padding: 0.5rem 1rem;
@@ -4471,15 +4445,11 @@ font-size: 1.4rem;
 }
 
 .hero {
-    margin: 0px 20px 75px 20px;
+    margin: 0px var(--section-x-margin) var(--section-y-margin) var(--section-x-margin);
 }
 
 #about .section-title, .section-title {
-    padding: 50px 0;
-}
-
-#about, #skills, #journey, #projects {
-    padding-bottom: 50px;
+    padding: var(--section-y-margin) 0;
 }
 
 .long-desc {

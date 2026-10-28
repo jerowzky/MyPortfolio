@@ -38,13 +38,15 @@
                 <img src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/logo.webp" fetchpriority="high" loading="eager" decoding="async" alt="Forjfolio" width="25" height="25">
                 <h1 class="sitename">ForJ<span class="desktop-second-text">folio.</span></h1>
             </a>
-            <nav>
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#journey">Journey</a>
-                <a href="#projects">Projects</a>
-                <a href="#tools">Tools</a>
-                <a href="#contact" class="contact-btn">Let's Connect</a>
+            <nav aria-label="Main navigation">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#journey">Journey</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#contact" class="contact-btn">Let's Connect</a></li>
+                </ul>
             </nav>
 
             <div class = "mobile-nav">
@@ -73,14 +75,16 @@
                         </svg>
                     </a>
                 </div>
-                <div class="mobile-selection">
-                    <a class="mobile-nav-link" href="#about">About</a>
-                    <a class="mobile-nav-link" href="#skills">Skills</a>
-                    <a class="mobile-nav-link" href="#journey">Journey</a>
-                    <a class="mobile-nav-link" href="#projects">Projects</a>
-                    <a class="mobile-nav-link" href="#tools">Tools</a>
-                    <a class="mobile-nav-link" href="#contact">Contact</a>
-                </div>
+                <nav aria-label="Mobile navigation">
+                    <ul class="mobile-selection">
+                        <li><a class="mobile-nav-link" href="#about">About</a></li>
+                        <li><a class="mobile-nav-link" href="#skills">Skills</a></li>
+                        <li><a class="mobile-nav-link" href="#journey">Journey</a></li>
+                        <li><a class="mobile-nav-link" href="#projects">Projects</a></li>
+                        <li><a class="mobile-nav-link" href="#tools">Tools</a></li>
+                        <li><a class="mobile-nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
                 <div class = "lower-nav">
                     <div class="left-nav-part">
                         <p>Connect with me</p>
@@ -382,14 +386,14 @@
                                 <h2>UI/UX Design</h2>
                             </div>
                             <p class ="expertise-description">I design clean and user-friendly interfaces with a focus on making websites and systems easy to understand and navigate. I work on the layout, user flow, and visual details to create a better experience for users.</p>
-                            <div class = "lower-text">
-                                <span>Wireframing</span>
-                                <span>Prototyping</span>
-                                <span>User flow planning</span>
-                                <span>Visual Design</span>
-                                <span>Figma</span>
-                                <span>Canva</span>                         
-                            </div>
+                            <ul class = "lower-text">
+                                <li>Wireframing</li>
+                                <li>Prototyping</li>
+                                <li>User flow planning</li>
+                                <li>Visual Design</li>
+                                <li>Figma</li>
+                                <li>Canva</li>
+                            </ul>
                             <img class="expertise-images" src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/ui-design.webp" loading="lazy" width="800" height="800" alt="UI-UX Design">
                         </div>
 
@@ -399,15 +403,15 @@
                                 <h2>Web Development</h2>
                             </div>
                             <p class ="expertise-description">I build responsive websites by turning designs and ideas into working web pages. I focus on creating layouts that work well across different screen sizes while keeping the interface clean and functional.</p>
-                            <div class = "lower-text">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>JavaScript</span>
-                                <span>Tailwind CSS</span>
-                                <span>PHP</span>
-                                <span>MySQL</span>
-                                <span>Responsive Layouts</span>                         
-                            </div>
+                            <ul class = "lower-text">
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>Tailwind CSS</li>
+                                <li>PHP</li>
+                                <li>MySQL</li>
+                                <li>Responsive Layouts</li>
+                            </ul>
                             <img class="expertise-images" src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/web-dev.webp" loading="lazy" width="800" height="800" alt="Web Development">
                         </div>
 
@@ -417,13 +421,13 @@
                                 <h2>QA Testing</h2>
                             </div>                            
                             <p class ="expertise-description">I test websites and systems to make sure their features work as expected and the interface feels consistent. I look for bugs, errors, and other issues that could affect the user's experience.</p>
-                            <div class = "lower-text">
-                                <span>Functional Testing</span>
-                                <span>UI Testing</span>
-                                <span>Bug Identification</span>
-                                <span>Debugging</span>
-                                <span>Test Documentation</span>                           
-                            </div>
+                            <ul class = "lower-text">
+                                <li>Functional Testing</li>
+                                <li>UI Testing</li>
+                                <li>Bug Identification</li>
+                                <li>Debugging</li>
+                                <li>Test Documentation</li>
+                            </ul>
                             <img class="expertise-images" src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/qa-testing.webp" loading="lazy" width="800" height="800" alt="QA Testing">
                         </div>
 
@@ -433,13 +437,13 @@
                                 <h2>Business Analysis</h2>
                             </div>
                             <p class ="expertise-description">I help break down project requirements and understand what users and stakeholders need from a system. I organize these requirements into clear workflows and documentation that can guide the development process.</p>
-                            <div class = "lower-text">
-                                <span>Requirements Gathering</span>
-                                <span>Process Analysis</span>
-                                <span>Documentation</span>
-                                <span>User Requirements</span>
-                                <span>System Workflows</span>                           
-                            </div>
+                            <ul class = "lower-text">
+                                <li>Requirements Gathering</li>
+                                <li>Process Analysis</li>
+                                <li>Documentation</li>
+                                <li>User Requirements</li>
+                                <li>System Workflows</li>
+                            </ul>
                             <img class="expertise-images" src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/business-analysis.webp" loading="lazy" width="800" height="800" alt="Business Analysis">
                         </div>
 
@@ -449,13 +453,13 @@
                                 <h2>Project Management</h2>
                             </div>
                             <p class ="expertise-description">I help organize project tasks, requirements, and team activities from planning to completion. I keep track of progress and documentation while making sure the team stays aligned with the project's goals.</p>
-                            <div class = "lower-text">
-                                <span>Task Planning</span>
-                                <span>Team Coordination</span>
-                                <span>Documentation</span>
-                                <span>Project Tracking</span>
-                                <span>Workflow Organization</span>                         
-                            </div>
+                            <ul class = "lower-text">
+                                <li>Task Planning</li>
+                                <li>Team Coordination</li>
+                                <li>Documentation</li>
+                                <li>Project Tracking</li>
+                                <li>Workflow Organization</li>
+                            </ul>
                             <img class="expertise-images" src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/project-management.webp" loading="lazy" width="800" height="800" alt="Project Management" >
                         </div>
 
@@ -727,7 +731,7 @@
 
                 <div class="projects" >
                     <div class = "projects-wrapper">
-                        <div class="project-card">
+                        <article class="project-card">
                             <div class="project-card-inner">
                                 <button
                                     class="gallery-trigger"
@@ -746,24 +750,24 @@
                             <p class="project-description">A next-generation web application designed to bridge the gap between homeless pets and loving families. By integrating Artificial Intelligence and QR technology, the platform transforms the adoption process from a manual, time-consuming task into a personalized, interactive experience. The system focuses on three core pillars: Intelligent Matching, Instant Assistance, and Seamless Identification.</p>
                             <div class="tech-stack">
                                 <h1> Built with </h1>
-                                <div class="tools-stack">
-                                    <span>PHP</span>
-                                    <span>HTML</span>
-                                    <span>Tailwind CSS</span>
-                                    <span>JavaScript</span>
-                                    <span>Python</span>
-                                    <span>MySQL</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>PHP</li>
+                                    <li>HTML</li>
+                                    <li>Tailwind CSS</li>
+                                    <li>JavaScript</li>
+                                    <li>Python</li>
+                                    <li>MySQL</li>
+                                </ul>
                             </div>
                             <div class="tech-stack">
                                 <h1> Tools </h1>
-                                <div class="tools-stack">
-                                    <span>Figma</span>
-                                    <span>Canva</span>
-                                    <span>GitHub</span>
-                                    <span>VSCode</span>
-                                    <span>Xampp</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>Figma</li>
+                                    <li>Canva</li>
+                                    <li>GitHub</li>
+                                    <li>VSCode</li>
+                                    <li>Xampp</li>
+                                </ul>
                             </div>
                             <div class="button-links">
                                 <a href="#" class="demo-btn" data-video="videos/animal-system.mp4" data-title="San Pedro Animal Shelter Management System" data-label="Demo Video">
@@ -774,8 +778,8 @@
                                 </a>
                             </div>
                             </div>
-                        </div>
-                        <div class="project-card">
+                        </article>
+                        <article class="project-card">
                             <div class="project-card-inner">                                 
                                 <button
                                     class="gallery-trigger"
@@ -800,23 +804,23 @@
                             <p class="project-description">A web-based solution designed to streamline the document request and issuance processes at Barangay Sinalhan. The system leverages QR code technology to reduce inefficiencies from manual document handling, ensuring quicker transactions and minimizing human errors.</p>
                             <div class="tech-stack">
                                 <h1> Built with </h1>
-                                <div class="tools-stack">
-                                    <span>PHP</span>
-                                    <span>HTML</span>
-                                    <span>CSS</span>
-                                    <span>JavaScript</span>
-                                    <span>MySQL</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>PHP</li>
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>JavaScript</li>
+                                    <li>MySQL</li>
+                                </ul>
                             </div>
                             <div class="tech-stack">
                                 <h1> Tools </h1>
-                                <div class="tools-stack">
-                                    <span>Figma</span>
-                                    <span>Canva</span>
-                                    <span>GitHub</span>
-                                    <span>VSCode</span>
-                                    <span>Xampp</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>Figma</li>
+                                    <li>Canva</li>
+                                    <li>GitHub</li>
+                                    <li>VSCode</li>
+                                    <li>Xampp</li>
+                                </ul>
                             </div>
                             <div class="button-links">
                                 <a href="https://github.com/jerowzky/sinalhan-document-issuance-system" aria-label="Document Issuance System Repository" target="_blank" rel="noopener noreferrer">
@@ -827,8 +831,8 @@
                                 </a>
                             </div>
                             </div>
-                        </div>
-                        <div class="project-card"> 
+                        </article>
+                        <article class="project-card"> 
                             <div class="project-card-inner">
                                 <button
                                     class="gallery-trigger"
@@ -854,10 +858,10 @@
                             <p class="project-description">A web-based reservation system developed for Villa Gilda Resort to streamline the management of reservations and daily operations. It provides a calendar-based booking system, real-time availability, payment status tracking, reservation records, and an admin dashboard for monitoring bookings and earnings. The system also includes role-based access for administrators and staff.</p>
                             <div class="tech-stack">
                                 <h1> Tools </h1>
-                                <div class="tools-stack">
-                                    <span>Figma</span>
-                                    <span>Canva</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>Figma</li>
+                                    <li>Canva</li>
+                                </ul>
                             </div>
                             <div class="button-links">
                                 <a href="#" class="open-pdf" data-pdf="files/villa-gilda-manual.pdf" data-title="Villa Gilda Resort Reservation System" data-label="User Manual">
@@ -868,8 +872,8 @@
                                 </a>
                             </div>
                             </div>
-                        </div>
-                        <div class="project-card"> 
+                        </article>
+                        <article class="project-card"> 
                             <div class="project-card-inner">
                                 <button
                                     class="gallery-trigger"
@@ -895,13 +899,13 @@
                             <p class="project-description">A web-based Organization Document Management System (ODMS) created for the Polytechnic University of the Philippines – Santa Rosa Campus (PUPSRC) to cater to the increasing document submission, monitoring, and approval needs of student organizations and academic events. The system provides a centralized point that streamlines the processing of numerous document types through real-time tracking, version management, status monitoring, and formalized workflows for both students and admin users.</p>
                             <div class="tech-stack">
                                 <h1> Tools </h1>
-                                <div class="tools-stack">
-                                    <span>Draw.io</span>
-                                    <span>Figma</span>
-                                    <span>Microsoft Word</span>
-                                    <span>Jira</span>
-                                    <span>Confluence</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>Draw.io</li>
+                                    <li>Figma</li>
+                                    <li>Microsoft Word</li>
+                                    <li>Jira</li>
+                                    <li>Confluence</li>
+                                </ul>
                             </div>
                             <div class="button-links">
                                 <a href="#" class="open-pdf" data-pdf="files/FSD_ODMS_Dashboard-Settings_Module.pdf" data-title="E-skolarian: PUPSRC ODMS" data-label="Documentation">
@@ -912,8 +916,8 @@
                                 </a>
                             </div>
                             </div>
-                        </div>
-                        <div class="project-card"> 
+                        </article>
+                        <article class="project-card"> 
                             <div class="project-card-inner">
                             <img class="project-card-img" src="https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/images/pet-shop-img.webp" decoding="async" width="800" height="800" alt="Pet Shop App project preview">
                             <div class = "project-name">
@@ -923,24 +927,24 @@
                             <p class="project-description">A web-based application designed to help pet shop owners efficiently manage pet records, monitor their availability, and track stock levels. This app provides an easy-to-use interface to manage pet types, including their availability status (available or purchased), and a visual representation of stock levels.</p>
                             <div class="tech-stack">
                                 <h1> Built with </h1>
-                                <div class="tools-stack">
-                                    <span>R Shiny</span>
-                                    <span>HTML</span>
-                                    <span>CSS</span>
-                                    <span>SQLite</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>R Shiny</li>
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>SQLite</li>
+                                </ul>
                             </div>
                             <div class="tech-stack">
                                 <h1> Tools </h1>
-                                <div class="tools-stack">
-                                    <span>Figma</span>
-                                    <span>Canva</span>
-                                    <span>GitHub</span>
-                                    <span>VSCode</span>
-                                    <span>R Studio</span>
-                                    <span>Render</span>
-                                    <span>UptimeRobot</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>Figma</li>
+                                    <li>Canva</li>
+                                    <li>GitHub</li>
+                                    <li>VSCode</li>
+                                    <li>R Studio</li>
+                                    <li>Render</li>
+                                    <li>UptimeRobot</li>
+                                </ul>
                             </div>
                             <div class="button-links">
                                 <a href="https://github.com/jerowzky/PetShopApp" aria-label="Pet Shop App Repository" target="_blank" rel="noopener noreferrer">
@@ -951,8 +955,8 @@
                                 </a>
                             </div>
                             </div>
-                        </div>
-                        <div class="project-card">
+                        </article>
+                        <article class="project-card">
                             <div class="project-card-inner">
                                 <button
                                     class="gallery-trigger"
@@ -978,25 +982,25 @@
                             <p class="project-description">A machine learning and computer vision application that analyzes squat posture in real time. It uses MediaPipe Pose, OpenCV, and TensorFlow/Keras to detect body movements, classify squat form, provide corrective feedback, and track workout progress through a web-based interface.</p>
                             <div class="tech-stack">
                                 <h1> Built with </h1>
-                                <div class="tools-stack">
-                                    <span>Python</span>
-                                    <span>TensorFlow / Keras</span>
-                                    <span>MediaPipe Pose</span>
-                                    <span>OpenCV</span>
-                                    <span>Flask</span>
-                                    <span>Teachable Machine PoseNet</span>
-                                    <span>Pygame</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>Python</li>
+                                    <li>TensorFlow / Keras</li>
+                                    <li>MediaPipe Pose</li>
+                                    <li>OpenCV</li>
+                                    <li>Flask</li>
+                                    <li>Teachable Machine PoseNet</li>
+                                    <li>Pygame</li>
+                                </ul>
                             </div>
                             <div class="tech-stack">
                                 <h1> Tools </h1>
-                                <div class="tools-stack">
-                                    <span>Figma</span>
-                                    <span>Canva</span>
-                                    <span>Kaggle</span>
-                                    <span>GitHub</span>
-                                    <span>VSCode</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>Figma</li>
+                                    <li>Canva</li>
+                                    <li>Kaggle</li>
+                                    <li>GitHub</li>
+                                    <li>VSCode</li>
+                                </ul>
                             </div>
                             <div class="button-links">
                                 <a href="#" class="open-pdf" data-pdf="files/FitCheck_Documentation.pdf" data-title="FitCheck — AI Posture Checker" data-label="Documentation">
@@ -1007,8 +1011,8 @@
                                 </a>
                             </div>
                             </div>
-                        </div>
-                        <div class="project-card"> 
+                        </article>
+                        <article class="project-card"> 
                             <div class="project-card-inner">
                                 <button
                                     class="gallery-trigger"
@@ -1034,22 +1038,22 @@
                             <p class="project-description">A computerized solution designed to replace the manual, paper-based reservation processes currently used by JAC Liner Inc. This system enhances speed, accuracy, and overall customer service by providing a streamlined platform for managing bus ticket reservations, cancellations, and travel history.</p>
                             <div class="tech-stack">
                                 <h1> Built with </h1>
-                                <div class="tools-stack">
-                                    <span>Java</span>
-                                    <span>Java Swing</span>
-                                    <span>HTML</span>
-                                    <span>MySQL</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>Java</li>
+                                    <li>Java Swing</li>
+                                    <li>HTML</li>
+                                    <li>MySQL</li>
+                                </ul>
                             </div>
                             <div class="tech-stack">
                                 <h1> Tools </h1>
-                                <div class="tools-stack">
-                                    <span>Figma</span>
-                                    <span>Canva</span>
-                                    <span>GitHub</span>
-                                    <span>VSCode</span>
-                                    <span>Xampp</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>Figma</li>
+                                    <li>Canva</li>
+                                    <li>GitHub</li>
+                                    <li>VSCode</li>
+                                    <li>Xampp</li>
+                                </ul>
                             </div>
                             <div class="button-links">
                                 <a href="#" class="demo-btn" data-video="videos/bus-demo.mp4" data-title="JAC Liner Bus Reservation System" data-label="Demo Video">
@@ -1072,8 +1076,8 @@
                                 </a>
                             </div>
                             </div>
-                        </div>
-                        <div class="project-card"> 
+                        </article>
+                        <article class="project-card"> 
                             <div class="project-card-inner">
                                 <button
                                     class="gallery-trigger"
@@ -1099,12 +1103,12 @@
                             <p class="project-description">A web-based incident reporting system for subdivision communities. Residents can submit reports online, while administrators can review, verify, and manage submissions digitally. The system centralizes incident records and supports communication between residents and administrators for a more organized and efficient reporting process.</p>
                             <div class="tech-stack">
                                 <h1> Tools </h1>
-                                <div class="tools-stack">
-                                    <span>Jira</span>
-                                    <span>Confluence</span>
-                                    <span>Microsoft Word</span>
-                                    <span>Microsoft Excel</span>
-                                </div>
+                                <ul class="tools-stack">
+                                    <li>Jira</li>
+                                    <li>Confluence</li>
+                                    <li>Microsoft Word</li>
+                                    <li>Microsoft Excel</li>
+                                </ul>
                             </div>
                             <div class="button-links">
                                 <a href="#" class="open-pdf" data-pdf="files/irms-documentation.pdf" data-title="Nexus: Incident Report Management System" data-label="Documentation">
@@ -1115,10 +1119,67 @@
                                 </a>
                             </div>
                             </div>
-                        </div>
+                        </article>
                         </div>
                     <div class="proj-dots"></div>
                 </div>
+            </section>
+            <section class="contribution-section" aria-labelledby="contribution-title">
+            <div class="contribution-card">
+                <div class="contribution-header">
+                <div>
+                    <h2 id="contribution-title">GitHub <span class="second-text">Contributions</span></h2>
+                    <p class="contribution-summary">
+                    <strong id="contribution-total">Loading...</strong>
+                    <span id="contribution-period"></span>
+                    </p>
+                </div>
+
+                <a class="github-profile-link" href="https://github.com/jerowzky" target="_blank" rel="noopener noreferrer">
+                    View GitHub 
+                </a>
+                </div>
+
+                <div class="contribution-scroll">
+                <div class="contribution-calendar">
+                    <div class="month-labels" id="month-labels" aria-hidden="true"></div>
+
+                    <div class="calendar-body">
+                    <div class="weekday-labels" aria-hidden="true">
+                        <span></span>
+                        <span>Mon</span>
+                        <span></span>
+                        <span>Wed</span>
+                        <span></span>
+                        <span>Fri</span>
+                        <span></span>
+                    </div>
+
+                    <div
+                        class="contribution-grid"
+                        id="contribution-grid"
+                        role="group"
+                        aria-label="Daily GitHub contributions"
+                    ></div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="contribution-footer">
+                <span id="contribution-status" role="status">Loading contributions...</span>
+
+                <div class="contribution-legend" aria-label="Contribution activity scale">
+                    <span>Less</span>
+                    <span class="legend-cell level-1"></span>
+                    <span class="legend-cell level-2"></span>
+                    <span class="legend-cell level-3"></span>
+                    <span class="legend-cell level-4"></span>
+                    <span>More</span>
+                </div>
+                </div>
+            </div>
+
+            <div class="contribution-tooltip" id="contribution-tooltip" role="status"></div>
             </section>
 
             <section id="tools" class="floating-gallery">
@@ -1179,128 +1240,65 @@
                         <div class="category reveal-card">
                             <div class = "category-inner">
                                 <h1>Development</h1>
-                                <div class="tools-list">
-                                    <span>HTML</span>
-                                    <span>CSS</span>
-                                    <span>JavaScript</span>
-                                    <span>PHP</span>
-                                    <span>Tailwind CSS</span>
-                                    <span>Python</span>
-                                    <span>Java</span>
-                                    <span>MySQL</span>
-                                </div>
+                                <ul class="tools-list">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>JavaScript</li>
+                                    <li>PHP</li>
+                                    <li>Tailwind CSS</li>
+                                    <li>Python</li>
+                                    <li>Java</li>
+                                    <li>MySQL</li>
+                                </ul>
                             </div>
                         </div>
                         <div class="category reveal-card">
                             <div class = "category-inner">
                                 <h1>UI/UX Design</h1>
-                                <div class="tools-list">
-                                    <span>Figma</span>
-                                    <span>Canva</span>
-                                </div>
+                                <ul class="tools-list">
+                                    <li>Figma</li>
+                                    <li>Canva</li>
+                                </ul>
                             </div>
                         </div>
                         <div class="category reveal-card">
                             <div class = "category-inner">
                                 <h1>QA & Testing</h1>
-                                <div class="tools-list">
-                                    <span>Selenium</span>
-                                    <span>BrowserStack</span>
-                                    <span>PageSpeed Insights</span>
-                                </div>
+                                <ul class="tools-list">
+                                    <li>Selenium</li>
+                                    <li>BrowserStack</li>
+                                    <li>PageSpeed Insights</li>
+                                </ul>
                             </div>
                         </div>
                         <div class="category reveal-card">
                             <div class = "category-inner">
                                 <h1>Project Management & Productivity</h1>
-                                <div class="tools-list">
-                                    <span>Jira</span>
-                                    <span>Confluence</span>
-                                    <span>Draw.io</span>
-                                    <span>Microsoft Word & Excel</span>
-                                </div>
+                                <ul class="tools-list">
+                                    <li>Jira</li>
+                                    <li>Confluence</li>
+                                    <li>Draw.io</li>
+                                    <li>Microsoft Word & Excel</li>
+                                </ul>
                             </div>
                         </div>
                         <div class="category reveal-card">
                             <div class = "category-inner">
                                 <h1>Platforms & Analytics</h1>
-                                <div class="tools-list">
-                                    <span>GitHub</span>
-                                    <span>VSCode</span>
-                                    <span>WordPress</span>
-                                    <span>Render</span>
-                                    <span>Vercel</span>
-                                    <span>Power BI</span>
-                                </div>
+                                <ul class="tools-list">
+                                    <li>GitHub</li>
+                                    <li>VSCode</li>
+                                    <li>WordPress</li>
+                                    <li>Render</li>
+                                    <li>Vercel</li>
+                                    <li>Power BI</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <section class="contribution-section" aria-labelledby="contribution-title">
-            <div class="contribution-card">
-                <div class="contribution-header">
-                <div>
-                    <p class="contribution-eyebrow">OPEN SOURCE ACTIVITY</p>
-                    <h2 id="contribution-title">GitHub Contributions</h2>
-                    <p class="contribution-summary">
-                    <strong id="contribution-total">Loading...</strong>
-                    <span id="contribution-period"></span>
-                    </p>
-                </div>
 
-                <a
-                    class="github-profile-link"
-                    href="https://github.com/jerowzky"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View GitHub <span aria-hidden="true">↗</span>
-                </a>
-                </div>
-
-                <div class="contribution-scroll">
-                <div class="contribution-calendar">
-                    <div class="month-labels" id="month-labels" aria-hidden="true"></div>
-
-                    <div class="calendar-body">
-                    <div class="weekday-labels" aria-hidden="true">
-                        <span></span>
-                        <span>Mon</span>
-                        <span></span>
-                        <span>Wed</span>
-                        <span></span>
-                        <span>Fri</span>
-                        <span></span>
-                    </div>
-
-                    <div
-                        class="contribution-grid"
-                        id="contribution-grid"
-                        role="group"
-                        aria-label="Daily GitHub contributions"
-                    ></div>
-                    </div>
-                </div>
-                </div>
-
-                <div class="contribution-footer">
-                <span id="contribution-status" role="status">Loading contributions...</span>
-
-                <div class="contribution-legend" aria-label="Contribution activity scale">
-                    <span>Less</span>
-                    <span class="legend-cell level-0"></span>
-                    <span class="legend-cell level-1"></span>
-                    <span class="legend-cell level-2"></span>
-                    <span class="legend-cell level-3"></span>
-                    <span class="legend-cell level-4"></span>
-                    <span>More</span>
-                </div>
-                </div>
-            </div>
-
-            <div class="contribution-tooltip" id="contribution-tooltip" role="status"></div>
-            </section>
 
         </main>
         <div class="video-modal" id="videoModal">

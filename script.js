@@ -68,6 +68,7 @@ enablePointerHover();
     typeEffect();
 
 
+
 /* =========================
    REVEAL ANIMATION
 ========================= */
@@ -96,6 +97,7 @@ let ticking = false;
 let revealFrame = null;
 let revealNavigationFrame = null;
 let pageLoaded = false;
+let navRevealTitle = null;
 
 
 /* =========================
@@ -106,10 +108,7 @@ const REVEAL_CONFIG = {
     mobileBreakpoint: 500,
     mobileHeaderHeight: 49,
     desktopHeaderHeight: 67,
-    revealTopOffset: 30,
-    revealBottomRatio: 0.95,
-    hideTopOffset: 20,
-    hideBottomOffset: 40
+    visibilityThreshold: 0.25
 };
 
 
@@ -128,8 +127,21 @@ function getHeaderHeight() {
    CHECK ELEMENT VISIBILITY
 ========================= */
 
-function isInsideZone(rect, top, bottom) {
-    return rect.bottom > top && rect.top < bottom;
+function isElementVisible(rect, top, bottom) {
+    return rect.height > 0 &&
+        rect.bottom > top &&
+        rect.top < bottom;
+}
+
+
+/* =========================
+   CHECK ELEMENT VISIBILITY
+========================= */
+
+function isElementVisible(rect, top, bottom) {
+    return rect.height > 0 &&
+        rect.bottom > top &&
+        rect.top < bottom;
 }
 
 
@@ -145,45 +157,33 @@ function updateReveals() {
     }
 
     const reveals = document.querySelectorAll(revealSelector);
-
     const viewportHeight = window.innerHeight;
-    const headerHeight = getHeaderHeight();
-
-    const revealTop =
-        headerHeight + REVEAL_CONFIG.revealTopOffset;
-
-    const revealBottom =
-        viewportHeight * REVEAL_CONFIG.revealBottomRatio;
-
-    const hideTop =
-        headerHeight - REVEAL_CONFIG.hideTopOffset;
-
-    const hideBottom =
-        viewportHeight + REVEAL_CONFIG.hideBottomOffset;
-
+    const visibleTop = getHeaderHeight();
     const updates = [];
 
     reveals.forEach((element) => {
         const rect = element.getBoundingClientRect();
         const isHighlight = element.classList.contains("highlight");
-
+        const isNavTitle = element.matches(".title.reveal-title");
         const isShown = element.classList.contains("show");
 
-        revealStates.set(element, isShown);
+        const shouldBeVisible = isElementVisible(
+            rect,
+            visibleTop,
+            viewportHeight
+        );
 
         let shouldShow = isShown;
 
-        if (!isShown) {
-            if (isInsideZone(rect, revealTop, revealBottom)) {
-                shouldShow = true;
-            }
-        } else if (!isHighlight) {
-            const hasLeftAbove = rect.bottom <= hideTop;
-            const hasLeftBelow = rect.top >= hideBottom;
-
-            if (hasLeftAbove || hasLeftBelow) {
-                shouldShow = false;
-            }
+        if (!isShown && shouldBeVisible) {
+            shouldShow = true;
+        } else if (
+            isShown &&
+            !shouldBeVisible &&
+            !isHighlight &&
+            element !== navRevealTitle
+        ) {
+            shouldShow = false;
         }
 
         if (shouldShow !== isShown) {
@@ -193,14 +193,11 @@ function updateReveals() {
 
     updates.forEach(({ element, shouldShow }) => {
         element.classList.toggle("show", shouldShow);
-        revealStates.set(element, shouldShow);
     });
 
     ticking = false;
     revealFrame = null;
 }
-
-
 /* =========================
    REQUEST ANIMATION FRAME
 ========================= */
@@ -209,7 +206,6 @@ function requestRevealUpdate() {
     if (!pageLoaded || ticking) return;
 
     ticking = true;
-
     revealFrame = requestAnimationFrame(updateReveals);
 }
 
@@ -262,7 +258,10 @@ function refreshReveals() {
 ========================= */
 
 function initializeRevealAnimations() {
-    if (pageLoaded) return;
+    if (pageLoaded) {
+        refreshReveals();
+        return;
+    }
 
     pageLoaded = true;
 
@@ -292,17 +291,7 @@ window.addEventListener("load", initializeRevealAnimations, {
     once: true
 });
 
-window.addEventListener("pageshow", () => {
-    initializeRevealAnimations();
-
-    requestAnimationFrame(() => {
-        forceRevealCheck();
-
-        requestAnimationFrame(() => {
-            forceRevealCheck();
-        });
-    });
-});
+window.addEventListener("pageshow", initializeRevealAnimations);
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", refreshReveals);
@@ -317,8 +306,6 @@ if (document.readyState === "complete") {
     initializeRevealAnimations();
 }
 
-
-
 /* ================================
    NAVIGATION BAR
 ================================ */
@@ -326,19 +313,34 @@ if (document.readyState === "complete") {
 const sections = document.querySelectorAll("section, footer");
 
 const navLinks = document.querySelectorAll(
-    "header nav a, .mobile-dropdown .mobile-nav-link"
+    "header nav a, .mobile-dropdown nav a"
 );
 
 const menuToggle = document.getElementById("menuToggle");
 const mobileDropdown = document.getElementById("mobileDropdown");
+
 let isNavScrolling = false;
 let navScrollTimeout;
+let scrollPosition = 0;
+
+
+/* ================================
+   MENU STATE
+================================ */
+
+function isMobileMenuVisible() {
+    return Boolean(
+        mobileDropdown?.classList.contains("active")
+    );
+}
+
+
+/* ================================
+   ACTIVE NAVIGATION
+================================ */
 
 function updateActiveNav() {
-    if (!sections.length) return;
-
-    // Do not update navigation while the mobile menu is open or scrolling to a clicked section.
-    if (mobileDropdown?.classList.contains("active")) return;
+    if (!sections.length || isMobileMenuVisible()) return;
     if (isNavScrolling) return;
 
     const activationPoint = window.innerHeight * 0.4;
@@ -350,14 +352,11 @@ function updateActiveNav() {
     let currentSection = sections[0].id || "home";
 
     sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-
-        if (rect.top <= activationPoint) {
+        if (section.getBoundingClientRect().top <= activationPoint) {
             currentSection = section.id || currentSection;
         }
     });
 
-    // Activate Contact only when the page actually reaches the bottom.
     const footer = document.querySelector("footer#contact");
 
     if (pageBottom && footer) {
@@ -384,161 +383,265 @@ window.addEventListener("resize", updateActiveNav);
 
 
 /* ================================
-   MOBILE NAVIGATION
-================================ */
-
-let scrollPosition = 0;
-
-
-/* ================================
-   LOCK PAGE SCROLL
+   SCROLL LOCK
 ================================ */
 
 function lockPageScroll() {
+    if (document.body.classList.contains("nav-scroll-locked")) return;
+
     scrollPosition = window.scrollY;
 
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollPosition}px`;
-    document.body.style.left = "0";
-    document.body.style.right = "0";
-    document.body.style.width = "100%";
+    document.body.dataset.navScrollPosition = scrollPosition;
+    document.body.classList.add("nav-scroll-locked");
+}
+
+function unlockPageScroll() {
+    document.body.classList.remove("nav-scroll-locked");
+    delete document.body.dataset.navScrollPosition;
+
+    /* No scrollTo here. Closing the menu stays in place. */
 }
 
 
 /* ================================
-   UNLOCK PAGE SCROLL
+   MENU ACCESSIBILITY
 ================================ */
 
-function unlockPageScroll(restorePosition = true) {
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.left = "";
-    document.body.style.right = "";
-    document.body.style.width = "";
+function updateMenuAccessibility(isOpen) {
+    if (!menuToggle) return;
 
-    if (restorePosition) {
-        window.scrollTo(0, scrollPosition);
-    }
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+    );
 }
 
+
+/* ================================
+   OPEN MENU
+================================ */
+
+function openMobileMenu() {
+    if (!menuToggle || !mobileDropdown || isMobileMenuVisible()) return;
+
+    lockPageScroll();
+
+    mobileDropdown.classList.add("active");
+    menuToggle.classList.add("active");
+
+    updateMenuAccessibility(true);
+}
+
+
+/* ================================
+   CLOSE MENU
+================================ */
+
+function closeMobileMenu() {
+    if (!mobileDropdown) return;
+
+    mobileDropdown.classList.remove("active");
+    menuToggle?.classList.remove("active");
+
+    updateMenuAccessibility(false);
+    unlockPageScroll();
+}
+
+
+/* ================================
+   NAVIGATE TO SECTION
+================================ */
+
+function navigateToSection(href) {
+    if (!href || !href.startsWith("#") || href === "#") return;
+
+    const targetId = decodeURIComponent(href.slice(1));
+    const target = document.getElementById(targetId);
+
+    if (!target) {
+        console.warn("Navigation target not found:", href);
+        return;
+    }
+
+    clearTimeout(navScrollTimeout);
+
+    navLinks.forEach((link) => {
+        link.classList.toggle(
+            "active",
+            link.getAttribute("href") === href
+        );
+    });
+
+    isNavScrolling = true;
+
+    target.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    navScrollTimeout = setTimeout(() => {
+        isNavScrolling = false;
+        updateActiveNav();
+    }, 1200);
+}
+
+/* ================================
+   TRIGGER SECTION TITLE REVEAL
+================================ */
+
+function triggerSectionTitleReveal(href) {
+    if (!href || !href.startsWith("#") || href === "#") return;
+
+    const targetId = decodeURIComponent(href.slice(1));
+    const section = document.getElementById(targetId);
+
+    const title = section?.querySelector(
+        ".title.reveal-title, .floating-gallery__content h2.reveal-title"
+    );
+
+    if (!title) return;
+
+    title.classList.remove("show");
+    void title.offsetWidth;
+    title.classList.add("show");
+}
+/* ================================
+   MOBILE MENU TOGGLE
+================================ */
+
+if (menuToggle && mobileDropdown) {
+    menuToggle.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        if (isMobileMenuVisible()) {
+            closeMobileMenu();
+        } else {
+            openMobileMenu();
+        }
+    });
+
+
+    /* ================================
+       MOBILE NAV LINKS
+    ================================ */
+
+    mobileDropdown.querySelectorAll("a.mobile-nav-link").forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const href = link.getAttribute("href");
+
+            /*
+               Only section links trigger section navigation.
+               Other links keep their normal browser behavior.
+            */
+
+            if (!href || !href.startsWith("#") || href === "#") {
+                closeMobileMenu();
+                return;
+            }
+
+            const targetId = decodeURIComponent(href.slice(1));
+            const target = document.getElementById(targetId);
+
+            if (!target) {
+                console.warn("Navigation target not found:", href);
+                return;
+            }
+
+            event.preventDefault();
+
+            /*
+               Close and unlock first, then navigate.
+            */
+            closeMobileMenu();
+
+            requestAnimationFrame(() => {
+                navigateToSection(href);
+
+                window.addEventListener("scrollend", () => {
+                    isNavScrolling = false;
+                    updateActiveNav();
+                    triggerSectionTitleReveal(href);
+                }, { once: true });
+            });
+        });
+    });
+
+
+    /* ================================
+       CLOSE BUTTONS
+    ================================ */
+
+    mobileDropdown.querySelectorAll(".close-nav").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            closeMobileMenu();
+        });
+    });
+
+
+    /* ================================
+       ESCAPE KEY
+    ================================ */
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && isMobileMenuVisible()) {
+            closeMobileMenu();
+        }
+    });
+
+}
+
+
+/* ================================
+   DESKTOP NAVIGATION
+================================ */
+
+document.querySelectorAll("header nav a").forEach((link) => {
+    link.addEventListener("click", (event) => {
+        if (mobileDropdown?.contains(link)) return;
+
+        const href = link.getAttribute("href");
+
+        if (!href || !href.startsWith("#") || href === "#") return;
+
+        const target = document.getElementById(
+            decodeURIComponent(href.slice(1))
+        );
+
+        if (!target) return;
+
+        event.preventDefault();
+        navigateToSection(href);
+    });
+});
+
+
+/* ================================
+   RESPONSIVE BREAKPOINT
+================================ */
+
+const mobileBreakpoint = window.matchMedia("(max-width: 768px)");
+
+mobileBreakpoint.addEventListener("change", () => {
+    closeMobileMenu();
+});
 
 /* ================================
    REFRESH PAGE STATE
 ================================ */
 
 function refreshPageState() {
-    requestAnimationFrame(() => {
-        updateActiveNav();
+    updateActiveNav();
 
-        if (typeof refreshReveals === "function") {
-            refreshReveals();
-        } else if (typeof requestRevealUpdate === "function") {
-            requestRevealUpdate();
-        }
-    });
+    if (typeof refreshReveals === "function") {
+        refreshReveals();
+    }
+
+    if (typeof requestRevealUpdate === "function") {
+        requestRevealUpdate();
+    }
 }
-
-
-/* ================================
-   OPEN / CLOSE MENU
-================================ */
-
-if (menuToggle && mobileDropdown) {
-    menuToggle.addEventListener("click", () => {
-        const isOpening =
-            !mobileDropdown.classList.contains("active");
-
-        mobileDropdown.classList.toggle("active", isOpening);
-
-        if (isOpening) {
-            lockPageScroll();
-        } else {
-            unlockPageScroll();
-            refreshPageState();
-        }
-    });
-
-    /* Close menu when a navigation link is selected. */
-    const mobileLinks = mobileDropdown.querySelectorAll(
-        "a.mobile-nav-link"
-    );
-
-    mobileLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-            mobileDropdown.classList.remove("active");
-
-            unlockPageScroll(false);
-
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    refreshPageState();
-                });
-            });
-        });
-    });
-
-    /* Close menu using the close button without navigating. */
-
-const closeButtons = mobileDropdown.querySelectorAll("a.close-nav");
-
-closeButtons.forEach((button) => {
-    button.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        mobileDropdown.classList.remove("active");
-
-        // Save the current position before unlocking.
-        const currentPosition = scrollPosition;
-
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.left = "";
-        document.body.style.right = "";
-        document.body.style.width = "";
-
-        // Restore the exact position without smooth scrolling.
-        window.scrollTo({
-            top: currentPosition,
-            left: 0,
-            behavior: "instant"
-        });
-
-        refreshPageState();
-    });
-});
-
-}
-
-/* ================================
-   SECTION NAVIGATION
-================================ */
-
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", () => {
-        const targetId = link.getAttribute("href");
-
-        if (!targetId || targetId === "#") return;
-
-        // Immediately activate the clicked navigation link.
-        navLinks.forEach((navLink) => {
-            navLink.classList.toggle(
-                "active",
-                navLink.getAttribute("href") === targetId
-            );
-        });
-
-        // Prevent intermediate sections from becoming active.
-        isNavScrolling = true;
-        clearTimeout(navScrollTimeout);
-
-        navScrollTimeout = setTimeout(() => {
-            isNavScrolling = false;
-            updateActiveNav();
-        }, 1000);
-    });
-});
-
-
 /* ================================
    PAGE RESTORATION
 ================================ */
@@ -1101,11 +1204,6 @@ function updateMarqueeDistances() {
 window.addEventListener("load", updateMarqueeDistances);
 window.addEventListener("resize", updateMarqueeDistances);
 
-
-
-
-
-
 document.addEventListener("DOMContentLoaded", async () => {
   const grid = document.getElementById("contribution-grid");
   const monthLabels = document.getElementById("month-labels");
@@ -1175,6 +1273,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   const hideTooltip = () => {
     tooltip?.classList.remove("visible");
   };
+
+  window.addEventListener("scroll", () => {
+  hideTooltip();
+
+  if (tooltip) {
+    tooltip.dataset.activeDate = "";
+  }
+}, { passive: true });
 
   try {
     const response = await fetch("./contributions.json", {
@@ -1336,7 +1442,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
             cell.addEventListener("blur", hideTooltip);
-            
+
             cell.addEventListener("click", (event) => {
             event.stopPropagation();
 
