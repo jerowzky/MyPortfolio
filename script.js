@@ -957,36 +957,52 @@ function updateProjects() {
         // Initialize Swiper only once
         if (!projectsSwiper) {
             projectsSwiper = new Swiper("#projectsCarousel", {
+                slidesPerView: 3,
+                spaceBetween: 30,
 
-            slidesPerView: 3,
-            spaceBetween: 30,
-
-            breakpoints: {
-                0: {
-                    spaceBetween: 20,
+                breakpoints: {
+                    0: {
+                        spaceBetween: 20,
+                    },
+                    501: {
+                        spaceBetween: 30,
+                    },
                 },
-                501: {
-                    spaceBetween: 30,
+
+                loop: true,
+                speed: 600,
+                grabCursor: true,
+
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: false,
+                    stopOnLastSlide: false,
+                    waitForTransition: true,
                 },
-            },
-
-            loop: true,
-            speed: 600,
-            grabCursor: true,
-
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: false,
-                stopOnLastSlide: false,
-                waitForTransition: true,
-            },
 
                 pagination: {
                     el: "#projectsCarousel .carousel-dots",
                     clickable: true,
                 },
 
+                on: {
+                    init: function () {
+                        this.slides.forEach((slide) => {
+                            slide.removeAttribute("role");
+                        });
+                    },
+
+                    slideChange: function () {
+                        this.slides.forEach((slide) => {
+                            slide.removeAttribute("role");
+                        });
+                    },
+                },
+            });
+
+            projectsSwiper.slides.forEach((slide) => {
+                slide.removeAttribute("role");
             });
         }
 
