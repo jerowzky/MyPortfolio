@@ -327,6 +327,7 @@ function isMobileMenuVisible() {
    ACTIVE NAVIGATION
 ================================ */
 
+
 function updateActiveNav() {
     if (!sections.length || isMobileMenuVisible()) return;
     if (isNavScrolling) return;
@@ -351,12 +352,19 @@ function updateActiveNav() {
         currentSection = footer.id;
     }
 
+    // Update URL hash when the active section changes
+    const currentHash = `#${currentSection}`;
+
+    if (window.location.hash !== currentHash) {
+        history.replaceState(null, "", currentHash);
+    }
+
     navLinks.forEach((link) => {
         const href = link.getAttribute("href");
 
         link.classList.toggle(
             "active",
-            href === `#${currentSection}` ||
+            href === currentHash ||
             (currentSection === "home" && href === "#")
         );
     });
@@ -365,6 +373,7 @@ function updateActiveNav() {
 window.addEventListener("scroll", updateActiveNav, {
     passive: true
 });
+
 
 window.addEventListener("load", updateActiveNav);
 window.addEventListener("resize", updateActiveNav);
@@ -452,6 +461,8 @@ function navigateToSection(href) {
         return;
     }
 
+    history.replaceState(null, "", href);
+
     clearTimeout(navScrollTimeout);
 
     navLinks.forEach((link) => {
@@ -510,52 +521,87 @@ if (menuToggle && mobileDropdown) {
     });
 
 
-    /* ================================
-       MOBILE NAV LINKS
-    ================================ */
+/* ================================
+    MOBILE NAV LINKS
+================================ */
 
-    mobileDropdown.querySelectorAll("a.mobile-nav-link").forEach((link) => {
-        link.addEventListener("click", (event) => {
-            const href = link.getAttribute("href");
+mobileDropdown.querySelectorAll("a.mobile-nav-link").forEach((link) => {
+    link.addEventListener("click", (event) => {
+        const href = link.getAttribute("href");
 
-            /*
-               Only section links trigger section navigation.
-               Other links keep their normal browser behavior.
-            */
+        /*
+            Only section links trigger section navigation.
+            Other links keep their normal browser behavior.
+        */
 
-            if (!href || !href.startsWith("#") || href === "#") {
-                closeMobileMenu();
-                return;
-            }
-
-            const targetId = decodeURIComponent(href.slice(1));
-            const target = document.getElementById(targetId);
-
-            if (!target) {
-                console.warn("Navigation target not found:", href);
-                return;
-            }
-
-            event.preventDefault();
-
-            /*
-               Close and unlock first, then navigate.
-            */
+        if (!href || !href.startsWith("#") || href === "#") {
             closeMobileMenu();
+            return;
+        }
 
-            requestAnimationFrame(() => {
-                navigateToSection(href);
+        const targetId = decodeURIComponent(href.slice(1));
+        const target = document.getElementById(targetId);
 
-                window.addEventListener("scrollend", () => {
-                    isNavScrolling = false;
-                    updateActiveNav();
-                    triggerSectionTitleReveal(href);
-                }, { once: true });
-            });
+        if (!target) {
+            console.warn("Navigation target not found:", href);
+            return;
+        }
+
+        event.preventDefault();
+
+        /*
+            Close and unlock first, then navigate.
+        */
+        closeMobileMenu();
+
+        requestAnimationFrame(() => {
+            navigateToSection(href);
+
+            window.addEventListener("scrollend", () => {
+                isNavScrolling = false;
+                updateActiveNav();
+                triggerSectionTitleReveal(href);
+            }, { once: true });
         });
     });
+});
 
+/* ================================
+   HOME NAVIGATION
+================================ */
 
+document.querySelectorAll("a.forjfolio-mobile, a.forjfolio").forEach((link) => {
+    link.addEventListener("click", (event) => {
+        const href = link.getAttribute("href");
+
+        if (href !== "#home") return;
+
+        event.preventDefault();
+
+        // Update the URL hash to #home without reloading
+        history.replaceState(null, "", "#home");
+
+        clearTimeout(navScrollTimeout);
+        isNavScrolling = true;
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+        navLinks.forEach((navLink) => {
+            navLink.classList.toggle(
+                "active",
+                navLink.getAttribute("href") === "#home"
+            );
+        });
+
+        navScrollTimeout = setTimeout(() => {
+            isNavScrolling = false;
+            updateActiveNav();
+        }, 1200);
+    });
+});
     /* ================================
        CLOSE BUTTONS
     ================================ */

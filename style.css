@@ -74,6 +74,8 @@ html:has(#galleryModal.active), html:has(#pdfModal.active), html:has(#videoModal
 section {
     scroll-margin-top: 20px;
 }
+
+
 main {
     position: relative;
     z-index: 3;
@@ -2780,7 +2782,7 @@ transform: scale(1);
     background: #ffffff40;
 }
 
-#image-gallery {
+.image-gallery {
     margin: 0 0 var(--section-y-margin) 0;
 }
 
