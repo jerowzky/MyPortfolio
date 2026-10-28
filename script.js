@@ -106,7 +106,7 @@ let navRevealTitle = null;
 
 const REVEAL_CONFIG = {
     mobileBreakpoint: 500,
-    mobileHeaderHeight: 49,
+    mobileHeaderHeight: 39,
     desktopHeaderHeight: 67,
     visibilityThreshold: 0.25
 };
@@ -132,18 +132,6 @@ function isElementVisible(rect, top, bottom) {
         rect.bottom > top &&
         rect.top < bottom;
 }
-
-
-/* =========================
-   CHECK ELEMENT VISIBILITY
-========================= */
-
-function isElementVisible(rect, top, bottom) {
-    return rect.height > 0 &&
-        rect.bottom > top &&
-        rect.top < bottom;
-}
-
 
 /* =========================
    UPDATE REVEALS
