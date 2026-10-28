@@ -3092,15 +3092,11 @@ background: radial-gradient(
   position: absolute;
   inset: -6px;
 }
-.contribution-day:hover,
-.contribution-day:focus-visible {
+
+.contribution-day:hover {
   outline: 2px solid #d8f8e6;
   outline-offset: 1px;
   filter: brightness(1.2);
-}
-
-.contribution-day:focus-visible {
-  z-index: 2;
 }
 
 .contribution-day.empty-day {

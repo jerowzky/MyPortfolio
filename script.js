@@ -1381,7 +1381,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     monthLabels.style.columnGap = gridStyles.columnGap;
 
     totalElement.textContent =
-      `${Number(data.total ?? 0).toLocaleString()} contributions`;
+      `${Number(data.total ?? 0).toLocaleString()} contributions`;grid.setAttribute("role", "img");
+    grid.setAttribute(
+    "aria-label",
+    `${Number(data.total ?? 0).toLocaleString()} contributions from ${formatDate(firstDate)} to ${formatDate(lastDate)}`
+    );
 
     if (periodElement) {
       periodElement.textContent =
@@ -1403,8 +1407,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const dateString = toDateString(date);
         const day = dailyData.get(dateString);
 
-        const cell = document.createElement("button");
-        cell.type = "button";
+        const cell = document.createElement("div");
         cell.className = "contribution-day";
         cell.dataset.date = dateString;
         cell.style.gridColumn = String(week + 1);
@@ -1412,7 +1415,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (date < firstDate || date > lastDate) {
           cell.classList.add("empty-day");
-          cell.disabled = true;
           cell.setAttribute("aria-hidden", "true");
         } else {
           const count = Number(day?.count ?? 0);
@@ -1424,6 +1426,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           cell.dataset.tooltip =
             `${count} contribution${count === 1 ? "" : "s"} on ${formatDate(date)}`;
 
+          cell.setAttribute("role", "img");
           cell.setAttribute("aria-label", cell.dataset.tooltip);
 
           if (day?.color) {
@@ -1440,12 +1443,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
             cell.addEventListener("mouseleave", hideTooltip);
-
-            cell.addEventListener("focus", () => {
-              showTooltip(cell);
-            });
-
-            cell.addEventListener("blur", hideTooltip);
 
             cell.addEventListener("click", (event) => {
             event.stopPropagation();
