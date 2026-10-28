@@ -2932,7 +2932,6 @@ transform: scale(1);
         inset 0 0 0 2px #ffffff15;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; 
 }
 
 .contribution-card::before {
