@@ -691,6 +691,20 @@ position: relative;
     0 0 30px #4fd9a9a4;
 }
 
+.pointer-hover .email-button:hover,
+.pointer-hover .resume-button:hover {
+    background-position: bottom;
+    box-shadow:
+    inset 0 1px 1px #4fd9a963,
+    inset 0 0 0 1px #4fd9a9a4,
+    0 0 15px #4fd9a963,
+    0 0 30px #4fd9a9a4;
+
+    transition:
+        box-shadow 0.2s ease-out,
+        background-position 0.3s ease-out;
+}
+
 .buttons-wrapper2 {
 display: none;
 }
@@ -711,10 +725,19 @@ display: none;
     font-family: "Unbounded", sans-serif;
     font-size: 20px;
     color: #FFFFFF;
-    background: linear-gradient(135deg, #ffffff30, #ffffff17);
+
+    background: linear-gradient(
+        to top,
+        #03A271 50%,
+        #ffffff30 50%
+    );
+    background-size: 100% 200%;
+    background-position: top;
+
     box-shadow:
         inset 0 1px 1px #ffffff50,
         inset 0 0 0 1px #ffffff35;
+
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border-radius: 25px;
@@ -725,6 +748,10 @@ display: none;
     width: fit-content;
     gap: 8px;
     text-decoration: none;
+
+    transition:
+        box-shadow 0.2s ease-in,
+        background-position 0.3s ease-in;
 }
 
 .resume-button {
@@ -735,7 +762,6 @@ display: none;
 .email-icon, .resume-icon {
     height: 26px;
     width:auto;
-    color: white;
 }
 
 .image-cutter {
@@ -3201,6 +3227,68 @@ background: radial-gradient(
   display: block;
 }
 
+.moveUpBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(80px);
+    pointer-events: none;
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        visibility 0s linear 0.5s,
+        box-shadow 0.2s ease-in;
+
+    padding: 7px;
+    background: linear-gradient(
+        135deg,
+        #03a271cc,
+        #02c58b80
+    );
+    box-shadow:
+        inset 0 2px 2px #ffffff80,
+        inset 0 0 0 2px #ffffff35,
+        0 2px 8px #03a27130;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.moveUpBtn.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        visibility 0s;
+}
+
+.moveUpBtn svg {
+    width: 25px;
+    height: auto;
+}
+
+.pointer-hover .moveUpBtn:hover {
+
+    transition: box-shadow 0.2s ease-out;
+        box-shadow:
+        inset 0 2px 2px #ffffff80,
+        inset 0 0 0 2px #ffffff35,
+            0 0 15px #4fd9a963,
+    0 0 30px #4fd9a9a4;
+}
 
 @media (max-width: 1317px) {
 :root {
@@ -3817,6 +3905,17 @@ width: 100%;
     --gallery-counter-font-size: 13px;
     --section-x-margin: 20px;
 
+}
+
+.moveUpBtn {
+    bottom: 12px;
+    right: 12px;
+    width: 25px;
+    height: 25px;
+}
+
+.moveUpBtn svg {
+    width: 20px;
 }
 
 .diagonal-marquee {

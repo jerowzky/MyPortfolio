@@ -18,6 +18,17 @@ const enablePointerHover = () => {
 };
 
 enablePointerHover();
+
+const aboutSection = document.getElementById("about");
+const moveUpBtn = document.getElementById("moveUpBtn");
+
+window.addEventListener("scroll", () => {
+    const aboutTop = aboutSection.getBoundingClientRect().top;
+
+    moveUpBtn.classList.toggle("show", aboutTop < window.innerHeight);
+}, { passive: true });
+
+
 // Writing Code Background
     const texts = [
         "Web Development",
@@ -570,7 +581,7 @@ mobileDropdown.querySelectorAll("a.mobile-nav-link").forEach((link) => {
    HOME NAVIGATION
 ================================ */
 
-document.querySelectorAll("a.forjfolio-mobile, a.forjfolio").forEach((link) => {
+document.querySelectorAll("a.forjfolio-mobile, a.forjfolio, a.moveUpBtn").forEach((link) => {
     link.addEventListener("click", (event) => {
         const href = link.getAttribute("href");
 
