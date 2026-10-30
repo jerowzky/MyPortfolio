@@ -3907,17 +3907,6 @@ width: 100%;
 
 }
 
-.moveUpBtn {
-    bottom: 12px;
-    right: 12px;
-    width: 25px;
-    height: 25px;
-}
-
-.moveUpBtn svg {
-    width: 20px;
-}
-
 .diagonal-marquee {
     height: 375px;
 }
