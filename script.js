@@ -389,26 +389,27 @@ window.addEventListener("scroll", updateActiveNav, {
 window.addEventListener("load", updateActiveNav);
 window.addEventListener("resize", updateActiveNav);
 
-
 /* ================================
-   SCROLL LOCK
+   GENERAL SECTION NAVIGATION
 ================================ */
 
-function lockPageScroll() {
-    if (document.body.classList.contains("nav-scroll-locked")) return;
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+        const href = link.getAttribute("href");
 
-    scrollPosition = window.scrollY;
+        if (!href || href === "#") return;
 
-    document.body.dataset.navScrollPosition = scrollPosition;
-    document.body.classList.add("nav-scroll-locked");
-}
+        const target = document.getElementById(
+            decodeURIComponent(href.slice(1))
+        );
 
-function unlockPageScroll() {
-    document.body.classList.remove("nav-scroll-locked");
-    delete document.body.dataset.navScrollPosition;
+        if (!target) return;
 
-    /* No scrollTo here. Closing the menu stays in place. */
-}
+        event.preventDefault();
+
+        navigateToSection(href);
+    });
+});
 
 
 /* ================================
@@ -433,7 +434,6 @@ function updateMenuAccessibility(isOpen) {
 function openMobileMenu() {
     if (!menuToggle || !mobileDropdown || isMobileMenuVisible()) return;
 
-    lockPageScroll();
 
     mobileDropdown.classList.add("active");
     menuToggle.classList.add("active");
@@ -453,7 +453,6 @@ function closeMobileMenu() {
     menuToggle?.classList.remove("active");
 
     updateMenuAccessibility(false);
-    unlockPageScroll();
 }
 
 
