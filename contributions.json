@@ -1,21 +1,15 @@
 {
   "username": "jerowzky",
-  "total": 251,
+  "total": 249,
   "colors": [
     "#9be9a8",
     "#40c463",
     "#30a14e",
     "#216e39"
   ],
-  "from": "2025-10-30",
-  "to": "2026-10-29",
+  "from": "2025-10-31",
+  "to": "2026-10-30",
   "contributions": [
-    {
-      "date": "2025-10-30",
-      "count": 4,
-      "level": 2,
-      "color": "#40c463"
-    },
     {
       "date": "2025-10-31",
       "count": 4,
@@ -2199,6 +2193,12 @@
       "count": 11,
       "level": 4,
       "color": "#216e39"
+    },
+    {
+      "date": "2026-10-30",
+      "count": 2,
+      "level": 1,
+      "color": "#9be9a8"
     }
   ]
 }
