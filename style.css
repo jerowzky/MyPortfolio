@@ -18,14 +18,8 @@
 }
 
 @font-face {
-    font-family: "WW-Black";
-    src: url("fonts/Walkway-BlackV2.woff2") format("woff2");
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "WW-UltraBold";
-    src: url("fonts/Walkway-UltraBold.ttf") format("truetype");
+    font-family: "WW-Regular";
+    src: url("fonts/Walkway.ttf") format("truetype");
     font-display: swap;
 }
 
@@ -503,11 +497,11 @@ position: relative;
 
 
 .long-desc {
-    font-family: "WW-UltraBold";
+    font-family: "WW-Regular";
     max-width: 300px;
-    font-size: 15px;
+    font-size: 16px;
     padding: 0.9em;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.12em;
     line-height: 1.3rem;
     color: #FFFFFF;
     margin: 0 0 0 auto;
@@ -1154,11 +1148,11 @@ background: radial-gradient(
 
 .right-about-content .firstp, .right-about-content .secondp {
     color: white;
-    font-family: "WW-UltraBold";
-    font-size: 15px;
+    font-family: "WW-Regular";
+    font-size: 16px;
     font-weight: normal;
     padding: 1em;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.12em;
     color: #B8C0BC;
     line-height: 1.3rem;
     max-width: 450px;
@@ -1413,12 +1407,12 @@ background: radial-gradient(
 
 
 .expertise-description {
-    font-family: "WW-UltraBold";
-    font-size: 15px;
+    font-family: "WW-Regular";
+    font-size: 16px;
     font-weight: normal;
     width: 80%;
     color: #B8C0BC;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.12em;
     line-height: 1.3rem;
 }
 
@@ -1536,11 +1530,11 @@ background: linear-gradient(
 }
 
 .education-right p {
-    font-family: "WW-UltraBold";
-    font-size: 15px;
+    font-family: "WW-Regular";
+    font-size: 16px;
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.12em;
     line-height: 1.3rem;
 }
 .honors {
@@ -1785,11 +1779,11 @@ background: linear-gradient(
 
 
 .project-description {
-    font-family: "WW-UltraBold";
-    font-size: 15px;
+    font-family: "WW-Regular";
+    font-size: 16px;
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.12em;
     line-height: 1.3rem;    
 }
 
@@ -2410,12 +2404,12 @@ footer::before {
 }
 
 .get-in-touch p, .social-connect p {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: normal;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.12em;
     color: #B8C0BC;
     line-height: 1.2rem;
-    font-family: "WW-UltraBold";
+    font-family: "WW-Regular";
     margin: 0;
 }
 
@@ -2466,12 +2460,12 @@ footer::before {
 }
 
 .info p {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: normal;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.12em;
     color: #B8C0BC;
     line-height: 1.2rem;
-    font-family: "WW-UltraBold";
+    font-family: "WW-Regular";
     margin: 0 0 0 29px;
 }
 
@@ -4648,9 +4642,9 @@ background:
 }
 
 .project-hero p, .project-details p {
-    font-family: "WW-UltraBold";
-    font-size: 15px;
-    letter-spacing: 0.10em;
+    font-family: "WW-Regular";
+    font-size: 16px;
+    letter-spacing: 0.12em;
     line-height: 1.35rem;
     color: #FFFFFF;
 }
@@ -4763,10 +4757,10 @@ background:
 
 .info-value {
     color: WHITE;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: normal;
-    font-family: "WW-UltraBold";
-    letter-spacing: 0.10em;
+    font-family: "WW-Regular";
+    letter-spacing: 0.12em;
     line-height: 1.35rem;
 }
 
@@ -4803,9 +4797,9 @@ background:
 }
 
 .features-list span p {
-    font-size: 15px;
-    font-family: "WW-UltraBold";
-    letter-spacing: 0.10em;
+    font-size: 16px;
+    font-family: "WW-Regular";
+    letter-spacing: 0.12em;
     line-height: 1.35rem;
     color: #B8C0BC;
 }
