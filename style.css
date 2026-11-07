@@ -1,25 +1,31 @@
 
 @font-face {
     font-family: "ICF-Regular";
-    src: url("https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/fonts/IntegralCF-Regular.woff2") format("woff2");
+    src: url("fonts/IntegralCF-Regular.woff2") format("woff2");
     font-display: swap;
 }
 
 @font-face {
     font-family: "ICF-Bold";
-    src: url("https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/fonts/IntegralCF-Bold.woff2") format("woff2");
+    src: url("fonts/IntegralCF-Bold.woff2") format("woff2");
     font-display: swap;
 }
 
 @font-face {
     font-family: "ICF-ExtraBold";
-    src: url("https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/fonts/IntegralCF-ExtraBold.woff2") format("woff2");
+    src: url("fonts/IntegralCF-ExtraBold.woff2") format("woff2");
     font-display: swap;
 }
 
 @font-face {
     font-family: "WW-Black";
-    src: url("https://cdn.jsdelivr.net/gh/jerowzky/MyPortfolio@main/fonts/Walkway-BlackV2.woff2") format("woff2");
+    src: url("fonts/Walkway-BlackV2.woff2") format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "WW-UltraBold";
+    src: url("fonts/Walkway-UltraBold.ttf") format("truetype");
     font-display: swap;
 }
 
@@ -497,12 +503,12 @@ position: relative;
 
 
 .long-desc {
-    font-family: "WW-Black";
+    font-family: "WW-UltraBold";
     max-width: 300px;
-    font-size: 16px;
+    font-size: 15px;
     padding: 0.9em;
-    letter-spacing: 0.12em;
-    line-height: 1.35rem;
+    letter-spacing: 0.10em;
+    line-height: 1.3rem;
     color: #FFFFFF;
     margin: 0 0 0 auto;
     background: linear-gradient(135deg, #ffffff30, #ffffff17);
@@ -1148,13 +1154,13 @@ background: radial-gradient(
 
 .right-about-content .firstp, .right-about-content .secondp {
     color: white;
-    font-family: "WW-Black";
-    font-size: 16px;
+    font-family: "WW-UltraBold";
+    font-size: 15px;
     font-weight: normal;
     padding: 1em;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.10em;
     color: #B8C0BC;
-    line-height: 1.4rem;
+    line-height: 1.3rem;
     max-width: 450px;
     position: relative;
     isolation: isolate;
@@ -1407,12 +1413,12 @@ background: radial-gradient(
 
 
 .expertise-description {
-    font-family: "WW-Black";
-    font-size: 1rem;
+    font-family: "WW-UltraBold";
+    font-size: 15px;
     font-weight: normal;
     width: 80%;
     color: #B8C0BC;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.10em;
     line-height: 1.3rem;
 }
 
@@ -1530,11 +1536,11 @@ background: linear-gradient(
 }
 
 .education-right p {
-    font-family: "WW-Black";
-    font-size: 1rem;
+    font-family: "WW-UltraBold";
+    font-size: 15px;
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.10em;
     line-height: 1.3rem;
 }
 .honors {
@@ -1556,8 +1562,8 @@ background: linear-gradient(
     );
 
     box-shadow:
-        inset 0 2px 2px #ffffff30,
-        inset 0 0 0 2px #ffffff15;
+        inset 0 1px 1px #ffffff30,
+        inset 0 0 0 1px #ffffff15;
     color: #B8C0BC;
     border-radius: 999px;
     display: flex;
@@ -1779,11 +1785,11 @@ background: linear-gradient(
 
 
 .project-description {
-    font-family: "WW-Black";
-    font-size: 1rem;
+    font-family: "WW-UltraBold";
+    font-size: 15px;
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.10em;
     line-height: 1.3rem;    
 }
 
@@ -2404,12 +2410,12 @@ footer::before {
 }
 
 .get-in-touch p, .social-connect p {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: normal;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.10em;
     color: #B8C0BC;
     line-height: 1.2rem;
-    font-family: "WW-Black";
+    font-family: "WW-UltraBold";
     margin: 0;
 }
 
@@ -2460,12 +2466,12 @@ footer::before {
 }
 
 .info p {
-        font-size: 16px;
+    font-size: 15px;
     font-weight: normal;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.10em;
     color: #B8C0BC;
     line-height: 1.2rem;
-    font-family: "WW-Black";
+    font-family: "WW-UltraBold";
     margin: 0 0 0 29px;
 }
 
@@ -4595,4 +4601,222 @@ font-size: 1.4rem;
 .resume-icon-nav {
     width: 10px;
 }   
+}
+
+.project-hero {
+    padding: 79px var(--section-x-margin) 25px var(--section-x-margin);
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 25px;
+    align-items: center;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin: -54px 0 0 0;
+background:
+    radial-gradient(circle at 15% 20%, rgba(3, 162, 113, 0.45), transparent 35%),
+    radial-gradient(circle at 80% 15%, rgba(3, 162, 113, 0.35), transparent 32%),
+    radial-gradient(circle at 45% 45%, rgba(3, 162, 113, 0.40), transparent 38%),
+    radial-gradient(circle at 85% 65%, rgba(3, 162, 113, 0.35), transparent 35%),
+    radial-gradient(circle at 20% 85%, rgba(3, 162, 113, 0.30), transparent 35%),
+    #000000;
+}
+
+.project-hero img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 2px white)
+            drop-shadow(0 0 5px rgba(255, 255, 255, 0.65))
+            drop-shadow(0px 4px 53.1px #026b4c);
+
+
+}
+
+.project-hero h1 {
+    font-family: "Unbounded", sans-serif;
+    font-size: 2.3rem;
+    background: linear-gradient(
+        180deg,
+        #9cf5d8 0%,
+        #06d395 25%,
+        #06d395 75%,       
+        #9cf5d8 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.project-hero p, .project-details p {
+    font-family: "WW-UltraBold";
+    font-size: 15px;
+    letter-spacing: 0.10em;
+    line-height: 1.35rem;
+    color: #FFFFFF;
+}
+
+.project-button {
+    justify-content: flex-start;
+    align-self: flex-start;
+    margin-top: 25px;
+}
+
+.project-button a {
+    font-size: 1rem;
+    padding: 7px 12px;
+    box-shadow:
+        inset 0 2px 2px #ffffff30,
+        inset 0 0 0 2px #03a27135;
+}
+
+.project-button svg {
+    width: auto;
+    height: 18px;
+}
+
+.project-details {
+    position: relative;
+    isolation: isolate;
+    padding: 50px var(--section-x-margin);
+    display: grid;
+    grid-template-columns: 1.50fr 1fr;
+    gap: 50px;
+}
+
+.project-details::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #000;
+    z-index: -1;
+
+    -webkit-mask-image:
+        linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+
+    -webkit-mask-composite: source-in;
+
+    mask-image:
+        linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+
+    mask-composite: intersect;
+}
+
+.project-details .left-project, .project-details .right-project {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.left-project .about-proj, .right-project .information, .left-project .proj-features, .right-project .role {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.project-details h2 {
+    font-size: 20px;
+    font-family: "Unbounded";
+    color: white;
+    margin:0;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid #06d395;
+    padding-left: 10px;  
+}
+
+.project-details h2 span {
+    font-size: 32px;
+    color: #06d395;
+}
+
+.project-details p {
+    color: #B8C0BC;
+    margin:0;
+}
+
+.project-info {
+    width: 100%;
+    border-top: 1px solid #ffffff1a;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ffffff1a;
+    align-items: center;
+}
+
+.info-label {
+    color: #06d395;
+    font-size: 14px;
+    font-family: "Unbounded";
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.info-value {
+    color: WHITE;
+    font-size: 15px;
+    font-weight: normal;
+    font-family: "WW-UltraBold";
+    letter-spacing: 0.10em;
+    line-height: 1.35rem;
+}
+
+.features-list {
+   display: flex; 
+   flex-direction: column;
+   gap: 20px;
+}
+
+.features-list li {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    font-family: "Unbounded";
+    font-size: 24px;
+}
+
+.features-list li .number {
+    width: 35px;
+    flex-shrink: 0;
+    font-family: "Unbounded";
+    font-size: 24px;
+    color:#06d395;
+    font-weight: 600;
+}
+
+.features-list li span {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color: white;
+    gap:5px;
+    font-size: 16px;
+}
+
+.features-list span p {
+    font-size: 15px;
+    font-family: "WW-UltraBold";
+    letter-spacing: 0.10em;
+    line-height: 1.35rem;
+    color: #B8C0BC;
+}
+
+.responsibility {
+    padding-left: 20px;
+    list-style-position: outside;
+    grid-template-columns: 1fr;
+}
+
+.responsibility li {
+    list-style: circle;
+    color: #B8C0BC;
 }
