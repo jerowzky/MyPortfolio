@@ -25,6 +25,7 @@
     --section-y-margin: 75px;
     --body-font: 16px;
     --unbounded-body-font: 16px;
+    --body-letter-spacing: 0.05em;
 }
 
 li, ul {
@@ -496,7 +497,7 @@ position: relative;
     max-width: 300px;
     font-size: var(--body-font);
     padding: 0.9em;
-    letter-spacing: 0.025em;
+    letter-spacing: var(--body-letter-spacing);
     line-height: 1.3rem;
     color: #FFFFFF;
     margin: 0 0 0 auto;
@@ -1148,7 +1149,7 @@ background: radial-gradient(
     font-size: var(--body-font);
     font-weight: normal;
     padding: 1em;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--body-letter-spacing);
     color: #B8C0BC;
     line-height: 1.3rem;
     max-width: 450px;
@@ -1407,7 +1408,7 @@ background: radial-gradient(
     font-weight: normal;
     width: 80%;
     color: #B8C0BC;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--body-letter-spacing);
     line-height: 1.3rem;
 }
 
@@ -1529,7 +1530,7 @@ background: linear-gradient(
     font-size: var(--body-font);
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--body-letter-spacing);
     line-height: 1.3rem;
 }
 .honors {
@@ -1778,7 +1779,7 @@ background: linear-gradient(
     font-size: var(--body-font);
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--body-letter-spacing);
     line-height: 1.3rem;    
 }
 
@@ -2401,7 +2402,7 @@ footer::before {
 .get-in-touch p, .social-connect p {
     font-size: var(--body-font);
     font-weight: normal;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--body-letter-spacing);
     color: #B8C0BC;
     line-height: 1.3rem;
     font-family: "Questrial", sans-serif;
@@ -2459,7 +2460,7 @@ footer::before {
 .info p {
     font-size: var(--body-font);
     font-weight: normal;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--body-letter-spacing);
     color: #B8C0BC;
     line-height: 1.3rem;
     font-family: "Questrial", sans-serif;
@@ -3337,7 +3338,7 @@ background:
 .project-hero p, .project-details p {
     font-family: "Questrial", sans-serif;
     font-size: var(--body-font);
-    letter-spacing: 0.05em;
+    letter-spacing: var(--body-letter-spacing);
     line-height: 1.3rem;
     color: #FFFFFF;
     font-weight: 500;
@@ -3460,7 +3461,7 @@ background:
     font-size: var(--body-font);
     font-weight: normal;
     font-family: "Questrial", sans-serif;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--body-letter-spacing);
     line-height: 1.3rem;
 }
 
@@ -3499,7 +3500,7 @@ background:
 .features-list span p {
     font-size: var(--body-font);
     font-family: "Questrial", sans-serif;
-    letter-spacing: 0.025em;
+    letter-spacing: var(--body-letter-spacing);
     line-height: 1.3rem;
     color: #B8C0BC;
 }
@@ -4123,6 +4124,8 @@ width: 100%;
     --section-x-margin: 20px;
     --body-font: 13px;
     --unbounded-body-font: 14px;
+    --body-letter-spacing: 0.025em;
+
 }
 .project-name h3, .contribution-header h2 {
     font-size: 18px;
