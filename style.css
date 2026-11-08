@@ -23,6 +23,7 @@
     --gallery-counter-font-size: 14px;
     --section-x-margin: 84px;
     --section-y-margin: 75px;
+    --body-font: 16px;
 }
 
 li, ul {
@@ -490,9 +491,9 @@ position: relative;
 
 
 .long-desc {
-    font-family: "Manrope", sans-serif;
+    font-family: "Questrial", sans-serif;
     max-width: 300px;
-    font-size: 14px;
+    font-size: var(--body-font);
     padding: 0.9em;
     letter-spacing: 0.025em;
     line-height: 1.3rem;
@@ -1142,8 +1143,8 @@ background: radial-gradient(
 
 .right-about-content .firstp, .right-about-content .secondp {
     color: white;
-    font-family: "Manrope", sans-serif;
-    font-size: 14px;
+    font-family: "Questrial", sans-serif;
+    font-size: var(--body-font);
     font-weight: normal;
     padding: 1em;
     letter-spacing: 0.025em;
@@ -1400,8 +1401,8 @@ background: radial-gradient(
 
 
 .expertise-description {
-    font-family: "Manrope", sans-serif;
-    font-size: 14px;
+    font-family: "Questrial", sans-serif;
+    font-size: var(--body-font);
     font-weight: normal;
     width: 80%;
     color: #B8C0BC;
@@ -1523,8 +1524,8 @@ background: linear-gradient(
 }
 
 .education-right p {
-    font-family: "Manrope", sans-serif;
-    font-size: 14px;
+    font-family: "Questrial", sans-serif;
+    font-size: var(--body-font);
     font-weight: normal;
     color: #B8C0BC;
     letter-spacing: 0.025em;
@@ -1772,8 +1773,8 @@ background: linear-gradient(
 
 
 .project-description {
-    font-family: "Manrope", sans-serif;
-    font-size: 14px;
+    font-family: "Questrial", sans-serif;
+    font-size: var(--body-font);
     font-weight: normal;
     color: #B8C0BC;
     letter-spacing: 0.025em;
@@ -2397,12 +2398,12 @@ footer::before {
 }
 
 .get-in-touch p, .social-connect p {
-    font-size: 14px;
+    font-size: var(--body-font);
     font-weight: normal;
     letter-spacing: 0.025em;
     color: #B8C0BC;
     line-height: 1.3rem;
-    font-family: "Manrope", sans-serif;
+    font-family: "Questrial", sans-serif;
     margin: 0;
 }
 
@@ -2453,12 +2454,12 @@ footer::before {
 }
 
 .info p {
-    font-size: 14px;
+    font-size: var(--body-font);
     font-weight: normal;
     letter-spacing: 0.025em;
     color: #B8C0BC;
     line-height: 1.3rem;
-    font-family: "Manrope", sans-serif;
+    font-family: "Questrial", sans-serif;
     margin: 0 0 0 29px;
 }
 
@@ -3895,6 +3896,7 @@ width: 100%;
     --gallery-modal-padding: 20px;
     --gallery-counter-font-size: 13px;
     --section-x-margin: 20px;
+    --body-font: 13px;
 
 }
 
@@ -4028,7 +4030,6 @@ width: 100%;
 
 .long-desc {
     line-height: 1.2rem; 
-    font-size: 13px;
     max-width: 60%;   
     border-radius: 18px;
 }
@@ -4380,13 +4381,11 @@ font-size: 1.4rem;
 }
 
 .expertise-description, .project-description, .education-right p, .social-connect p, .info p, .get-in-touch p {
-    font-size: 13px;
     width: 100%;
     line-height: 1.2rem;
 }
 
 .right-about-content .firstp, .right-about-content .secondp {
-    font-size: 13px;
     line-height: 1.2rem;
     max-width: 300px;
 }
@@ -4623,8 +4622,8 @@ background:
 }
 
 .project-hero p, .project-details p {
-    font-family: "Manrope", sans-serif;
-    font-size: 14px;
+    font-family: "Questrial", sans-serif;
+    font-size: var(--body-font);
     letter-spacing: 0.025em;
     line-height: 1.3rem;
     color: #FFFFFF;
@@ -4741,9 +4740,9 @@ background:
 
 .info-value {
     color: WHITE;
-    font-size: 14px;
+    font-size: var(--body-font);
     font-weight: normal;
-    font-family: "Manrope", sans-serif;
+    font-family: "Questrial", sans-serif;
     letter-spacing: 0.025em;
     line-height: 1.3rem;
 }
@@ -4781,8 +4780,8 @@ background:
 }
 
 .features-list span p {
-    font-size: 14px;
-    font-family: "Manrope", sans-serif;
+    font-size: var(--body-font);
+    font-family: "Questrial", sans-serif;
     letter-spacing: 0.025em;
     line-height: 1.3rem;
     color: #B8C0BC;
