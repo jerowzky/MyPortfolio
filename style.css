@@ -514,6 +514,7 @@ position: relative;
     border-radius: 15px;
     margin-top: 1em;
     margin-bottom: 1em;
+    font-weight: 500;
 
 }
 
@@ -4035,7 +4036,7 @@ width: 100%;
 
 .long-desc {
     line-height: 1.2rem; 
-    font-size: 12px;
+    font-size: 13px;
     max-width: 60%;   
     border-radius: 18px;
 }
@@ -4387,13 +4388,13 @@ font-size: 1.4rem;
 }
 
 .expertise-description, .project-description, .education-right p, .social-connect p, .info p, .get-in-touch p {
-    font-size: 12px;
+    font-size: 13px;
     width: 100%;
     line-height: 1.2rem;
 }
 
 .right-about-content .firstp, .right-about-content .secondp {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.2rem;
     max-width: 300px;
 }
