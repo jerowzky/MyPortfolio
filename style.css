@@ -24,6 +24,7 @@
     --section-x-margin: 84px;
     --section-y-margin: 75px;
     --body-font: 16px;
+    --unbounded-body-font: 16px;
 }
 
 li, ul {
@@ -1147,7 +1148,7 @@ background: radial-gradient(
     font-size: var(--body-font);
     font-weight: normal;
     padding: 1em;
-    letter-spacing: 0.025em;
+    letter-spacing: 0.05em;
     color: #B8C0BC;
     line-height: 1.3rem;
     max-width: 450px;
@@ -1406,7 +1407,7 @@ background: radial-gradient(
     font-weight: normal;
     width: 80%;
     color: #B8C0BC;
-    letter-spacing: 0.025em;
+    letter-spacing: 0.05em;
     line-height: 1.3rem;
 }
 
@@ -1528,7 +1529,7 @@ background: linear-gradient(
     font-size: var(--body-font);
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.025em;
+    letter-spacing: 0.05em;
     line-height: 1.3rem;
 }
 .honors {
@@ -1637,7 +1638,7 @@ background: linear-gradient(
     gap: 7px;
     cursor: pointer;
     background-color: transparent;
-    font-size: 16px;
+    font-size: var(--unbounded-body-font);
     
 }
 
@@ -1777,7 +1778,7 @@ background: linear-gradient(
     font-size: var(--body-font);
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.025em;
+    letter-spacing: 0.05em;
     line-height: 1.3rem;    
 }
 
@@ -1789,7 +1790,7 @@ background: linear-gradient(
 
 .project-name .role {
     font-family: "Unbounded", sans-serif;
-    font-size: 16px;
+    font-size: var(--unbounded-body-font);
     line-height: 1.15;
     font-weight: 600;
     color: white;
@@ -1833,7 +1834,7 @@ background: linear-gradient(
     font-weight: 500;
     color: #B8C0BC;
     margin: 0;
-    font-size: 16px;
+    font-size: var(--unbounded-body-font);
 }
 
 .tools-stack {
@@ -2383,7 +2384,7 @@ footer::before {
         inset 0 0 0 2px #03a27135;
     width: fit-content;
     border-radius: 999px;
-    font-size: 1rem;
+    font-size: var(--unbounded-body-font);
     font-weight: 600;
     text-transform: uppercase;
 
@@ -2400,7 +2401,7 @@ footer::before {
 .get-in-touch p, .social-connect p {
     font-size: var(--body-font);
     font-weight: normal;
-    letter-spacing: 0.025em;
+    letter-spacing: 0.05em;
     color: #B8C0BC;
     line-height: 1.3rem;
     font-family: "Questrial", sans-serif;
@@ -2425,6 +2426,7 @@ footer::before {
     text-decoration: none;
     cursor: pointer;
     border-radius: 5px;
+    font-size: var(--unbounded-body-font);
 }
 
 .other-infos {
@@ -2445,6 +2447,7 @@ footer::before {
     color: #06d395;
     font-family: "Unbounded", sans-serif;
     align-items: center;
+    font-size: var(--unbounded-body-font);
 }
 
 .info svg {
@@ -2456,7 +2459,7 @@ footer::before {
 .info p {
     font-size: var(--body-font);
     font-weight: normal;
-    letter-spacing: 0.025em;
+    letter-spacing: 0.05em;
     color: #B8C0BC;
     line-height: 1.3rem;
     font-family: "Questrial", sans-serif;
@@ -2545,7 +2548,7 @@ background-color: rgb(14,14,14);
     margin: 0;
     color: #06d395;
     font-family: "Unbounded", sans-serif;
-    font-size: 16px;
+    font-size: var(--unbounded-body-font);
     text-align: center;
     font-weight: 500;
     padding: 10px 16px;
@@ -3286,6 +3289,232 @@ background: radial-gradient(
     0 0 30px #4fd9a9a4;
 }
 
+
+.project-hero {
+    padding: 79px var(--section-x-margin) 25px var(--section-x-margin);
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 25px;
+    align-items: center;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin: -54px 0 0 0;
+background:
+    radial-gradient(circle at 15% 20%, rgba(3, 162, 113, 0.45), transparent 35%),
+    radial-gradient(circle at 80% 15%, rgba(3, 162, 113, 0.35), transparent 32%),
+    radial-gradient(circle at 45% 45%, rgba(3, 162, 113, 0.40), transparent 38%),
+    radial-gradient(circle at 85% 65%, rgba(3, 162, 113, 0.35), transparent 35%),
+    radial-gradient(circle at 20% 85%, rgba(3, 162, 113, 0.30), transparent 35%),
+    #000000;
+}
+
+.project-hero img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 2px white)
+            drop-shadow(0 0 5px rgba(255, 255, 255, 0.65))
+            drop-shadow(0px 4px 53.1px #026b4c);
+
+
+}
+
+.project-hero h1 {
+    font-family: "Unbounded", sans-serif;
+    font-size: 2.3rem;
+    background: linear-gradient(
+        180deg,
+        #9cf5d8 0%,
+        #06d395 25%,
+        #06d395 75%,       
+        #9cf5d8 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.project-hero p, .project-details p {
+    font-family: "Questrial", sans-serif;
+    font-size: var(--body-font);
+    letter-spacing: 0.05em;
+    line-height: 1.3rem;
+    color: #FFFFFF;
+    font-weight: 500;
+
+}
+
+.project-button {
+    justify-content: flex-start;
+    align-self: flex-start;
+    margin-top: 25px;
+}
+
+.project-button a {
+    font-size: var(--unbounded-body-font);
+    padding: 7px 12px;
+    box-shadow:
+        inset 0 2px 2px #ffffff30,
+        inset 0 0 0 2px #03a27135;
+}
+
+.project-button svg {
+    width: auto;
+    height: 18px;
+}
+
+.project-details {
+    position: relative;
+    isolation: isolate;
+    padding: 50px var(--section-x-margin);
+    display: grid;
+    grid-template-columns: 1.50fr 1fr;
+    gap: 50px;
+}
+
+.project-details::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: #000;
+    z-index: -1;
+
+    -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+    );
+
+    mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 5%,
+        black 95%,
+        transparent 100%
+    );
+}
+
+.project-details .left-project, .project-details .right-project {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.left-project .about-proj, .right-project .information, .left-project .proj-features, .right-project .role {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.project-details h2 {
+    font-size: 20px;
+    font-family: "Unbounded";
+    color: white;
+    margin:0;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid #06d395;
+    padding-left: 10px;  
+}
+
+.project-details h2 span {
+    font-size: 32px;
+    color: #06d395;
+}
+
+.project-details p {
+    color: #B8C0BC;
+    margin:0;
+    font-weight: normal;
+}
+
+.project-info {
+    width: 100%;
+    border-top: 1px solid #ffffff1a;
+}
+
+.info-row {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 20px;
+    padding: 12px 0;
+    border-bottom: 1px solid #ffffff1a;
+    align-items: center;
+}
+
+.info-label {
+    color: #06d395;
+    font-size: 14px;
+    font-family: "Unbounded";
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.info-value {
+    color: WHITE;
+    font-size: var(--body-font);
+    font-weight: normal;
+    font-family: "Questrial", sans-serif;
+    letter-spacing: 0.05em;
+    line-height: 1.3rem;
+}
+
+.features-list {
+   display: flex; 
+   flex-direction: column;
+   gap: 20px;
+}
+
+.features-list li {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+    font-family: "Unbounded";
+    font-size: 24px;
+}
+
+.features-list li .number {
+    width: 35px;
+    flex-shrink: 0;
+    font-family: "Unbounded";
+    font-size: 24px;
+    color:#06d395;
+    font-weight: 600;
+}
+
+.features-list li span {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    color: white;
+    gap:5px;
+    font-size: var(--unbounded-body-font);
+}
+
+.features-list span p {
+    font-size: var(--body-font);
+    font-family: "Questrial", sans-serif;
+    letter-spacing: 0.025em;
+    line-height: 1.3rem;
+    color: #B8C0BC;
+}
+
+.responsibility {
+    padding-left: 20px;
+    list-style-position: outside;
+    grid-template-columns: 1fr;
+}
+
+.responsibility li {
+    list-style: circle;
+    color: #B8C0BC;
+}
+
 @media (max-width: 1317px) {
 :root {
     --section-x-margin: 42px;
@@ -3678,7 +3907,6 @@ header .forjfolio {
 
 @media (max-width: 768px) {
 
-
 .gallery-prev,
 .gallery-next {
     top: auto;
@@ -3769,11 +3997,8 @@ background: radial-gradient(
 .get-in-touch .logo-text {
     font-size: 1.8rem;
 }
-.first-hook, .info a, .get-in-touch a {
-    font-size: 14px;
-}
+
 .picker button {
-    font-size: 14px;
     padding: 5px 10px;
 }
 .honors span svg, .picker svg, .button-links svg {
@@ -3897,9 +4122,26 @@ width: 100%;
     --gallery-counter-font-size: 13px;
     --section-x-margin: 20px;
     --body-font: 13px;
-
+    --unbounded-body-font: 14px;
+}
+.project-name h3, .contribution-header h2 {
+    font-size: 18px;
+}
+.project-hero, .project-details {
+    grid-template-columns: minmax(0, 1fr);
 }
 
+.project-hero h1 {
+    font-size: 1.8rem;
+}
+
+.project-details h2 {
+    font-size: 16px;
+}
+
+.project-details h2 span {
+    font-size: 24px;
+}
 .diagonal-marquee {
     height: 375px;
 }
@@ -4577,223 +4819,4 @@ font-size: 1.4rem;
 }   
 }
 
-.project-hero {
-    padding: 79px var(--section-x-margin) 25px var(--section-x-margin);
-    display: grid;
-    grid-template-columns: 1fr 1.25fr;
-    gap: 25px;
-    align-items: center;
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    margin: -54px 0 0 0;
-background:
-    radial-gradient(circle at 15% 20%, rgba(3, 162, 113, 0.45), transparent 35%),
-    radial-gradient(circle at 80% 15%, rgba(3, 162, 113, 0.35), transparent 32%),
-    radial-gradient(circle at 45% 45%, rgba(3, 162, 113, 0.40), transparent 38%),
-    radial-gradient(circle at 85% 65%, rgba(3, 162, 113, 0.35), transparent 35%),
-    radial-gradient(circle at 20% 85%, rgba(3, 162, 113, 0.30), transparent 35%),
-    #000000;
-}
 
-.project-hero img {
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(0 0 2px white)
-            drop-shadow(0 0 5px rgba(255, 255, 255, 0.65))
-            drop-shadow(0px 4px 53.1px #026b4c);
-
-
-}
-
-.project-hero h1 {
-    font-family: "Unbounded", sans-serif;
-    font-size: 2.3rem;
-    background: linear-gradient(
-        180deg,
-        #9cf5d8 0%,
-        #06d395 25%,
-        #06d395 75%,       
-        #9cf5d8 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.project-hero p, .project-details p {
-    font-family: "Questrial", sans-serif;
-    font-size: var(--body-font);
-    letter-spacing: 0.025em;
-    line-height: 1.3rem;
-    color: #FFFFFF;
-    font-weight: 500;
-
-}
-
-.project-button {
-    justify-content: flex-start;
-    align-self: flex-start;
-    margin-top: 25px;
-}
-
-.project-button a {
-    font-size: 1rem;
-    padding: 7px 12px;
-    box-shadow:
-        inset 0 2px 2px #ffffff30,
-        inset 0 0 0 2px #03a27135;
-}
-
-.project-button svg {
-    width: auto;
-    height: 18px;
-}
-
-.project-details {
-    position: relative;
-    isolation: isolate;
-    padding: 50px var(--section-x-margin);
-    display: grid;
-    grid-template-columns: 1.50fr 1fr;
-    gap: 50px;
-}
-
-.project-details::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-color: #000;
-    z-index: -1;
-
-    -webkit-mask-image:
-        linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
-        linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
-
-    -webkit-mask-composite: source-in;
-
-    mask-image:
-        linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%),
-        linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
-
-    mask-composite: intersect;
-}
-
-.project-details .left-project, .project-details .right-project {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-}
-
-.left-project .about-proj, .right-project .information, .left-project .proj-features, .right-project .role {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.project-details h2 {
-    font-size: 20px;
-    font-family: "Unbounded";
-    color: white;
-    margin:0;
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: column;
-    border-left: 2px solid #06d395;
-    padding-left: 10px;  
-}
-
-.project-details h2 span {
-    font-size: 32px;
-    color: #06d395;
-}
-
-.project-details p {
-    color: #B8C0BC;
-    margin:0;
-    font-weight: normal;
-}
-
-.project-info {
-    width: 100%;
-    border-top: 1px solid #ffffff1a;
-}
-
-.info-row {
-    display: grid;
-    grid-template-columns: 130px 1fr;
-    gap: 20px;
-    padding: 12px 0;
-    border-bottom: 1px solid #ffffff1a;
-    align-items: center;
-}
-
-.info-label {
-    color: #06d395;
-    font-size: 14px;
-    font-family: "Unbounded";
-    font-weight: 500;
-    text-transform: uppercase;
-}
-
-.info-value {
-    color: WHITE;
-    font-size: var(--body-font);
-    font-weight: normal;
-    font-family: "Questrial", sans-serif;
-    letter-spacing: 0.025em;
-    line-height: 1.3rem;
-}
-
-.features-list {
-   display: flex; 
-   flex-direction: column;
-   gap: 20px;
-}
-
-.features-list li {
-    display: flex;
-    align-items: start;
-    gap: 20px;
-    font-family: "Unbounded";
-    font-size: 24px;
-}
-
-.features-list li .number {
-    width: 35px;
-    flex-shrink: 0;
-    font-family: "Unbounded";
-    font-size: 24px;
-    color:#06d395;
-    font-weight: 600;
-}
-
-.features-list li span {
-    display: flex;
-    flex-direction: column;
-    font-weight: 500;
-    color: white;
-    gap:5px;
-    font-size: 16px;
-}
-
-.features-list span p {
-    font-size: var(--body-font);
-    font-family: "Questrial", sans-serif;
-    letter-spacing: 0.025em;
-    line-height: 1.3rem;
-    color: #B8C0BC;
-}
-
-.responsibility {
-    padding-left: 20px;
-    list-style-position: outside;
-    grid-template-columns: 1fr;
-}
-
-.responsibility li {
-    list-style: circle;
-    color: #B8C0BC;
-}
