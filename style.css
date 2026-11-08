@@ -497,11 +497,11 @@ position: relative;
 
 
 .long-desc {
-    font-family: "WW-Regular";
+    font-family: "Manrope", sans-serif;
     max-width: 300px;
-    font-size: 16px;
+    font-size: 14px;
     padding: 0.9em;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.05em;
     line-height: 1.3rem;
     color: #FFFFFF;
     margin: 0 0 0 auto;
@@ -1148,11 +1148,11 @@ background: radial-gradient(
 
 .right-about-content .firstp, .right-about-content .secondp {
     color: white;
-    font-family: "WW-Regular";
-    font-size: 16px;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
     font-weight: normal;
     padding: 1em;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.05em;
     color: #B8C0BC;
     line-height: 1.3rem;
     max-width: 450px;
@@ -1407,12 +1407,12 @@ background: radial-gradient(
 
 
 .expertise-description {
-    font-family: "WW-Regular";
-    font-size: 16px;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
     font-weight: normal;
     width: 80%;
     color: #B8C0BC;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.05em;
     line-height: 1.3rem;
 }
 
@@ -1530,11 +1530,11 @@ background: linear-gradient(
 }
 
 .education-right p {
-    font-family: "WW-Regular";
-    font-size: 16px;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.05em;
     line-height: 1.3rem;
 }
 .honors {
@@ -1779,11 +1779,11 @@ background: linear-gradient(
 
 
 .project-description {
-    font-family: "WW-Regular";
-    font-size: 16px;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.05em;
     line-height: 1.3rem;    
 }
 
@@ -2404,12 +2404,12 @@ footer::before {
 }
 
 .get-in-touch p, .social-connect p {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.05em;
     color: #B8C0BC;
-    line-height: 1.2rem;
-    font-family: "WW-Regular";
+    line-height: 1.3rem;
+    font-family: "Manrope", sans-serif;
     margin: 0;
 }
 
@@ -2460,12 +2460,12 @@ footer::before {
 }
 
 .info p {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.05em;
     color: #B8C0BC;
-    line-height: 1.2rem;
-    font-family: "WW-Regular";
+    line-height: 1.3rem;
+    font-family: "Manrope", sans-serif;
     margin: 0 0 0 29px;
 }
 
@@ -3406,9 +3406,7 @@ box-shadow: inset 0 -2px 2px #ffffff44;
 }
 
 .right-about-content .firstp, .right-about-content .secondp {
-    font-size: 16px;
     padding: 0.8em;
-    line-height: 1.2rem;
     max-width: 275px;
 }
 
@@ -3763,10 +3761,7 @@ background: radial-gradient(
 }
 
 .expertise-description, .project-description, .education-right p, .get-in-touch p, .social-connect p, .info p {
-    font-size: 14px;
-    letter-spacing: 0.1em;
     width: 100%;
-    line-height: 1.2rem;
 }
 
 .second-hook {
@@ -3791,15 +3786,9 @@ background: radial-gradient(
     width: 16px;
 }
 .right-about-content .firstp, .right-about-content .secondp {
-    font-size: 14px;
-    letter-spacing: 0.1em;
     padding: 0.7em;
-    line-height: 1.2rem;
 }
 .long-desc {
-    font-size: 14px;
-    letter-spacing: 0.1em;
-    line-height: 1.2rem;    
     border-radius: 15px;
     max-width: 300px;
 }
@@ -4027,7 +4016,6 @@ width: 100%;
 
 .description .desc1 {
     font-size: 20px;
-    letter-spacing: 0.1em;
     padding: 0.45rem 0;
 }
 
@@ -4046,8 +4034,8 @@ width: 100%;
 }
 
 .long-desc {
-    line-height: 1.1rem; 
-    font-size: 13px;
+    line-height: 1.2rem; 
+    font-size: 12px;
     max-width: 60%;   
     border-radius: 18px;
 }
@@ -4399,18 +4387,18 @@ font-size: 1.4rem;
 }
 
 .expertise-description, .project-description, .education-right p, .social-connect p, .info p, .get-in-touch p {
-    font-size: 13px;
+    font-size: 12px;
     width: 100%;
-    line-height: 1.1rem;
+    line-height: 1.2rem;
 }
 
 .right-about-content .firstp, .right-about-content .secondp {
-    font-size: 13px;
-    line-height: 1.1rem;
+    font-size: 12px;
+    line-height: 1.2rem;
     max-width: 300px;
 }
 .first-hook, .info a, .get-in-touch a {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .get-in-touch a, .footer-icons-wrapper a {
@@ -4642,10 +4630,10 @@ background:
 }
 
 .project-hero p, .project-details p {
-    font-family: "WW-Regular";
-    font-size: 16px;
-    letter-spacing: 0.12em;
-    line-height: 1.35rem;
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    line-height: 1.3rem;
     color: #FFFFFF;
 }
 
@@ -4757,11 +4745,11 @@ background:
 
 .info-value {
     color: WHITE;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: normal;
-    font-family: "WW-Regular";
-    letter-spacing: 0.12em;
-    line-height: 1.35rem;
+    font-family: "Manrope", sans-serif;
+    letter-spacing: 0.05em;
+    line-height: 1.3rem;
 }
 
 .features-list {
@@ -4797,10 +4785,10 @@ background:
 }
 
 .features-list span p {
-    font-size: 16px;
-    font-family: "WW-Regular";
-    letter-spacing: 0.12em;
-    line-height: 1.35rem;
+    font-size: 14px;
+    font-family: "Manrope", sans-serif;
+    letter-spacing: 0.05em;
+    line-height: 1.3rem;
     color: #B8C0BC;
 }
 
