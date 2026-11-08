@@ -501,7 +501,7 @@ position: relative;
     max-width: 300px;
     font-size: 14px;
     padding: 0.9em;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.025em;
     line-height: 1.3rem;
     color: #FFFFFF;
     margin: 0 0 0 auto;
@@ -1153,7 +1153,7 @@ background: radial-gradient(
     font-size: 14px;
     font-weight: normal;
     padding: 1em;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.025em;
     color: #B8C0BC;
     line-height: 1.3rem;
     max-width: 450px;
@@ -1413,7 +1413,7 @@ background: radial-gradient(
     font-weight: normal;
     width: 80%;
     color: #B8C0BC;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.025em;
     line-height: 1.3rem;
 }
 
@@ -1535,7 +1535,7 @@ background: linear-gradient(
     font-size: 14px;
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.025em;
     line-height: 1.3rem;
 }
 .honors {
@@ -1784,7 +1784,7 @@ background: linear-gradient(
     font-size: 14px;
     font-weight: normal;
     color: #B8C0BC;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.025em;
     line-height: 1.3rem;    
 }
 
@@ -2407,7 +2407,7 @@ footer::before {
 .get-in-touch p, .social-connect p {
     font-size: 14px;
     font-weight: normal;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.025em;
     color: #B8C0BC;
     line-height: 1.3rem;
     font-family: "Manrope", sans-serif;
@@ -2463,7 +2463,7 @@ footer::before {
 .info p {
     font-size: 14px;
     font-weight: normal;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.025em;
     color: #B8C0BC;
     line-height: 1.3rem;
     font-family: "Manrope", sans-serif;
@@ -4633,7 +4633,7 @@ background:
 .project-hero p, .project-details p {
     font-family: "Manrope", sans-serif;
     font-size: 14px;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.025em;
     line-height: 1.3rem;
     color: #FFFFFF;
 }
@@ -4749,7 +4749,7 @@ background:
     font-size: 14px;
     font-weight: normal;
     font-family: "Manrope", sans-serif;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.025em;
     line-height: 1.3rem;
 }
 
