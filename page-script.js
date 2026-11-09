@@ -323,7 +323,7 @@ function navigateToSection(hash) {
 document.querySelectorAll('a[href*="#"]').forEach((link) => {
     link.addEventListener("click", (event) => {
         const hash = getSamePageHash(link.getAttribute("href"));
-        const inMobileMenu = Boolean(mobileDropdown?.contains(link));
+        const inMobileMenu = link.classList.contains("mobile-nav-link");
 
         // Link to another page: no scroll-spy, no active changes
         if (!hash) {

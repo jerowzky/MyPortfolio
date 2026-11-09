@@ -643,7 +643,7 @@ function navigateToSection(href) {
 document.querySelectorAll('a[href*="#"]').forEach((link) => {
     link.addEventListener("click", (event) => {
         const hash = getSamePageHash(link.getAttribute("href"));
-        const inMobileMenu = Boolean(mobileDropdown?.contains(link));
+        const inMobileMenu = link.classList.contains("mobile-nav-link");
 
         // Not a section on this page: allow normal browser navigation
         if (!hash) {
