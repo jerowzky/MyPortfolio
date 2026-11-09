@@ -3506,6 +3506,7 @@ background:
     letter-spacing: var(--body-letter-spacing);
     line-height: 1.3rem;
     color: #B8C0BC;
+    margin: 0;
 }
 
 .responsibility {
