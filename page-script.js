@@ -484,7 +484,7 @@ const downloadPdf = document.getElementById("downloadPdf");
 
 // Local PDF.js viewer
 const pdfJsViewer = new URL(
-    "pdfjs/web/viewer.html",
+    "../pdfjs/web/viewer.html",
     document.baseURI
 ).href;
 

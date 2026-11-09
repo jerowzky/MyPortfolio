@@ -2544,6 +2544,7 @@ background-color: rgb(14,14,14);
     overflow: hidden;
     background: transparent;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .gallery-title, .video-title, .pdf-title {
