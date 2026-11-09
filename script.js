@@ -149,6 +149,11 @@ function isElementVisible(rect, top, bottom) {
 ========================= */
 
 function updateReveals() {
+    if (typeof isNavScrolling !== "undefined" && isNavScrolling) {
+        ticking = false;
+        revealFrame = null;
+        return;
+    }
     if (!pageLoaded) {
         ticking = false;
         revealFrame = null;
@@ -163,7 +168,6 @@ function updateReveals() {
     reveals.forEach((element) => {
         const rect = element.getBoundingClientRect();
         const isHighlight = element.classList.contains("highlight");
-        const isNavTitle = element.matches(".title.reveal-title");
         const isShown = element.classList.contains("show");
 
         const shouldBeVisible = isElementVisible(
@@ -320,7 +324,45 @@ const mobileDropdown = document.getElementById("mobileDropdown");
 
 let isNavScrolling = false;
 let navScrollTimeout;
-let scrollPosition = 0;
+let pendingRevealHash = null;
+
+
+/* ================================
+   PAGE DETECTION
+================================ */
+
+// True only on index.html (the page that has the home section).
+const isMainPage = Boolean(document.getElementById("home"));
+
+// Read the arrival hash ONCE, before anything can rewrite it
+const initialHash = isMainPage ? window.location.hash : "";
+
+function normalizePath(pathname) {
+    return pathname.replace(/index\.html$/, "").replace(/\/$/, "") || "/";
+}
+
+/*
+    Returns "#sectionId" if the href points to a section on the
+    CURRENT page. Returns null for everything else, so those links
+    navigate normally.
+*/
+function getSamePageHash(href) {
+    if (!href) return null;
+
+    try {
+        const url = new URL(href, window.location.href);
+
+        const samePage =
+            url.origin === window.location.origin &&
+            normalizePath(url.pathname) === normalizePath(window.location.pathname);
+
+        if (!samePage || url.hash.length <= 1) return null;
+
+        return url.hash;
+    } catch {
+        return null;
+    }
+}
 
 
 /* ================================
@@ -328,9 +370,37 @@ let scrollPosition = 0;
 ================================ */
 
 function isMobileMenuVisible() {
-    return Boolean(
-        mobileDropdown?.classList.contains("active")
-    );
+    return Boolean(mobileDropdown?.classList.contains("active"));
+}
+
+
+/* ================================
+   SCROLL LOCK
+   Pauses the scroll-spy during a programmatic scroll. It releases
+   150ms after scrolling stops and does NOT re-run the spy, so the
+   section you clicked stays active until you scroll yourself.
+================================ */
+
+function endNavLock() {
+    isNavScrolling = false;
+    if (typeof updateReveals === "function") updateReveals();
+
+    if (pendingRevealHash) {
+        const hash = pendingRevealHash;
+        pendingRevealHash = null;
+
+        if (typeof triggerSectionTitleReveal === "function") {
+            triggerSectionTitleReveal(hash);
+        }
+    }
+}
+
+function startNavLock() {
+    isNavScrolling = true;
+    clearTimeout(navScrollTimeout);
+
+    // Fallback in case no scrolling happens (target already in view)
+    navScrollTimeout = setTimeout(endNavLock, 400);
 }
 
 
@@ -338,8 +408,20 @@ function isMobileMenuVisible() {
    ACTIVE NAVIGATION
 ================================ */
 
+function setActiveLink(activeHash) {
+    navLinks.forEach((link) => {
+        const href = link.getAttribute("href");
+
+        link.classList.toggle(
+            "active",
+            getSamePageHash(href) === activeHash ||
+            (activeHash === "#home" && href === "#")
+        );
+    });
+}
 
 function updateActiveNav() {
+    if (!isMainPage) return;
     if (!sections.length || isMobileMenuVisible()) return;
     if (isNavScrolling) return;
 
@@ -363,53 +445,128 @@ function updateActiveNav() {
         currentSection = footer.id;
     }
 
-    // Update URL hash when the active section changes
     const currentHash = `#${currentSection}`;
 
     if (window.location.hash !== currentHash) {
         history.replaceState(null, "", currentHash);
     }
 
-    navLinks.forEach((link) => {
-        const href = link.getAttribute("href");
-
-        link.classList.toggle(
-            "active",
-            href === currentHash ||
-            (currentSection === "home" && href === "#")
-        );
-    });
+    setActiveLink(currentHash);
 }
 
-window.addEventListener("scroll", updateActiveNav, {
-    passive: true
-});
-
-
-window.addEventListener("load", updateActiveNav);
-window.addEventListener("resize", updateActiveNav);
 
 /* ================================
-   GENERAL SECTION NAVIGATION
+   SCROLL HELPERS
 ================================ */
 
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (event) => {
-        const href = link.getAttribute("href");
+// Scrolls without animation, even if CSS has scroll-behavior: smooth
+function jumpToElement(target) {
+    const root = document.documentElement;
+    const previous = root.style.scrollBehavior;
 
-        if (!href || href === "#") return;
+    root.style.scrollBehavior = "auto";
+    target.scrollIntoView({ block: "start" });
+    root.style.scrollBehavior = previous;
+}
 
-        const target = document.getElementById(
-            decodeURIComponent(href.slice(1))
-        );
+// Arriving at index.html#section: jump instantly and highlight the
+// target link right away, so no other section flashes active.
+function jumpToInitialHash() {
+    if (!initialHash) return null;
 
-        if (!target) return;
+    const target = document.getElementById(
+        decodeURIComponent(initialHash.slice(1))
+    );
 
-        event.preventDefault();
+    if (!target) return null;
 
-        navigateToSection(href);
+    startNavLock();
+    setActiveLink(initialHash);
+    jumpToElement(target);
+
+    return target;
+}
+
+
+/* ================================
+   REPLAY REVEALS AFTER ARRIVING WITH A HASH
+   The reveal animation is a CSS transition, so elements must be painted
+   hidden first. After the jump we hide the target section's reveal
+   elements again, wait a moment, then let the reveal system show them.
+================================ */
+
+function replayReveals(target) {
+    const root = document.documentElement;
+
+    // Transitions are off (hash-arrival class), so hiding is instant and invisible
+    setTimeout(() => {
+        if (target) {
+            document
+                .querySelectorAll(".reveal-card, .reveal-title")
+                .forEach((el) => {
+                    if (!el.classList.contains("highlight")) {
+                        el.classList.remove("show");
+                    }
+                });
+        }
+
+        void document.body.offsetHeight;      // apply the hidden state
+        root.classList.remove("hash-arrival"); // transitions back on
+        void document.body.offsetHeight;      // apply the transition rules
+
+        // Next frames: let the reveal system show what is in view, animated
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                if (typeof updateReveals === "function") updateReveals();
+            });
+        });
+    }, 150);
+}
+
+
+/* ================================
+   MAIN PAGE LISTENERS
+================================ */
+
+if (isMainPage) {
+
+    // Lock right away so the browser's own jump to the hash cannot
+    // trigger the scroll-spy or rewrite the URL before "load"
+    if (initialHash) startNavLock();
+
+    window.addEventListener("scroll", () => {
+
+        // Programmatic scroll running: extend the lock until it stops
+        if (isNavScrolling) {
+            clearTimeout(navScrollTimeout);
+            navScrollTimeout = setTimeout(endNavLock, 150);
+            return;
+        }
+
+        updateActiveNav();
+
+    }, { passive: true });
+
+    // Jump now, then again after load in case images/fonts shifted layout
+    jumpToInitialHash();
+
+    window.addEventListener("load", () => {
+        if (initialHash) {
+            const target = jumpToInitialHash();
+            replayReveals(target);
+        } else {
+            document.documentElement.classList.remove("hash-arrival");
+            updateActiveNav();
+        }
     });
-});
+
+    // Safety: never leave transitions disabled
+    setTimeout(() => {
+        document.documentElement.classList.remove("hash-arrival");
+    }, 3000);
+
+    window.addEventListener("resize", updateActiveNav);
+}
 
 
 /* ================================
@@ -428,23 +585,17 @@ function updateMenuAccessibility(isOpen) {
 
 
 /* ================================
-   OPEN MENU
+   OPEN / CLOSE MENU
 ================================ */
 
 function openMobileMenu() {
     if (!menuToggle || !mobileDropdown || isMobileMenuVisible()) return;
-
 
     mobileDropdown.classList.add("active");
     menuToggle.classList.add("active");
 
     updateMenuAccessibility(true);
 }
-
-
-/* ================================
-   CLOSE MENU
-================================ */
 
 function closeMobileMenu() {
     if (!mobileDropdown) return;
@@ -473,53 +624,64 @@ function navigateToSection(href) {
 
     history.replaceState(null, "", href);
 
-    clearTimeout(navScrollTimeout);
+    // Highlight the destination immediately and freeze the scroll-spy
+    if (isMainPage) setActiveLink(href);
+    startNavLock();
 
-    navLinks.forEach((link) => {
-        link.classList.toggle(
-            "active",
-            link.getAttribute("href") === href
-        );
-    });
-
-    isNavScrolling = true;
-
-    target.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
-    navScrollTimeout = setTimeout(() => {
-        isNavScrolling = false;
-        updateActiveNav();
-    }, 1200);
+    if (targetId === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
 }
 
+
 /* ================================
-   TRIGGER SECTION TITLE REVEAL
+   ALL SECTION LINKS (single handler)
 ================================ */
 
-function triggerSectionTitleReveal(href) {
-    if (!href || !href.startsWith("#") || href === "#") return;
+document.querySelectorAll('a[href*="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+        const hash = getSamePageHash(link.getAttribute("href"));
+        const inMobileMenu = Boolean(mobileDropdown?.contains(link));
 
-    const targetId = decodeURIComponent(href.slice(1));
-    const section = document.getElementById(targetId);
+        // Not a section on this page: allow normal browser navigation
+        if (!hash) {
+            if (inMobileMenu) closeMobileMenu();
+            return;
+        }
 
-    const title = section?.querySelector(
-        ".title.reveal-title, .floating-gallery__content h2.reveal-title"
-    );
+        const target = document.getElementById(
+            decodeURIComponent(hash.slice(1))
+        );
 
-    if (!title) return;
+        if (!target) return;
 
-    title.classList.remove("show");
-    void title.offsetWidth;
-    title.classList.add("show");
-}
+        event.preventDefault();
+
+        if (!inMobileMenu) {
+            navigateToSection(hash);
+            return;
+        }
+
+        // Mobile: close the menu first, then scroll.
+        // The title reveal runs when the scroll settles (see endNavLock).
+        closeMobileMenu();
+
+        requestAnimationFrame(() => {
+            navigateToSection(hash);
+            pendingRevealHash = hash;
+        });
+    });
+});
+
+
 /* ================================
-   MOBILE MENU TOGGLE
+   MOBILE MENU CONTROLS
 ================================ */
 
 if (menuToggle && mobileDropdown) {
+
     menuToggle.addEventListener("click", (event) => {
         event.preventDefault();
 
@@ -530,92 +692,6 @@ if (menuToggle && mobileDropdown) {
         }
     });
 
-
-/* ================================
-    MOBILE NAV LINKS
-================================ */
-
-mobileDropdown.querySelectorAll("a.mobile-nav-link").forEach((link) => {
-    link.addEventListener("click", (event) => {
-        const href = link.getAttribute("href");
-
-        /*
-            Only section links trigger section navigation.
-            Other links keep their normal browser behavior.
-        */
-
-        if (!href || !href.startsWith("#") || href === "#") {
-            closeMobileMenu();
-            return;
-        }
-
-        const targetId = decodeURIComponent(href.slice(1));
-        const target = document.getElementById(targetId);
-
-        if (!target) {
-            console.warn("Navigation target not found:", href);
-            return;
-        }
-
-        event.preventDefault();
-
-        /*
-            Close and unlock first, then navigate.
-        */
-        closeMobileMenu();
-
-        requestAnimationFrame(() => {
-            navigateToSection(href);
-
-            window.addEventListener("scrollend", () => {
-                isNavScrolling = false;
-                updateActiveNav();
-                triggerSectionTitleReveal(href);
-            }, { once: true });
-        });
-    });
-});
-
-/* ================================
-   HOME NAVIGATION
-================================ */
-
-document.querySelectorAll("a.forjfolio-mobile, a.forjfolio, a.moveUpBtn").forEach((link) => {
-    link.addEventListener("click", (event) => {
-        const href = link.getAttribute("href");
-
-        if (href !== "#home") return;
-
-        event.preventDefault();
-
-        // Update the URL hash to #home without reloading
-        history.replaceState(null, "", "#home");
-
-        clearTimeout(navScrollTimeout);
-        isNavScrolling = true;
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-        navLinks.forEach((navLink) => {
-            navLink.classList.toggle(
-                "active",
-                navLink.getAttribute("href") === "#home"
-            );
-        });
-
-        navScrollTimeout = setTimeout(() => {
-            isNavScrolling = false;
-            updateActiveNav();
-        }, 1200);
-    });
-});
-    /* ================================
-       CLOSE BUTTONS
-    ================================ */
-
     mobileDropdown.querySelectorAll(".close-nav").forEach((button) => {
         button.addEventListener("click", (event) => {
             event.preventDefault();
@@ -623,42 +699,12 @@ document.querySelectorAll("a.forjfolio-mobile, a.forjfolio, a.moveUpBtn").forEac
         });
     });
 
-
-    /* ================================
-       ESCAPE KEY
-    ================================ */
-
     document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && isMobileMenuVisible()) {
             closeMobileMenu();
         }
     });
-
 }
-
-
-/* ================================
-   DESKTOP NAVIGATION
-================================ */
-
-document.querySelectorAll("header nav a").forEach((link) => {
-    link.addEventListener("click", (event) => {
-        if (mobileDropdown?.contains(link)) return;
-
-        const href = link.getAttribute("href");
-
-        if (!href || !href.startsWith("#") || href === "#") return;
-
-        const target = document.getElementById(
-            decodeURIComponent(href.slice(1))
-        );
-
-        if (!target) return;
-
-        event.preventDefault();
-        navigateToSection(href);
-    });
-});
 
 
 /* ================================
@@ -671,11 +717,17 @@ mobileBreakpoint.addEventListener("change", () => {
     closeMobileMenu();
 });
 
+
 /* ================================
-   REFRESH PAGE STATE
+   PAGE RESTORATION (back/forward cache)
 ================================ */
 
 function refreshPageState() {
+    // Release any lock left over from before the page was cached
+    isNavScrolling = false;
+    pendingRevealHash = null;
+    clearTimeout(navScrollTimeout);
+
     updateActiveNav();
 
     if (typeof refreshReveals === "function") {
@@ -686,11 +738,14 @@ function refreshPageState() {
         requestRevealUpdate();
     }
 }
-/* ================================
-   PAGE RESTORATION
-================================ */
 
-window.addEventListener("pageshow", refreshPageState);
+window.addEventListener("pageshow", (event) => {
+    // Only when restored from the back/forward cache.
+    // Normal loads are handled by the "load" listener.
+    if (event.persisted) {
+        refreshPageState();
+    }
+});
 
 
 // Swiper
@@ -973,56 +1028,64 @@ document.addEventListener("keydown", (e) => {
 });
 
 let projectsSwiper = null;
+let lastIsMobile = null;
+
+// Grab the elements once, before their classes get swapped around.
+// (Looking them up by class every time breaks after the first switch,
+// because the classes change between mobile and desktop.)
+const projectsContainer = document.querySelector(".projects");
+const projectsWrapper = projectsContainer?.querySelector(".projects-wrapper");
+const projectsDots = projectsContainer?.querySelector(".proj-dots");
+const projectCards = Array.from(document.querySelectorAll(".project-card"));
 
 function updateProjects() {
+    if (!projectsContainer) return;
 
-    const projectsContainer = document.querySelector(".projects");
-    const projectsWrapper = document.querySelector(".projects-wrapper");
-    const projectsDots = document.querySelector(".proj-dots");
-    const projectCards = document.querySelectorAll(".project-card");
+    const isMobile = window.innerWidth <= 768;
 
-    if (window.innerWidth <= 768) {
+    // Only rebuild when the breakpoint actually changes. Without this,
+    // every resize (including the mobile address bar hiding) wipes the
+    // reveal state and the cards flash or replay.
+    if (isMobile === lastIsMobile) return;
+    lastIsMobile = isMobile;
+
+    if (isMobile) {
 
         // =========================
         // MOBILE SWIPER
         // =========================
 
-        if (projectsContainer) {
-            projectsContainer.id = "projectsCarousel";
-            projectsContainer.className = "carousel swiper reveal-title show";
-        }
+        projectsContainer.id = "projectsCarousel";
+        projectsContainer.classList.remove("projects");
+        projectsContainer.classList.add("carousel", "swiper", "reveal-title");
+        // No forced "show": the reveal system decides when it appears
 
         if (projectsWrapper) {
-            projectsWrapper.className = "swiper-wrapper";
+            projectsWrapper.classList.remove("projects-wrapper");
+            projectsWrapper.classList.add("swiper-wrapper");
         }
 
         if (projectsDots) {
-            projectsDots.className = "carousel-dots swiper-pagination";
+            projectsDots.classList.remove("proj-dots");
+            projectsDots.classList.add("carousel-dots", "swiper-pagination");
         }
 
-        projectCards.forEach(card => {
-
+        projectCards.forEach((card) => {
             card.classList.add("swiper-slide");
 
             // Cards do not individually reveal on mobile
             card.classList.remove("reveal-card", "show");
-
         });
 
-
         // Initialize Swiper only once
-        if (!projectsSwiper) {
+        if (!projectsSwiper && typeof Swiper !== "undefined") {
             projectsSwiper = new Swiper("#projectsCarousel", {
                 slidesPerView: 3,
                 spaceBetween: 30,
 
                 breakpoints: {
-                    0: {
-                        spaceBetween: 20,
-                    },
-                    501: {
-                        spaceBetween: 30,
-                    },
+                    0: { spaceBetween: 20 },
+                    501: { spaceBetween: 30 },
                 },
 
                 loop: true,
@@ -1044,24 +1107,17 @@ function updateProjects() {
 
                 on: {
                     init: function () {
-                        this.slides.forEach((slide) => {
-                            slide.removeAttribute("role");
-                        });
+                        this.slides.forEach((slide) => slide.removeAttribute("role"));
                     },
 
                     slideChange: function () {
-                        this.slides.forEach((slide) => {
-                            slide.removeAttribute("role");
-                        });
+                        this.slides.forEach((slide) => slide.removeAttribute("role"));
                     },
                 },
             });
 
-            projectsSwiper.slides.forEach((slide) => {
-                slide.removeAttribute("role");
-            });
+            projectsSwiper.slides.forEach((slide) => slide.removeAttribute("role"));
         }
-
 
     } else {
 
@@ -1074,47 +1130,35 @@ function updateProjects() {
             projectsSwiper = null;
         }
 
+        projectsContainer.removeAttribute("id");
+        projectsContainer.classList.remove("carousel", "swiper", "reveal-title", "show");
+        projectsContainer.classList.add("projects");
 
-        const projectsCarousel =
-            document.querySelector("#projectsCarousel");
-
-        const swiperWrapper =
-            document.querySelectorAll(".swiper-wrapper")[1];
-
-        const carouselDots =
-            document.querySelectorAll(".carousel-dots")[1];
-
-
-        if (projectsCarousel) {
-            projectsCarousel.removeAttribute("id");
-            projectsCarousel.className = "projects";
+        if (projectsWrapper) {
+            projectsWrapper.classList.remove("swiper-wrapper");
+            projectsWrapper.classList.add("projects-wrapper");
         }
 
-        if (swiperWrapper) {
-            swiperWrapper.className = "projects-wrapper";
+        if (projectsDots) {
+            projectsDots.classList.remove("carousel-dots", "swiper-pagination");
+            projectsDots.classList.add("proj-dots");
         }
 
-        if (carouselDots) {
-            carouselDots.className = "proj-dots";
-        }
-
-
-        projectCards.forEach(card => {
-
+        projectCards.forEach((card) => {
             card.classList.remove("swiper-slide");
 
             // Add reveal animation back
             card.classList.add("reveal-card");
 
-            // Let reveal system decide when to show
+            // Let the reveal system decide when to show
             card.classList.remove("show");
-
         });
-
     }
 
     // Re-check reveal elements
-    updateReveals();
+    if (typeof updateReveals === "function") {
+        updateReveals();
+    }
 }
 
 window.addEventListener("resize", updateProjects);

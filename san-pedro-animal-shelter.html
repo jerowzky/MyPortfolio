@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ForJFolio | Jeruh Fornal — Web Portfolio</title>
+        <title>San Pedro Animal Shelter Management System</title>
         <meta name="description" content="Explore ForJFolio, the portfolio of Jeruh Fornal, featuring projects in web development, UI/UX design, quality assurance, business analysis, and project management.">
         <meta name="robots" content="index, follow">
         <link rel="canonical" href="https://jeruhfornal.vercel.app/">
@@ -18,12 +18,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>     
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-        <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,100..900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
         <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">        
         <link rel="icon" type="image/png" href="images/logo.webp">
-        <!-- Preload Swiper CSS -->
-        <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
         <!-- Main stylesheet -->
         <link rel="stylesheet" href="style.css">
     </head>
@@ -36,10 +32,10 @@
             <nav aria-label="Main navigation">
                 <ul>
                     <li><a href="index.html#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#journey">Journey</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#journey">Journey</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#tools">Tools</a></li>
                     <li><a href="#contact" class="contact-btn">Let's Connect</a></li>
                 </ul>
             </nav>
@@ -72,11 +68,11 @@
                 </div>
                 <nav aria-label="Mobile navigation">
                     <ul class="mobile-selection">
-                        <li><a class="mobile-nav-link" href="#about">About</a></li>
-                        <li><a class="mobile-nav-link" href="#skills">Skills</a></li>
-                        <li><a class="mobile-nav-link" href="#journey">Journey</a></li>
-                        <li><a class="mobile-nav-link" href="#projects">Projects</a></li>
-                        <li><a class="mobile-nav-link" href="#tools">Tools</a></li>
+                        <li><a class="mobile-nav-link" href="index.html#about">About</a></li>
+                        <li><a class="mobile-nav-link" href="index.html#skills">Skills</a></li>
+                        <li><a class="mobile-nav-link" href="index.html#journey">Journey</a></li>
+                        <li><a class="mobile-nav-link" href="index.html#projects">Projects</a></li>
+                        <li><a class="mobile-nav-link" href="index.html#tools">Tools</a></li>
                         <li><a class="mobile-nav-link" href="#contact">Contact</a></li>
                     </ul>
                 </nav>
@@ -269,22 +265,47 @@
                                 </h2>
                                 <div class="project-info">
                                     <div class="info-row">
-                                        <span class="info-label">Role</span>
-                                        <span class="info-value">UI/UX Designer | Frontend Developer</span>
+                                        <span class="info-label">Technologies</span>
+                                        <ul class="tools-stack">
+                                            <li>PHP</li>
+                                            <li>HTML</li>
+                                            <li>Tailwind CSS</li>
+                                            <li>JavaScript</li>
+                                            <li>Python</li>
+                                            <li>MySQL</li>
+                                        </ul>
                                     </div>
-                                    <ul class="info-row responsibility">                                        
-                                        <li class="info-value">Designed the complete user interface and page layouts for all system roles, including Client, Staff, and Admin, based on their respective functions and requirements.</li>
-                                        <li class="info-value">Created consistent and user-friendly interfaces for dashboards, management pages, forms, tables, and other system modules.</li>
-                                        <li class="info-value">Designed interactive UI elements, including modals, confirmation dialogs, toast notifications, dropdowns, and navigation components.</li>
-                                        <li class="info-value">Translated the interface designs into functional web pages using HTML, CSS, JavaScript, and Tailwind CSS.</li>
-                                        <li class="info-value">Developed responsive layouts to ensure the system remains accessible and usable across desktop, tablet, and mobile devices.</li>
-                                        <li class="info-value">Performed frontend testing and debugging to resolve layout inconsistencies, improve interactions, and maintain a consistent user experience across the system.</li>
-                                    </ul>
+                                    <div class="info-row">
+                                        <span class="info-label">Tools</span>
+                                        <ul class="tools-stack">
+                                            <li>Figma</li>
+                                            <li>Canva</li>
+                                            <li>GitHub</li>
+                                            <li>VSCode</li>
+                                            <li>Xampp</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
+
+        <div class="video-modal" id="videoModal">
+            <span class="video-title"></span>
+            <p class="video-label"></p>
+            <a href="#" class="close-video" id="closeVideo">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M18 18L6 6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </a>
+            <div class="video-container">
+                <video id="demoVideo" controls preload="metadata">
+                    <source id="videoSource" src="" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
         <footer id="contact">
 
            <div class="mid-footer">
@@ -397,4 +418,5 @@
                 </div>
             </div>
         </footer>   
+<script src="page-script.js" defer></script>
 </body>
