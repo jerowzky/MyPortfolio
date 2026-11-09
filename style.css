@@ -40,6 +40,7 @@ html {
     overflow-x: clip;
     scroll-behavior: smooth;
 }
+
 body {
     height: auto;
     margin: 0;
@@ -3316,10 +3317,8 @@ background:
 .project-hero img {
     width: 100%;
     height: auto;
-    filter: drop-shadow(0 0 2px white)
-            drop-shadow(0 0 5px rgba(255, 255, 255, 0.65))
-            drop-shadow(0px 4px 53.1px #026b4c);
-
+    filter: drop-shadow(0px 4px 25px rgba(4, 207, 146, 0.50));
+    will-change: filter;
 
 }
 
@@ -3355,7 +3354,7 @@ background:
 }
 
 .project-button a {
-    font-size: var(--unbounded-body-font);
+    font-size: 13px;
     padding: 7px 12px;
     box-shadow:
         inset 0 2px 2px #ffffff30,
@@ -3364,7 +3363,7 @@ background:
 
 .project-button svg {
     width: auto;
-    height: 18px;
+    height: 16px;
 }
 
 .project-details {
@@ -3554,20 +3553,23 @@ background:
 .container-image:first-child { justify-content: flex-start; }
 .container-image:last-child  { justify-content: flex-end; }
 
-/* The image carries the padding and the styling */
-.container-image img {
-    display: block;
-    box-sizing: border-box;
+.image-frame {
     height: 100%;
-    width: auto;
-    max-width: none;
-    flex-shrink: 0;
     padding: 10px;
+    box-sizing: border-box;
     background: linear-gradient(135deg, #03a271cc, #02c58b80);
     box-shadow:
         inset 0 2px 2px #ffffff80,
         inset 0 0 0 2px #ffffff35,
         0 2px 8px #03a27130;
+    border-radius: 5px;
+}
+
+.image-frame img {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: none;
     border-radius: 5px;
 }
 
