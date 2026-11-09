@@ -170,22 +170,56 @@ function updateActiveNav() {
     if (!sections.length || !localLinks.length) return;
     if (isMobileMenuVisible() || isNavScrolling) return;
 
+    const doc = document.documentElement;
+    const scrollY = window.scrollY;
+    const maxScroll = doc.scrollHeight - window.innerHeight;
+
+    // Page can't really scroll: leave the URL and links alone
+    if (maxScroll <= 5) return;
+
+    const footer = document.querySelector("footer#contact");
     const activationPoint = window.innerHeight * 0.4;
 
-    const pageBottom =
-        window.scrollY + window.innerHeight >=
-        document.documentElement.scrollHeight - 5;
+    // How far the footer's top must rise into the screen before it counts.
+    // Increase for later activation, decrease for earlier.
+    const FOOTER_OFFSET = 80;
 
-    let currentSection = sections[0].id;
+    let currentSection = null;
 
+    // Regular sections (everything except the footer)
     sections.forEach((section) => {
+        if (section === footer) return;
+
         if (section.getBoundingClientRect().top <= activationPoint) {
             currentSection = section.id;
         }
     });
 
-    if (pageBottom) {
-        currentSection = sections[sections.length - 1].id;
+    // Footer: only when it has actually come into view
+    const atBottom = scrollY >= maxScroll - 5;
+
+    const footerReached =
+        footer &&
+        scrollY > 10 &&
+        (footer.getBoundingClientRect().top <= window.innerHeight - FOOTER_OFFSET ||
+            atBottom);
+
+    if (footerReached) {
+        currentSection = footer.id;
+    }
+
+    // Nothing reached yet: clean URL, nothing highlighted
+    if (!currentSection) {
+        if (window.location.hash) {
+            history.replaceState(
+                null,
+                "",
+                window.location.pathname + window.location.search
+            );
+        }
+
+        setActiveLink(null);
+        return;
     }
 
     const currentHash = `#${currentSection}`;
@@ -542,8 +576,15 @@ document.addEventListener("keydown", (e) => {
 });
 
 
-const galleryTriggers = document.querySelectorAll(".gallery-trigger");
 
+/* ================================
+   PROJECT GALLERY
+================================ */
+
+const galleryTriggers = document.querySelectorAll(".project-images");
+const galleryModal = document.getElementById("galleryModal");
+
+// Update image counters
 galleryTriggers.forEach(trigger => {
     const images = (trigger.dataset.gallery || "")
         .split(",")
@@ -556,7 +597,6 @@ galleryTriggers.forEach(trigger => {
         imageCounter.textContent = `+${Math.max(0, images.length - 1)}`;
     }
 });
-const galleryModal = document.getElementById("galleryModal");
 
 if (galleryModal) {
     const galleryImage = galleryModal.querySelector(".gallery-image");
@@ -565,7 +605,8 @@ if (galleryModal) {
     const closeButton = galleryModal.querySelector(".gallery-close");
     const prevButton = galleryModal.querySelector(".gallery-prev");
     const nextButton = galleryModal.querySelector(".gallery-next");
-    const imageCounter = document.getElementById("image-counter");
+
+    let images = [];
     let currentIndex = 0;
     let previousFocus = null;
 
@@ -574,25 +615,29 @@ if (galleryModal) {
 
         galleryImage.src = images[currentIndex];
         galleryImage.alt = `Gallery image ${currentIndex + 1}`;
+
         galleryCounter.textContent =
             `${currentIndex + 1}\u00A0\u00A0•\u00A0\u00A0${images.length}`;
 
-        // Hide arrows when there's only one image
         const multipleImages = images.length > 1;
+
         prevButton.hidden = !multipleImages;
         nextButton.hidden = !multipleImages;
     }
 
     function openGallery(trigger) {
-        images = trigger.dataset.gallery
+        images = (trigger.dataset.gallery || "")
             .split(",")
             .map(src => src.trim())
             .filter(Boolean);
 
         if (!images.length) return;
-        
+
         previousFocus = trigger;
-        galleryTitle.textContent = trigger.dataset.title || "Project Gallery"; 
+
+        galleryTitle.textContent =
+            trigger.dataset.title || "Project Gallery";
+
         showImage(0);
 
         galleryModal.classList.add("active");
@@ -603,9 +648,9 @@ if (galleryModal) {
     }
 
     function closeGallery() {
-    galleryModal.classList.remove("active");
-    galleryModal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("no-scroll");
+        galleryModal.classList.remove("active");
+        galleryModal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("no-scroll");
 
         galleryImage.removeAttribute("src");
 
@@ -614,26 +659,29 @@ if (galleryModal) {
         }
     }
 
-    // Event delegation: works for every current or future trigger
+    // Open gallery
     document.addEventListener("click", event => {
-        const trigger = event.target.closest(".gallery-trigger");
+        const trigger = event.target.closest(".project-images");
 
         if (trigger) {
             openGallery(trigger);
         }
     });
 
+    // Close gallery
     closeButton.addEventListener("click", closeGallery);
 
+    // Previous image
     prevButton.addEventListener("click", () => {
         showImage(currentIndex - 1);
     });
 
+    // Next image
     nextButton.addEventListener("click", () => {
         showImage(currentIndex + 1);
     });
 
-
+    // Keyboard controls
     document.addEventListener("keydown", event => {
         if (!galleryModal.classList.contains("active")) return;
 
