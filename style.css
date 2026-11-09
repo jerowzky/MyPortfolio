@@ -4247,6 +4247,11 @@ width: 100%;
 }
 .pdf-container {
     height: 50vh;
+    position: static;
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-right: -20px;
+    max-width: none;
 }
 .forjfolio-mobile img {
     width: 22px;
@@ -4296,7 +4301,11 @@ width: 100%;
 
 .download-pdf {
     padding: 8px 12px;
+    transform: none;
+    right: var(--gallery-modal-padding);
+    bottom: var(--gallery-modal-padding);
 }
+
 .download-pdf svg {
     width: 18px;
 }
