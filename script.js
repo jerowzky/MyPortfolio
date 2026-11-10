@@ -1030,35 +1030,122 @@ document.addEventListener("keydown", (e) => {
 let projectsSwiper = null;
 let lastIsMobile = null;
 
+// ---------- Pagination state ----------
+const PER_PAGE = 6;
+let currentPage = 1;
+
 // Grab the elements once, before their classes get swapped around.
-// (Looking them up by class every time breaks after the first switch,
-// because the classes change between mobile and desktop.)
 const projectsContainer = document.querySelector(".projects");
 const projectsWrapper = projectsContainer?.querySelector(".projects-wrapper");
 const projectsDots = projectsContainer?.querySelector(".proj-dots");
 const projectCards = Array.from(document.querySelectorAll(".project-card"));
+const paginationNav = document.getElementById("projects-pagination");
+const projectsSection = document.getElementById("projects");
+
+const ARROW_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M10 8L14 12L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+// =========================
+// PAGINATION (desktop only)
+// =========================
+
+function makeBtn(content, onClick, { disabled = false, active = false, aria, html = false, className } = {}) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    if (html) btn.innerHTML = content;
+    else btn.textContent = content;
+    btn.disabled = disabled;
+    if (className) btn.classList.add(className);
+    if (active) {
+        btn.classList.add("active");
+        btn.setAttribute("aria-current", "page");
+    }
+    if (aria) btn.setAttribute("aria-label", aria);
+    btn.addEventListener("click", onClick);
+    return btn;
+}
+
+function renderPagination(totalPages) {
+    if (!paginationNav) return;
+    paginationNav.innerHTML = "";
+    if (totalPages <= 1) return;
+
+    paginationNav.appendChild(makeBtn(ARROW_ICON, () => showPage(currentPage - 1, true), {
+        disabled: currentPage === 1,
+        aria: "Previous page",
+        html: true,
+        className: "prev",
+    }));
+
+    for (let p = 1; p <= totalPages; p++) {
+        paginationNav.appendChild(makeBtn(p, () => showPage(p, true), {
+            active: p === currentPage,
+            aria: `Page ${p}`,
+        }));
+    }
+
+    paginationNav.appendChild(makeBtn(ARROW_ICON, () => showPage(currentPage + 1, true), {
+        disabled: currentPage === totalPages,
+        aria: "Next page",
+        html: true,
+        className: "next",
+    }));
+}
+
+function showPage(page, userClicked = false) {
+    const totalPages = Math.ceil(projectCards.length / PER_PAGE) || 1;
+    currentPage = Math.min(Math.max(page, 1), totalPages);
+
+    projectCards.forEach((card, i) => {
+        const visible = i >= (currentPage - 1) * PER_PAGE && i < currentPage * PER_PAGE;
+        card.hidden = !visible;
+        card.style.display = visible ? "" : "none";
+    });
+
+    renderPagination(totalPages);
+
+    if (userClicked) {
+        // Newly shown cards never got a chance to reveal, so show them directly
+        requestAnimationFrame(() => {
+            projectCards.forEach((card) => {
+                if (!card.hidden) card.classList.add("show");
+            });
+            if (typeof updateReveals === "function") updateReveals();
+        });
+        projectsSection?.scrollIntoView({ behavior: "smooth" });
+    }
+}
+
+function disablePagination() {
+    projectCards.forEach((card) => {
+        card.hidden = false;
+        card.style.display = "";
+    });
+    if (paginationNav) paginationNav.innerHTML = "";
+}
+
+// =========================
+// MOBILE SWIPER / DESKTOP SWITCH
+// =========================
 
 function updateProjects() {
     if (!projectsContainer) return;
 
     const isMobile = window.innerWidth <= 768;
 
-    // Only rebuild when the breakpoint actually changes. Without this,
-    // every resize (including the mobile address bar hiding) wipes the
-    // reveal state and the cards flash or replay.
+    // Only rebuild when the breakpoint actually changes.
     if (isMobile === lastIsMobile) return;
     lastIsMobile = isMobile;
 
     if (isMobile) {
 
-        // =========================
-        // MOBILE SWIPER
-        // =========================
+        // Pagination off: every card must be visible for Swiper
+        disablePagination();
 
         projectsContainer.id = "projectsCarousel";
         projectsContainer.classList.remove("projects");
         projectsContainer.classList.add("carousel", "swiper", "reveal-title");
-        // No forced "show": the reveal system decides when it appears
 
         if (projectsWrapper) {
             projectsWrapper.classList.remove("projects-wrapper");
@@ -1072,12 +1159,9 @@ function updateProjects() {
 
         projectCards.forEach((card) => {
             card.classList.add("swiper-slide");
-
-            // Cards do not individually reveal on mobile
             card.classList.remove("reveal-card", "show");
         });
 
-        // Initialize Swiper only once
         if (!projectsSwiper && typeof Swiper !== "undefined") {
             projectsSwiper = new Swiper("#projectsCarousel", {
                 slidesPerView: 3,
@@ -1109,7 +1193,6 @@ function updateProjects() {
                     init: function () {
                         this.slides.forEach((slide) => slide.removeAttribute("role"));
                     },
-
                     slideChange: function () {
                         this.slides.forEach((slide) => slide.removeAttribute("role"));
                     },
@@ -1120,10 +1203,6 @@ function updateProjects() {
         }
 
     } else {
-
-        // =========================
-        // DESKTOP
-        // =========================
 
         if (projectsSwiper) {
             projectsSwiper.destroy(true, true);
@@ -1146,16 +1225,14 @@ function updateProjects() {
 
         projectCards.forEach((card) => {
             card.classList.remove("swiper-slide");
-
-            // Add reveal animation back
             card.classList.add("reveal-card");
-
-            // Let the reveal system decide when to show
             card.classList.remove("show");
         });
+
+        // Pagination on: runs AFTER the classes are restored, keeps your last page
+        showPage(currentPage);
     }
 
-    // Re-check reveal elements
     if (typeof updateReveals === "function") {
         updateReveals();
     }
@@ -1619,6 +1696,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 });
-
-
-
