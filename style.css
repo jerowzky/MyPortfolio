@@ -3344,8 +3344,10 @@ background:
     letter-spacing: var(--body-letter-spacing);
     line-height: 1.3rem;
     color: #FFFFFF;
-    font-weight: 500;
+}
 
+.project-hero p {
+    font-weight: 500;
 }
 
 .project-button {
@@ -3407,7 +3409,7 @@ background:
     gap: 50px;
 }
 
-.left-project .about-proj, .right-project .information, .right-project .role {
+.detail-section {
     width: 100%;
     display: flex;
     flex-direction: column;
