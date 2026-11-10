@@ -4311,10 +4311,7 @@ width: 100%;
 .project-hero h1 {
     font-size: 1.8rem;
 }
-.project-button a {
-  padding: 4px 8px;
-  font-size: 11px;
-}
+
 .project-details h2 {
     font-size: 16px;
 }
@@ -4469,7 +4466,7 @@ width: 100%;
 
 .long-desc {
     line-height: 1.2rem; 
-    max-width: 60%;   
+    max-width: 70%;   
     border-radius: 18px;
 }
 
