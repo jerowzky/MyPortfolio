@@ -142,7 +142,7 @@ header nav a {
     font-size: 14px;
     text-transform: uppercase;
     opacity: 0.75;
-     #EDEEE9-space: nowrap;
+     white-space: nowrap;
 }
 
 .pointer-hover header nav a:hover {
@@ -343,7 +343,7 @@ header nav a.active {
     background: #03A271;
     padding: 0.5rem 1rem;
     width: fit-content;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
 }
 
 .greetings .greet1 {
@@ -377,7 +377,7 @@ header nav a.active {
 .greetings .greet4 {
     margin-top: 25px;
     font-size: 1.1rem;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
 }
 
 .greetings .greet5 {
@@ -385,7 +385,7 @@ header nav a.active {
     font-family: "ICF-ExtraBold";
     font-size: 35px;
     color: #FFFFFF;
-     #EDEEE9-space: nowrap;
+     white-space: nowrap;
      margin-bottom: 25px;
 }
 
@@ -460,7 +460,7 @@ position: relative;
 .description .desc2 {
     margin: 0;
     text-align: right;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
 }
 
 .description .desc1 {
@@ -711,7 +711,7 @@ display: none;
     gap: 400px;
     justify-content: center;
     z-index: 10;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
 }
 
 .email-button, .resume-button {
@@ -886,7 +886,7 @@ background: radial-gradient(
         inset 0 3px 2px #ffffff30,
         inset 0 0 0 2px #03a27135;
     border-radius: 50px 50px 50px 0;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
     margin: 0;
 }
 
@@ -915,7 +915,7 @@ background: radial-gradient(
     width: fit-content;
     position: relative;
     text-align: center;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
     margin: -15px 0 0 0;
 }
 .about {
@@ -1053,7 +1053,7 @@ background: radial-gradient(
 }
 
 .left-btn, .right-btn {
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
     width: fit-content;
     top: -45px;
     position: absolute;
@@ -1105,7 +1105,7 @@ background: radial-gradient(
 .label, .number {
     color: #EDEEE9;
     margin: 0;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
 }
 
 .card-icon {
@@ -2556,7 +2556,7 @@ background-color: rgb(14,14,14);
     text-align: center;
     font-weight: 500;
     padding: 10px 16px;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
 
     border-radius: 999px;
 
@@ -3076,7 +3076,7 @@ background: radial-gradient(
 
 .month-label {
   min-width: 0;
-  #EDEEE9-space: nowrap;
+  white-space: nowrap;
   overflow: visible;
 }
 
@@ -3732,7 +3732,7 @@ background:
     margin-top: 0px;
     font-size: 28px;
     margin-bottom: 24px;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
 }
 
 .description .desc1 {
@@ -4099,7 +4099,7 @@ header .forjfolio {
 
 .gallery-title, .video-title, .pdf-title {
     top: 10%;    
-    #EDEEE9-space: normal;
+    white-space: normal;
 }
 .about-content {
     flex-direction: column;
@@ -4449,7 +4449,7 @@ width: 100%;
     margin-top: 0px;
     font-size: 24px;
     margin-bottom: 24px;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
 }
 
 .description .desc1 {
@@ -4521,7 +4521,7 @@ width: 100%;
     align-items: flex-end;
     justify-content: center;
     z-index: 10;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
 }
 .resume-button {
     top: 0px;
@@ -4736,7 +4736,7 @@ padding: 0.3rem 0.8rem;
 
 .label, .number {
     margin: 0;
-    #EDEEE9-space: nowrap;
+    white-space: nowrap;
 }
 
 .card-icon {
