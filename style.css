@@ -126,7 +126,7 @@ header nav ul {
 
 header .sitename {
     margin: 0;
-    color: white;
+    color: #EDEEE9;
     font-family: "Unbounded", sans-serif;
     font-size: 1.5rem;
     font-weight: bold;
@@ -142,7 +142,7 @@ header nav a {
     font-size: 14px;
     text-transform: uppercase;
     opacity: 0.75;
-     white-space: nowrap;
+     #EDEEE9-space: nowrap;
 }
 
 .pointer-hover header nav a:hover {
@@ -186,7 +186,7 @@ box-shadow:
 
 backdrop-filter: blur(12px);
 -webkit-backdrop-filter: blur(12px);
-    color: white;
+    color: #EDEEE9;
     font-weight: 600;
 }
 
@@ -335,7 +335,7 @@ header nav a.active {
 .greetings .greet1,
 .greetings .greet4 {
     font-family: "Archivo", sans-serif;
-    color: white;
+    color: #EDEEE9;
     text-transform: uppercase;
     letter-spacing: 0.18em;
     font-weight: 600;
@@ -343,7 +343,7 @@ header nav a.active {
     background: #03A271;
     padding: 0.5rem 1rem;
     width: fit-content;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
 }
 
 .greetings .greet1 {
@@ -377,7 +377,7 @@ header nav a.active {
 .greetings .greet4 {
     margin-top: 25px;
     font-size: 1.1rem;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
 }
 
 .greetings .greet5 {
@@ -385,7 +385,7 @@ header nav a.active {
     font-family: "ICF-ExtraBold";
     font-size: 35px;
     color: #FFFFFF;
-     white-space: nowrap;
+     #EDEEE9-space: nowrap;
      margin-bottom: 25px;
 }
 
@@ -426,7 +426,7 @@ header nav a.active {
     width: 100%;
     height: auto;
     aspect-ratio: 3 / 4;
-    filter: drop-shadow(0 0 2px white)
+    filter: drop-shadow(0 0 2px #EDEEE9)
             drop-shadow(0 0 5px rgba(255, 255, 255, 0.65));
 
     -webkit-mask-image: linear-gradient(
@@ -460,7 +460,7 @@ position: relative;
 .description .desc2 {
     margin: 0;
     text-align: right;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
 }
 
 .description .desc1 {
@@ -667,7 +667,7 @@ position: relative;
 .socmed-wrapper svg {
     width: 30px;
     height: auto;
-    color: white;
+    color: #EDEEE9;
     transition: transform 0.2s ease-out, color 0.2s ease-out;
 }
 
@@ -711,7 +711,7 @@ display: none;
     gap: 400px;
     justify-content: center;
     z-index: 10;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
 }
 
 .email-button, .resume-button {
@@ -877,16 +877,16 @@ background: radial-gradient(
 .title {
     font-size: 3.5rem;
     text-align: center;
-    color: white;
+    color: #EDEEE9;
     font-family: "ICF-ExtraBold";
-    color:white;
+    color:#EDEEE9;
     padding: 1rem 2rem;
     background: linear-gradient(135deg, #03a27130, #03a2710a);
     box-shadow:
         inset 0 3px 2px #ffffff30,
         inset 0 0 0 2px #03a27135;
     border-radius: 50px 50px 50px 0;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
     margin: 0;
 }
 
@@ -905,7 +905,7 @@ background: radial-gradient(
 
 .headline {
     font-family: "Archivo", sans-serif;
-    color: white;
+    color: #EDEEE9;
     text-transform: uppercase;
     letter-spacing: 0.18em;
     font-weight: 600;
@@ -915,7 +915,7 @@ background: radial-gradient(
     width: fit-content;
     position: relative;
     text-align: center;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
     margin: -15px 0 0 0;
 }
 .about {
@@ -1053,13 +1053,13 @@ background: radial-gradient(
 }
 
 .left-btn, .right-btn {
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
     width: fit-content;
     top: -45px;
     position: absolute;
     font-family: "Unbounded", sans-serif;
     font-weight: 600;
-    color: white;
+    color: #EDEEE9;
     border: none;
     border-radius: 5px;
     padding: 5px 12px;
@@ -1103,9 +1103,9 @@ background: radial-gradient(
 }
 
 .label, .number {
-    color: white;
+    color: #EDEEE9;
     margin: 0;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
 }
 
 .card-icon {
@@ -1145,7 +1145,7 @@ background: radial-gradient(
 
 
 .right-about-content .firstp, .right-about-content .secondp {
-    color: white;
+    color: #EDEEE9;
     font-family: "Questrial", sans-serif;
     font-size: var(--body-font);
     font-weight: normal;
@@ -1274,7 +1274,7 @@ border-radius: 20px 20px 5px 20px;
 
 .highlight.show {
     background-size: 100% 100%;
-    color: white;
+    color: #EDEEE9;
 }
 
 /* Different timing */
@@ -1318,7 +1318,7 @@ border-radius: 20px 20px 5px 20px;
     font-weight: 900;
     font-size: 32px;
     margin: 0;
-    color: white;
+    color: #EDEEE9;
 }
 
 .upper-text h3 {
@@ -1326,7 +1326,7 @@ border-radius: 20px 20px 5px 20px;
     font-weight: 600;
     font-size: 20px;
     margin: 0;
-    color: white;
+    color: #EDEEE9;
     text-align: right;
     width: 75%;
 }
@@ -1444,7 +1444,7 @@ background: radial-gradient(
 .carousel-dots .swiper-pagination-bullet-active {
     width: 20px;
     border-radius: 10px;
-    background: white;
+    background: #EDEEE9;
 }
 
 .timeline-line {
@@ -1467,7 +1467,7 @@ background: linear-gradient(
     grid-template-columns: 1fr 1fr;
     column-gap: 70px;
     position: relative;
-    padding-bottom: 30px;
+    padding-bottom: 50px;
 }
 
 .education-left {
@@ -1483,8 +1483,8 @@ background: linear-gradient(
 
 .education-title .educ-level {
     margin: 0;
-    color: white;
-    font-size: 32px;
+    color:#EDEEE9;
+    font-size: 30px;
     line-height: 1.15;
     font-family: "Unbounded", sans-serif;
     font-weight: 900;
@@ -1498,8 +1498,8 @@ background: linear-gradient(
 }
 
 .education-title .year-duration {
-    color: white;
-    font-size: 32px;
+    color: #EDEEE9;
+    font-size: 30px;
     line-height: 1.15;
     font-family: "Unbounded", sans-serif;
     font-weight: 900;
@@ -1533,6 +1533,7 @@ background: linear-gradient(
     color: #B8C0BC;
     letter-spacing: var(--body-letter-spacing);
     line-height: 1.3rem;
+    margin-top: 0;
 }
 .honors {
     display: flex;
@@ -1658,7 +1659,7 @@ background: linear-gradient(
 }
 
 .picker button.active {
-    color: white;
+    color: #EDEEE9;
     background: linear-gradient(
         135deg,
         #03a271cc,
@@ -1795,7 +1796,7 @@ background: linear-gradient(
     font-size: var(--unbounded-body-font);
     line-height: 1.15;
     font-weight: 600;
-    color: white;
+    color: #EDEEE9;
 }
 .project-name .role, .project-name h3 {
     margin: 0;
@@ -1819,9 +1820,9 @@ background: linear-gradient(
     font-family: "Unbounded", sans-serif;
 
     background: #171B19;
-    color: white;
+    color: #EDEEE9;
     vertical-align: top;
-    border: 1px solid white;
+    border: 1px solid #EDEEE9;
 
 }
 
@@ -2369,7 +2370,7 @@ footer::before {
 
 .get-in-touch .logo-text {
     margin: 0;
-    color: white;
+    color: #EDEEE9;
     font-family: "Unbounded", sans-serif;
     font-size: 2rem;
     font-weight: bold;
@@ -2394,7 +2395,7 @@ footer::before {
 
 .second-hook {
     margin: 0;
-    color: white;
+    color: #EDEEE9;
     font-family: "Unbounded", sans-serif;
     font-size: 1.3rem;
     font-weight: 600;
@@ -2411,7 +2412,7 @@ footer::before {
 }
 
 .get-in-touch a {
-    color: white;
+    color: #EDEEE9;
     padding: 5px 15px;
     background: linear-gradient(
         135deg,
@@ -2555,7 +2556,7 @@ background-color: rgb(14,14,14);
     text-align: center;
     font-weight: 500;
     padding: 10px 16px;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
 
     border-radius: 999px;
 
@@ -2603,7 +2604,7 @@ background-color: rgb(14,14,14);
 
 .project-images span, .project-images p {
     padding: 5px 10px;
-    color: white;
+    color: #EDEEE9;
     background: linear-gradient(#1d1d1ddc, #3d3d3dbb);
     box-shadow:
     inset 0 1px 1px #ffffff30,
@@ -2729,7 +2730,7 @@ transform: scale(1);
     display: none;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #EDEEE9;
     background: linear-gradient(
         135deg,
         #03a271cc,
@@ -2755,7 +2756,7 @@ transform: scale(1);
 .download-pdf svg {
     width: 20px;
     height: auto;
-    color: white;
+    color: #EDEEE9;
 }
 
 .gallery-close,
@@ -3075,7 +3076,7 @@ background: radial-gradient(
 
 .month-label {
   min-width: 0;
-  white-space: nowrap;
+  #EDEEE9-space: nowrap;
   overflow: visible;
 }
 
@@ -3265,7 +3266,7 @@ background: radial-gradient(
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #EDEEE9;
 }
 
 .moveUpBtn.show {
@@ -3343,7 +3344,7 @@ background:
     font-size: var(--body-font);
     letter-spacing: var(--body-letter-spacing);
     line-height: 1.3rem;
-    color: #FFFFFF;
+    color: #EDEEE9;
 }
 
 .project-hero p {
@@ -3421,7 +3422,7 @@ background:
 .project-details h2 {
     font-size: 20px;
     font-family: "Unbounded";
-    color: white;
+    color: #EDEEE9;
     margin:0;
     text-transform: uppercase;
     display: flex;
@@ -3464,7 +3465,7 @@ background:
 }
 
 .info-value {
-    color: WHITE;
+    color: #EDEEE9;
     font-size: var(--body-font);
     font-weight: normal;
     font-family: "Questrial", sans-serif;
@@ -3499,7 +3500,7 @@ background:
     display: flex;
     flex-direction: column;
     font-weight: 500;
-    color: white;
+    color: #EDEEE9;
     gap:5px;
     font-size: var(--unbounded-body-font);
 }
@@ -3731,7 +3732,7 @@ background:
     margin-top: 0px;
     font-size: 28px;
     margin-bottom: 24px;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
 }
 
 .description .desc1 {
@@ -3869,7 +3870,7 @@ header {
 
 .mobile-nav span, .mobile-dropdown span{
 margin: 0px;
-color: white;
+color: #EDEEE9;
 font-family: "Unbounded", sans-serif;
 font-size: 1.6rem;
 font-weight: bold;
@@ -3953,7 +3954,7 @@ header .forjfolio {
     padding: 9px 18px;
 
     font-family: "Unbounded", sans-serif;
-    color: white;
+    color: #EDEEE9;
     text-decoration: none;
     font-size: 1.2rem;
 }
@@ -3978,7 +3979,7 @@ header .forjfolio {
 .left-nav-part p {
     margin: 0;
     font-family: "Unbounded", sans-serif;
-    color:white;
+    color:#EDEEE9;
     font-size: 12px;
 }
 .lower-nav .socmed-nav {
@@ -4004,7 +4005,7 @@ header .forjfolio {
 .socmed-nav svg {
     width: 18px;
     height: 18px;
-    color: white;
+    color: #EDEEE9;
 }
 
 .nav-resume-btn {
@@ -4098,7 +4099,7 @@ header .forjfolio {
 
 .gallery-title, .video-title, .pdf-title {
     top: 10%;    
-    white-space: normal;
+    #EDEEE9-space: normal;
 }
 .about-content {
     flex-direction: column;
@@ -4448,7 +4449,7 @@ width: 100%;
     margin-top: 0px;
     font-size: 24px;
     margin-bottom: 24px;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
 }
 
 .description .desc1 {
@@ -4520,7 +4521,7 @@ width: 100%;
     align-items: flex-end;
     justify-content: center;
     z-index: 10;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
 }
 .resume-button {
     top: 0px;
@@ -4735,7 +4736,7 @@ padding: 0.3rem 0.8rem;
 
 .label, .number {
     margin: 0;
-    white-space: nowrap;
+    #EDEEE9-space: nowrap;
 }
 
 .card-icon {
@@ -4783,7 +4784,7 @@ header {
 
 .mobile-nav span, .mobile-dropdown span {
     margin: 0px;
-    color: white;
+    color: #EDEEE9;
     font-family: "Unbounded", sans-serif;
 font-size: 1.4rem;
 }
