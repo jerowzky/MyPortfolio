@@ -19,14 +19,34 @@ const enablePointerHover = () => {
 
 enablePointerHover();
 
-const aboutSection = document.getElementById("about");
-const moveUpBtn = document.getElementById("moveUpBtn");
+(function () {
+    const home = document.getElementById("home");
+    const moveUpBtn = document.getElementById("moveUpBtn");
+    if (!home || !moveUpBtn) return;
 
-window.addEventListener("scroll", () => {
-    const aboutTop = aboutSection.getBoundingClientRect().top;
+    let ticking = false;
 
-    moveUpBtn.classList.toggle("show", aboutTop < window.innerHeight);
-}, { passive: true });
+    function updateBtn() {
+        const rect = home.getBoundingClientRect();
+        const scrolledIntoHome = -rect.top;
+        const threshold = rect.height * 0.75;
+
+        // show only AFTER scrolling past 3/4 of #home
+        moveUpBtn.classList.toggle("show", scrolledIntoHome >= threshold);
+        ticking = false;
+    }
+
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(updateBtn);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    updateBtn();
+})();
 
 
 // Writing Code Background
