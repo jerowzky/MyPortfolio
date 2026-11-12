@@ -1466,6 +1466,7 @@ background: linear-gradient(
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 70px;
+    row-gap: 15px;
     position: relative;
     padding-bottom: 50px;
 }
@@ -1584,8 +1585,6 @@ background: linear-gradient(
     transform: translateX(-50%);
     z-index: 2;
 }
-
-
 
 .experiences::after {
     bottom: 0;
@@ -4862,7 +4861,7 @@ font-size: 1.4rem;
 
 .timeline-line {
     left: 0;
-    width: 6px;
+    width: 4px;
 }
 
 
@@ -4893,8 +4892,8 @@ font-size: 1.4rem;
 
 .experiences::after {
     left: 0;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 
 .section-cutter {
