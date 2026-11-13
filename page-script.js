@@ -476,7 +476,7 @@ document.addEventListener("keydown", (e) => {
 
 const pdfLinks = document.querySelectorAll(".open-pdf");
 const pdfModal = document.getElementById("pdfModal");
-const pdfViewer = document.getElementById("pdfViewer");
+let pdfViewer = document.getElementById("pdfViewer"); // let: it gets replaced
 const closePdf = document.getElementById("closePdf");
 const pdfTitle = document.querySelector(".pdf-title");
 const pdfLabel = document.querySelector(".pdf-label");
@@ -487,6 +487,19 @@ const pdfJsViewer = new URL(
     "../pdfjs/web/viewer.html",
     document.baseURI
 ).href;
+
+// Replace the iframe with a fresh one (no extra history entries)
+function resetPdfViewer(url) {
+    const fresh = pdfViewer.cloneNode(false); // keeps id, class, attributes
+    fresh.removeAttribute("src");
+
+    if (url) {
+        fresh.src = url;
+    }
+
+    pdfViewer.replaceWith(fresh);
+    pdfViewer = fresh;
+}
 
 // Open PDF modal
 pdfLinks.forEach(link => {
@@ -540,12 +553,12 @@ pdfLinks.forEach(link => {
         // Show the modal
         pdfModal.classList.add("active");
 
-        // Load the PDF
-        pdfViewer.src = viewerUrl.href;
+        // Load the PDF in a fresh iframe
+        resetPdfViewer(viewerUrl.href);
 
         // Debugging information
         console.log("PDF file URL:", pdfUrl);
-        console.log("PDF.js viewer URL:", pdfViewer.src);
+        console.log("PDF.js viewer URL:", viewerUrl.href);
     });
 });
 
@@ -553,8 +566,8 @@ pdfLinks.forEach(link => {
 function closePdfModal() {
     pdfModal.classList.remove("active");
 
-    // Stop the viewer when closing
-    pdfViewer.src = "about:blank";
+    // Unload the viewer without touching history
+    resetPdfViewer(null);
 }
 
 // Close using the X button
@@ -574,7 +587,6 @@ document.addEventListener("keydown", (e) => {
         closePdfModal();
     }
 });
-
 
 
 /* ================================
