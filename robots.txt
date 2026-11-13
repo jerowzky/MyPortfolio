@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jeruhfornal.vercel.app/sitemap.xml
