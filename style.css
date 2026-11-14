@@ -39,6 +39,8 @@ html {
     padding: 0;
     overflow-x: clip;
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
