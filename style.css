@@ -23,7 +23,7 @@
     --gallery-counter-font-size: 14px;
     --section-x-margin: 84px;
     --section-y-margin: 75px;
-    --body-font: 16px;
+    --body-font: 15px;
     --unbounded-body-font: 16px;
     --body-letter-spacing: 0.05em;
 }
@@ -499,7 +499,7 @@ position: relative;
     font-size: calc(var(--body-font) + 2px);
     padding: 0.9em;
     letter-spacing: var(--body-letter-spacing);
-    line-height: 1.3rem;
+    line-height: 1.25rem;
     color: #FFFFFF;
     margin: 0 0 0 auto;
     background: linear-gradient(135deg, #ffffff30, #ffffff17);
@@ -1155,10 +1155,10 @@ background: radial-gradient(
     font-family: "Questrial", sans-serif;
     font-size: var(--body-font);
     font-weight: normal;
-    padding: 1em;
+    padding: 18px;
     letter-spacing: var(--body-letter-spacing);
     color: #B8C0BC;
-    line-height: 1.3rem;
+    line-height: 1.25rem;
     max-width: 450px;
     position: relative;
     isolation: isolate;
@@ -1263,24 +1263,22 @@ border-radius: 20px 20px 5px 20px;
 }
 
 .highlight {
-    position: relative;
-
-    background: linear-gradient(
-        to right,
-        #03A271 0%,
-        #03A271 100%
-    );
-
-    background-size: 0% 100%;
+    font-style: italic;
+    background-image:
+        linear-gradient(to right, #06d395, #06d395),
+        linear-gradient(to right, #EDEEE9, #EDEEE9); /* replace with your paragraph text color */
+    background-size: 0% 100%, 100% 100%;
     background-repeat: no-repeat;
-    background-position: left 85%;
-
-    transition: background-size 2s ease, color 2s ease;
+    background-position: left center;
+    -webkit-background-clip: text;
+            background-clip: text;
+    -webkit-text-fill-color: transparent;
+            color: transparent;
+    transition: background-size 3s ease;
 }
 
 .highlight.show {
-    background-size: 100% 100%;
-    color: #EDEEE9;
+    background-size: 100% 100%, 100% 100%;
 }
 
 /* Different timing */
@@ -1348,7 +1346,7 @@ border-radius: 20px 20px 5px 20px;
 
 .lower-text li {
     font-family: "Unbounded", sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 5px 10px;
     color: #B8C0BC;
     border-radius: 999px;
@@ -1416,7 +1414,7 @@ background: radial-gradient(
     width: 80%;
     color: #B8C0BC;
     letter-spacing: var(--body-letter-spacing);
-    line-height: 1.3rem;
+    line-height: 1.25rem;
     margin: 0;
 }
 
@@ -1540,7 +1538,7 @@ background: linear-gradient(
     font-weight: normal;
     color: #B8C0BC;
     letter-spacing: var(--body-letter-spacing);
-    line-height: 1.3rem;
+    line-height: 1.25rem;
     margin-top: 0;
 }
 .honors {
@@ -1552,7 +1550,7 @@ background: linear-gradient(
 }
 .honors span {
     font-family: "Unbounded", sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 5px 10px;
     background-color: #181d1b;
     background-image: linear-gradient(
@@ -1788,7 +1786,7 @@ background: linear-gradient(
     font-weight: normal;
     color: #B8C0BC;
     letter-spacing: var(--body-letter-spacing);
-    line-height: 1.3rem;    
+    line-height: 1.25rem;    
 }
 
 .project-name {
@@ -1854,7 +1852,7 @@ background: linear-gradient(
 
 .tools-stack li {  
     font-family: "Unbounded", sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 5px 10px;
     color: #B8C0BC;
     border-radius: 999px;
@@ -2286,7 +2284,7 @@ background: radial-gradient(
 }
 .tools-list li {
     font-family: "Unbounded", sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 5px 10px;
    
     color: #909794;
@@ -2410,7 +2408,7 @@ footer::before {
     font-weight: normal;
     letter-spacing: var(--body-letter-spacing);
     color: #B8C0BC;
-    line-height: 1.3rem;
+    line-height: 1.25rem;
     font-family: "Questrial", sans-serif;
     margin: 0;
 }
@@ -2468,7 +2466,7 @@ footer::before {
     font-weight: normal;
     letter-spacing: var(--body-letter-spacing);
     color: #B8C0BC;
-    line-height: 1.3rem;
+    line-height: 1.25rem;
     font-family: "Questrial", sans-serif;
     margin: 0 0 0 29px;
 }
@@ -3392,7 +3390,7 @@ background:
     font-family: "Questrial", sans-serif;
     font-size: var(--body-font);
     letter-spacing: var(--body-letter-spacing);
-    line-height: 1.3rem;
+    line-height: 1.25rem;
     color: #EDEEE9;
 }
 
@@ -3526,7 +3524,7 @@ background:
     font-weight: normal;
     font-family: "Questrial", sans-serif;
     letter-spacing: var(--body-letter-spacing);
-    line-height: 1.3rem;
+    line-height: 1.25rem;
 }
 
 .features-list {
@@ -3565,7 +3563,7 @@ background:
     font-size: var(--body-font);
     font-family: "Questrial", sans-serif;
     letter-spacing: var(--body-letter-spacing);
-    line-height: 1.3rem;
+    line-height: 1.25rem;
     color: #B8C0BC;
     margin: 0;
 }
@@ -4255,7 +4253,7 @@ background: radial-gradient(
     width: 16px;
 }
 .right-about-content .firstp, .right-about-content .secondp {
-    padding: 0.7em;
+    padding: 16px;
 }
 .long-desc {
     border-radius: 15px;
