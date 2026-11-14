@@ -46,14 +46,14 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: clip;
-background:
-    url("images/3px-tile.png"),
-    radial-gradient(circle at 15% 20%, rgba(3, 162, 113, 0.45), transparent 35%),
-    radial-gradient(circle at 80% 15%, rgba(3, 162, 113, 0.35), transparent 32%),
-    radial-gradient(circle at 45% 45%, rgba(3, 162, 113, 0.40), transparent 38%),
-    radial-gradient(circle at 85% 65%, rgba(3, 162, 113, 0.35), transparent 35%),
-    radial-gradient(circle at 20% 85%, rgba(3, 162, 113, 0.30), transparent 35%),
-    #000000;
+    background:
+        url("images/3px-tile.png"),
+        radial-gradient(circle at 15% 20%, rgba(3, 162, 113, 0.45), transparent 35%),
+        radial-gradient(circle at 80% 15%, rgba(3, 162, 113, 0.35), transparent 32%),
+        radial-gradient(circle at 45% 45%, rgba(3, 162, 113, 0.40), transparent 38%),
+        radial-gradient(circle at 85% 65%, rgba(3, 162, 113, 0.35), transparent 35%),
+        radial-gradient(circle at 20% 85%, rgba(3, 162, 113, 0.30), transparent 35%),
+        #000000;
     background-attachment: fixed;
     position: relative;
 }
@@ -72,7 +72,6 @@ main {
     position: relative;
     z-index: 3;
 }
-
 
 header {
     position: sticky;
@@ -96,8 +95,6 @@ header {
     display: flex;
     justify-content: space-between;
 }
-
-
 
 header::before {
     content: "";
