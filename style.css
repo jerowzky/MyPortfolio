@@ -59,7 +59,8 @@ body {
 }
 
 
-html:has(#galleryModal.active), html:has(#pdfModal.active), html:has(#videoModal.show), html:has(#mobileDropdown.active) {
+html.no-scroll,
+html.no-scroll body {
     overflow: hidden;
 }
 

@@ -108,6 +108,7 @@ function openMobileMenu() {
 
     mobileDropdown.classList.add("active");
     menuToggle.classList.add("active");
+    updateScrollLock();
 
     updateMenuAccessibility(true);
 }
@@ -117,6 +118,7 @@ function closeMobileMenu() {
 
     mobileDropdown.classList.remove("active");
     menuToggle?.classList.remove("active");
+    updateScrollLock();
 
     updateMenuAccessibility(false);
 }
@@ -150,12 +152,6 @@ function startNavLock() {
     navScrollTimeout = setTimeout(endNavLock, 400);
 }
 
-
-/* ================================
-   ACTIVE NAVIGATION
-   Only touches links that point to this page. Links to other pages
-   (index.html#...) and any manually set "active" class are left alone.
-================================ */
 
 function setActiveLink(activeHash) {
     localLinks.forEach((link) => {
@@ -446,6 +442,8 @@ demoButtons.forEach((button) => {
         demoVideo.load();
 
         videoModal.classList.add("show");
+        updateScrollLock();
+
         demoVideo.play();
     });
 });
@@ -453,6 +451,7 @@ demoButtons.forEach((button) => {
 // Function to close video modal
 function closeVideoModal() {
     videoModal.classList.remove("show");
+    updateScrollLock();
 
     demoVideo.pause();
     demoVideo.currentTime = 0;
@@ -552,6 +551,7 @@ pdfLinks.forEach(link => {
 
         // Show the modal
         pdfModal.classList.add("active");
+        updateScrollLock();
 
         // Load the PDF in a fresh iframe
         resetPdfViewer(viewerUrl.href);
@@ -565,6 +565,7 @@ pdfLinks.forEach(link => {
 // Close PDF modal
 function closePdfModal() {
     pdfModal.classList.remove("active");
+    updateScrollLock();
 
     // Unload the viewer without touching history
     resetPdfViewer(null);
@@ -654,7 +655,7 @@ if (galleryModal) {
 
         galleryModal.classList.add("active");
         galleryModal.setAttribute("aria-hidden", "false");
-        document.body.classList.add("no-scroll");
+        updateScrollLock();
 
         closeButton.focus();
     }
@@ -662,7 +663,7 @@ if (galleryModal) {
     function closeGallery() {
         galleryModal.classList.remove("active");
         galleryModal.setAttribute("aria-hidden", "true");
-        document.body.classList.remove("no-scroll");
+        updateScrollLock();
 
         galleryImage.removeAttribute("src");
 
@@ -705,4 +706,14 @@ if (galleryModal) {
             showImage(currentIndex - 1);
         }
     });
+}
+
+function updateScrollLock() {
+    const isOverlayOpen = 
+        document.querySelector('#galleryModal.active') ||
+        document.querySelector('#pdfModal.active') ||
+        document.querySelector('#videoModal.show') ||
+        document.querySelector('#mobileDropdown.active');
+
+    document.documentElement.classList.toggle('no-scroll', !!isOverlayOpen);
 }
