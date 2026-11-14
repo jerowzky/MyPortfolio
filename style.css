@@ -4420,6 +4420,9 @@ width: 100%;
     --body-letter-spacing: 0.025em;
 }
 
+.gallery-modal, .pdf-modal, .video-modal, .mobile-dropdown {
+    touch-action: none;
+}
 .gallery-trigger span {
     font-size: 10px;
     padding: 5px 10px;
