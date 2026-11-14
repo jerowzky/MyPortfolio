@@ -1420,7 +1420,6 @@ background: radial-gradient(
     font-family: "Questrial", sans-serif;
     font-size: var(--body-font);
     font-weight: normal;
-    width: 80%;
     color: #B8C0BC;
     letter-spacing: var(--body-letter-spacing);
     line-height: 1.25rem;
