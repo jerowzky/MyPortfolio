@@ -1065,7 +1065,24 @@ let lastIsMobile = null;
 
 // ---------- Pagination state ----------
 const PER_PAGE = 6;
-let currentPage = 1;
+const PAGE_KEY = "projectsPage";
+
+function loadSavedPage() {
+    try {
+        const saved = parseInt(sessionStorage.getItem(PAGE_KEY), 10);
+        return Number.isInteger(saved) && saved > 0 ? saved : 1;
+    } catch {
+        return 1; // storage blocked (private mode, etc.)
+    }
+}
+
+function savePage(page) {
+    try {
+        sessionStorage.setItem(PAGE_KEY, page);
+    } catch {}
+}
+
+let currentPage = loadSavedPage();
 
 // Grab the elements once, before their classes get swapped around.
 const projectsContainer = document.querySelector(".projects");
@@ -1129,6 +1146,7 @@ function renderPagination(totalPages) {
 function showPage(page, userClicked = false) {
     const totalPages = Math.ceil(projectCards.length / PER_PAGE) || 1;
     currentPage = Math.min(Math.max(page, 1), totalPages);
+    savePage(currentPage);
 
     projectCards.forEach((card, i) => {
         const visible = i >= (currentPage - 1) * PER_PAGE && i < currentPage * PER_PAGE;
@@ -1262,7 +1280,7 @@ function updateProjects() {
             card.classList.remove("show");
         });
 
-        // Pagination on: runs AFTER the classes are restored, keeps your last page
+        // Pagination on: runs AFTER the classes are restored, restores the saved page
         showPage(currentPage);
     }
 
